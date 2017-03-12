@@ -23,11 +23,10 @@
 }
 
 .category-graph {
-  border: 1px solid #000;
-  border-radius: 4px;
 }
 
 .category-graph-line {
+  border-radius: 4px;
 	height: 6px;
 	margin: auto 0;
   min-width: 8px;
