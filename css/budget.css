@@ -3,6 +3,9 @@
   text-align: right;
 }
 
+.category-available.danger {
+  color: red;
+}
 .category-available > sup {
   margin-left: 0.5ex;
   margin-right: 0.25ex;
@@ -24,6 +27,9 @@
 
 .category-graph {
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+}
+.category-graph.danger {
+  box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 0.75);
 }
 
 .category-graph, .category-graph-line {
