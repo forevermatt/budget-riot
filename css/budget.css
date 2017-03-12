@@ -22,7 +22,7 @@
 }
 
 .category-name {
-  
+  white-space: nowrap;
 }
 
 .category-graph {
