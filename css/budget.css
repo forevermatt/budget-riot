@@ -1,0 +1,38 @@
+.category-amount {
+  text-align: right;
+}
+
+.category-available > sup {
+  margin-left: 0.5ex;
+  margin-right: 0.25ex;
+}
+
+.category-budgeted {
+	font-size: 1.2rem;
+	vertical-align: bottom;
+}
+
+.category-name {
+  
+}
+
+.category-graph {
+  
+}
+
+.category-graph-line {
+	height: 0;
+	margin: 6px 0;
+	border-style: solid;
+  border-width: 4px;
+	border-radius: 4px;  
+}
+.category-graph-line.danger {
+  border-color: red;
+}
+.category-graph-line.success {
+  border-color: green;
+}
+.category-graph-line.warning {
+  border-color: orange;
+}
