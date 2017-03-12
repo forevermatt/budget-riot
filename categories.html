@@ -12,36 +12,46 @@
   <body id="site">
     <div class="container" id="page">
       <h2 id="page-title">Budget</h2>
-      <div class="row">
-        <div class="col-xs-4 category-name">Auto</div>
-        <div class="col-xs-4 category-graph">
-          <div class="category-graph-line success"></div>
-        </div>
-        <div class="col-xs-4 category-amount">
-          <span class="category-available"><sup>$</sup>298</span>
-          <span class="category-budgeted">/ 400</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 category-name">Food</div>
-        <div class="col-xs-4 category-graph">
-          <div class="category-graph-line warning"></div>
-        </div>
-        <div class="col-xs-4 category-amount">
-          <span class="category-available"><sup>$</sup>80</span>
-          <span class="category-budgeted">/ 300</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 category-name">Household</div>
-        <div class="col-xs-4 category-graph">
-          <div class="category-graph-line danger"></div>
-        </div>
-        <div class="col-xs-4 category-amount">
-          <span class="category-available">-<sup>$</sup>5</span>
-          <span class="category-budgeted">/ 200</span>
-        </div>
-      </div>
+      <table id="category-list" class="table table-condensed">
+        <tbody>
+          <tr>
+            <td class="category-name width-10">Auto</td>
+            <td class="width-80">
+              <div class="category-graph">
+                <div class="category-graph-line success"></div>
+              </div>
+            </td>
+            <td class="category-amount width-10">
+              <span class="category-available"><sup>$</sup>298</span>
+              <span class="category-budgeted">/ 400</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="category-name width-10">Food</td>
+            <td class="width-80">
+              <div class="category-graph">
+                <div class="category-graph-line warning"></div>
+              </div>
+            </td>
+            <td class="category-amount width-10">
+              <span class="category-available"><sup>$</sup>80</span>
+              <span class="category-budgeted">/ 300</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="category-name width-10">Household</td>
+            <td class="width-80">
+              <div class="category-graph">
+                <div class="category-graph-line danger"></div>
+              </div>
+            </td>
+            <td class="category-amount width-10">
+              <span class="category-available">-<sup>$</sup>5</span>
+              <span class="category-budgeted">/ 200</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

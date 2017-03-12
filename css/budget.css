@@ -1,4 +1,5 @@
 .category-amount {
+  white-space: nowrap;
   text-align: right;
 }
 
@@ -12,27 +13,43 @@
 	vertical-align: bottom;
 }
 
+#category-list td {
+  border: none;
+  vertical-align: middle;
+}
+
 .category-name {
   
 }
 
 .category-graph {
-  
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .category-graph-line {
-	height: 0;
-	margin: 6px 0;
-	border-style: solid;
-  border-width: 4px;
-	border-radius: 4px;  
+	height: 6px;
+	margin: auto 0;
+  min-width: 8px;
 }
 .category-graph-line.danger {
-  border-color: red;
+  background-color: red;
 }
 .category-graph-line.success {
-  border-color: green;
+  background-color: green;
 }
 .category-graph-line.warning {
-  border-color: orange;
+  background-color: orange;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.width-10 {
+  width: 10%;
+}
+
+.width-80 {
+  width: 80%;
 }
