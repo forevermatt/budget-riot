@@ -1,3 +1,9 @@
+#button-expense, #button-income {
+  bottom: 20px;
+  position: absolute;
+}
+#button-expense { right: 20px }
+
 .category-amount {
   white-space: nowrap;
   text-align: right;
