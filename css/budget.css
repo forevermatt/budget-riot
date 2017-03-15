@@ -71,7 +71,19 @@ body {
   width: 100%;
 }
 
-html { height: 100%;}
+html { height: 100%; }
+
+hr.small { margin: 10px 0; }
+
+.list-inline > li {
+  margin: 5px 2px;
+  padding: 0;
+}
+
+.pad-vertical {
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
 
 #page { height: 100% }
 
