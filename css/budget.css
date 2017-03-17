@@ -1,3 +1,8 @@
+
+#amount {
+  text-align: right;
+}
+
 body {
   height: 100%;
   padding-bottom: 100px;
@@ -9,9 +14,7 @@ body {
   text-align: right;
   width: 100%;
 }
-
-#button-expense > .glyphicon,
-#button-income > .glyphicon {
+#button-row .glyphicon {
   font-size: 5rem;
 }
 
