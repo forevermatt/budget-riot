@@ -87,6 +87,7 @@ body {
 .expense-summary-categories {
   display: inline-block;
   margin: 0 14px;
+  text-align: center;
 }
 .expense-summary-categories > * {
   display: inline-block;
