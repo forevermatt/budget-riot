@@ -84,6 +84,37 @@ body {
 	overflow: hidden;
 }
 
+code.account {
+  background-color: #d9edf7;
+  color: #286090;
+}
+code.category {
+  background-color: #fae8cc;
+  color: #985f0d;
+}
+
+.details-hidden {
+  display: none;
+}
+
+.details-show {
+  background-color: #f7f7f7;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px 0;
+}
+.details-show > .details-hidden {
+  display: inherit;
+}
+.details-show.details-toggler:hover {
+  background-color: #f0f0f0;
+}
+
+.details-toggler:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
 .expense-summary-categories {
   display: inline-block;
   margin: 0 14px;
@@ -96,6 +127,11 @@ body {
 
 .full-width {
   width: 100%;
+}
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4 {
+  font-size: 18px;
 }
 
 html { height: 100%; }
@@ -122,6 +158,11 @@ hr.small { margin: 10px 0; }
 .pad-vertical {
   padding-bottom: 15px;
   padding-top: 15px;
+}
+
+.pad-vertical-small {
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 #page {
