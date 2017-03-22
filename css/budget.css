@@ -84,6 +84,9 @@ body {
 	overflow: hidden;
 }
 
+code {
+  line-height: 1.75;
+}
 code.account {
   background-color: #d9edf7;
   color: #286090;
