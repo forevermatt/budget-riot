@@ -168,6 +168,11 @@ hr.small { margin: 10px 0; }
   padding-top: 5px;
 }
 
+.space-horizontal {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #page {
   min-height: 100%;
   position: relative;
