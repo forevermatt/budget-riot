@@ -18,6 +18,14 @@
     <script type="riot/tag" src="tag/bb-category-list.tag"></script>
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script src="js/riot+compiler.min.js"></script>
-    <script>riot.mount('*')</script>
+    <script>
+      riot.mount('bb-category-list')
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'expense', 'icon': 'minus-sign', 'pullRight': true },
+          { 'name': 'income', 'icon': 'plus-sign' }
+        ]
+      })
+    </script>
   </body>
 </html>
