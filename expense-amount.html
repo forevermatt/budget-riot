@@ -18,18 +18,17 @@
         </div>
       </form>
       
-      <div id="button-row-spacer"></div>
-      <div id="button-row">
-          <a id="button-next" class="btn" href="#" role="button">
-            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span><br />
-            next
-          </a>
-          <a id="button-back" class="btn pull-left" href="#" role="button">
-            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span><br />
-            back
-          </a>
-        <div class="clearfix"></div>
-      </div>
+      <bb-button-row></bb-button-row>
     </div>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot+compiler.min.js"></script>
+    <script>
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'next', 'icon': 'circle-arrow-right' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'pullLeft': true }
+        ]
+      })
+    </script>
   </body>
 </html>
