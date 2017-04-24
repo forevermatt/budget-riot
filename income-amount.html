@@ -10,19 +10,14 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-vertical text-center" novalidate>
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon">$</span>
-          <input type="tel" autofocus="autofocus" class="form-control"
-                 id="amount" placeholder="0.00" aria-label="Amount">
-        </div>
-      </form>
-      
+      <bb-amount-selector></bb-amount-selector>
       <bb-button-row></bb-button-row>
     </div>
+    <script type="riot/tag" src="tag/bb-amount-selector.tag"></script>
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script src="js/riot+compiler.min.js"></script>
     <script>
+      riot.mount('bb-amount-selector')
       riot.mount('bb-button-row', {
         'buttons': [
           { 'name': 'next', 'icon': 'circle-arrow-right' },
