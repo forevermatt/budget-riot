@@ -10,16 +10,20 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-vertical text-center">
-        <label for="payee">from:</label>
-        <input type="text" class="" id="from">
-        <hr class="small" />
-        <ul class="list-inline">
-          <li><a href="#" class="btn btn-default">My Employer, Inc.</a></li>
-          <li><a href="#" class="btn btn-default">Other Employer</a></li>
-          <li><a href="#" class="btn btn-default">Joe Schmoe</a></li>
-        </ul>
-      </form>
+      <bb-who-selector></bb-who-selector>
     </div>
+    <script type="riot/tag" src="tag/bb-who-selector.tag"></script>
+    <script src="js/riot+compiler.min.js"></script>
+    <script>
+      riot.mount('bb-who-selector', {
+        'title': 'from:',
+        'field': 'from',
+        'items': [
+          { 'name': 'My Employer, Inc.' },
+          { 'name': 'Other Employer' },
+          { 'name': 'Joe Schmoe' }
+        ]
+      })
+    </script>
   </body>
 </html>
