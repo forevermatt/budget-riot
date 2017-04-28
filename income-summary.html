@@ -12,16 +12,16 @@
     <div class="container" id="page">
       <form class="pad-top" novalidate>
         <p>
-          <a href="#" class="btn btn-default"><b>My Employer, Inc.</b></a>
-          <a href="#" class="btn btn-default pull-right"><sup>$</sup>500</a><br />
+          <a href="income-who.html" class="btn btn-default"><b>My Employer, Inc.</b></a>
+          <a href="income-amount.html" class="btn btn-default pull-right"><sup>$</sup>500</a><br />
         </p>
         <p>
           <b class="btn-height">Acct: </b>
-          <a href="#" class="btn btn-default pull-right">23: checking</a>
+          <a href="income-account.html" class="btn btn-default pull-right">23: checking</a>
         </p>
         <p>
           <b class="btn-height">Category: </b>
-          <a href="#" class="btn btn-default pull-right">(general income)</a>
+          <a href="income-category.html" class="btn btn-default pull-right">(general income)</a>
         </p>
         </p>
         <p>
@@ -37,7 +37,8 @@
     <script>
       riot.mount('bb-button-row', {
         'buttons': [
-          { 'name': 'done', 'icon': 'ok-sign' }
+          { 'name': 'done', 'icon': 'ok-sign', 'url': 'budget.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'income-summary.html', 'pullLeft': true }
         ]
       })
     </script>

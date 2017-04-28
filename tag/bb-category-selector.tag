@@ -7,7 +7,7 @@
     </div>
     <div class="row margin-bottom">
       <div class="col-xs-7 category-name">
-        <a href="#" class="btn btn-default" 
+        <a href="{ opts.nextUrl }" class="btn btn-default" 
            aria-label="Set category as Auto">Auto</a>
       </div>
       <div class="col-xs-5 category-amount">
@@ -22,7 +22,7 @@
 
     <div class="row margin-bottom">
       <div class="col-xs-7 category-name">
-        <a href="#" class="btn btn-default" 
+        <a href="{ opts.nextUrl }" class="btn btn-default" 
            aria-label="Set category as Auto">Food</a>
       </div>
       <div class="col-xs-5 category-amount">
@@ -37,7 +37,7 @@
 
     <div class="row margin-bottom">
       <div class="col-xs-7 category-name">
-        <a href="#" class="btn btn-default" 
+        <a href="{ opts.nextUrl }" class="btn btn-default" 
            aria-label="Set category as Auto">Household</a>
       </div>
       <div class="col-xs-5 category-amount">

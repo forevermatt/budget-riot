@@ -12,8 +12,8 @@
     <div class="container" id="page">
       <form class="pad-top" novalidate>
         <p>
-          <a href="#" class="btn btn-default"><b>Harris Teeter</b></a>
-          <a href="#" class="btn btn-default pull-right"><sup>$</sup>17.51</a><br />
+          <a href="expense-who.html" class="btn btn-default"><b>Harris Teeter</b></a>
+          <a href="expense-amount.html" class="btn btn-default pull-right"><sup>$</sup>17.51</a><br />
           <span class="expense-summary-categories">
             <code class="text-nowrap">Household: <sup>$</sup>5.11</code>
             <code class="text-nowrap">Food: <sup>$</sup>12.40</code>
@@ -21,7 +21,7 @@
         </p>
         <p>
           <b class="btn-height">Acct: </b>
-          <a href="#" class="btn btn-default pull-right">71: credit card</a>
+          <a href="expense-account.html" class="btn btn-default pull-right">71: credit card</a>
         </p>
         <p>
           <b class="btn-height">Date: </b>
@@ -40,7 +40,8 @@
     <script>
       riot.mount('bb-button-row', {
         'buttons': [
-          { 'name': 'done', 'icon': 'ok-sign' }
+          { 'name': 'done', 'icon': 'ok-sign', 'url': 'budget.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-category.html', 'pullLeft': true }
         ]
       })
     </script>

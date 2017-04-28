@@ -11,10 +11,17 @@
   <body id="site">
     <div class="container" id="page">
       <bb-who-selector></bb-who-selector>
+      <bb-button-row></bb-button-row>
     </div>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script type="riot/tag" src="tag/bb-who-selector.tag"></script>
     <script src="js/riot+compiler.min.js"></script>
     <script>
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'budget.html', 'pullLeft': true }
+        ]
+      })
       riot.mount('bb-who-selector', {
         'title': 'from:',
         'field': 'from',

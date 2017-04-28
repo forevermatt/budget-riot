@@ -17,10 +17,13 @@
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script src="js/riot+compiler.min.js"></script>
     <script>
-      riot.mount('bb-category-selector')
+      riot.mount('bb-category-selector', {
+        'nextUrl': 'expense-summary.html' 
+      })
       riot.mount('bb-button-row', {
         'buttons': [
-          { 'name': 'next', 'icon': 'circle-arrow-right' }
+          { 'name': 'next', 'icon': 'circle-arrow-right', 'url': 'expense-summary.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-amount.html', 'pullLeft': true }
         ]
       })
     </script>
