@@ -19,7 +19,13 @@
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script src="js/riot+compiler.min.js"></script>
     <script>
-      riot.mount('bb-category-list')
+      riot.mount('bb-category-list', {
+        'categories': [
+          { 'name': 'Auto', 'remaining': 298, 'total': 400 },
+          { 'name': 'Food', 'remaining': 70, 'total': 300 },
+          { 'name': 'Household', 'remaining': -5, 'total': 200 }
+        ]
+      })
       riot.mount('bb-button-row', {
         'buttons': [
           { 'name': 'expense', 'icon': 'minus-sign', 'pullRight': true, 'url': 'expense-who.html' },
