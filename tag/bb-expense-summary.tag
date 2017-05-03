@@ -1,16 +1,17 @@
 <bb-expense-summary>
   <form class="pad-top" novalidate>
     <p>
-      <a href="expense-who.html" class="btn btn-default"><b>Harris Teeter</b></a>
-      <a href="expense-amount.html" class="btn btn-default pull-right"><sup>$</sup>17.51</a><br />
+      <a href="expense-who.html" class="btn btn-default"><b>{ opts.who }</b></a>
+      <a href="expense-amount.html" class="btn btn-default pull-right"><sup>$</sup> { getTotal(opts.categories) }</a><br />
       <span class="expense-summary-categories">
-        <code class="text-nowrap">Household: <sup>$</sup>5.11</code>
-        <code class="text-nowrap">Food: <sup>$</sup>12.40</code>
+        <virtual  each="{ opts.categories }">
+          <code class="text-nowrap">{ name }: <sup>$</sup>{ amount }</code>
+        </virtual>
       </span>          
     </p>
     <p>
       <b class="btn-height">Acct: </b>
-      <a href="expense-account.html" class="btn btn-default pull-right">71: credit card</a>
+      <a href="expense-account.html" class="btn btn-default pull-right">{ opts.account }</a>
     </p>
     <p>
       <b class="btn-height">Date: </b>
@@ -21,4 +22,14 @@
       <input type="text" class="pull-right" name="comment" id="comment" />
     </p>
   </form>
+  
+  <script>
+  getTotal(categories) {
+    var total = 0;
+    for (var i = 0; i < categories.length; i++) {
+      total += categories[i].amount;
+    }
+    return total;
+  }
+  </script>
 </bb-expense-summary>

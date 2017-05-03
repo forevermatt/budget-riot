@@ -19,7 +19,15 @@
     <script src="js/riot.compiler.min.js"></script>
     <script>
       riot.mount('bb-expense-summary', {
-        
+        'who': 'Harris Teeter',
+        'account': '71: credit card',
+        'categories': [{
+          'name': 'Household',
+          'amount': 5.11
+        }, {
+          'name': 'Food',
+          'amount': 12.40
+        }]
       })
       riot.mount('bb-button-row', {
         'buttons': [
