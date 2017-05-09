@@ -10,44 +10,44 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <h2 id="page-title">
-        <button type="button" class="btn pull-right" aria-label="Search">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        </button>
-        Category: Food
-        <a href="#" class="btn btn-default space-horizontal">change</a>
-      </h2>
-      <hr class="small" />
-      <div class="row pad-vertical-small details-toggler">
-        <div class="col-xs-2 text-center">3/5</div>
-        <div class="col-xs-7">Dunkin' Donuts</div>
-        <div class="col-xs-3 text-right"><sup>$</sup>2.67</div>
-        <div class="col-xs-offset-2 col-xs-10 details-hidden">
-          <code class="account">23: checking</code>
-        </div>
-      </div>
-      
-      <div class="row pad-vertical-small details-toggler details-show">
-        <div class="col-xs-2 text-center">3/4</div>
-        <div class="col-xs-7">Walmart</div>
-        <div class="col-xs-3 text-right"><sup>$</sup>2.99</div>
-        <div class="col-xs-offset-2 col-xs-10 details-hidden">
-          <code class="category">Food: <sup>$</sup>2.99</code>
-          <code class="category">Household: <sup>$</sup>2.71</code>
-          <code class="category">TOTAL: <sup>$</sup>5.70</code>
-          <code class="account">23: checking</code>
-        </div>
-      </div>
-      
-      <div class="row pad-vertical-small details-toggler">
-        <div class="col-xs-2 text-center">3/4</div>
-        <div class="col-xs-7">Chick-fil-A</div>
-        <div class="col-xs-3 text-right"><sup>$</sup>2.30</div>
-        <div class="col-xs-offset-2 col-xs-10 details-hidden">
-          <code class="account">23: checking</code>
-        </div>
-      </div>
-      
+      <bb-transaction-list></bb-transaction-list>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-transaction-list.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-transaction-list', {
+        'transactions': [{
+          'date': '3/5',
+          'who': "Dunkin' Donuts",
+          'amount': 2.67,
+          'account': '23: checking'
+        }, {
+          'date': '3/4',
+          'who': 'Walmart',
+          'amount': 2.99,
+          'account': '23: checking',
+          'categories': [{
+            'name': 'Food',
+            'amount': 2.99
+          }, {
+            'name': 'Household',
+            'amount': 2.71
+          }]
+        }, {
+          'date': '3/4',
+          'who': 'Chick-fil-A',
+          'amount': 2.30,
+          'account': '23: checking'
+        }]
+      })
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'budget.html', 'pullLeft': true }
+        ]
+      })
+    </script>
   </body>
 </html>
