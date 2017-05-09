@@ -1,4 +1,6 @@
 <bb-category-list>
+  <h2 id="page-title">Budget</h2>
+  
   <table id="category-list" class="table table-condensed">
     <tbody>
       <tr each="{ opts.categories }">
