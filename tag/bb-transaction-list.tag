@@ -8,7 +8,8 @@
         <code class="category">{ name }: <sup>$</sup>{ amount }</code>
       </virtual>
       <code show="{ categories }" class="category"><b>TOTAL: <sup>$</sup>{ getTotal(categories) }</b></code>
-      <code class="account">{ account }</code>
+      <code if="{ account }" class="account">{ account }</code>
+      <code if="{ category }" class="category">{ category }</code>
     </div>
   </div>
   
