@@ -10,37 +10,31 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-top" novalidate>
-        <p>
-          <a href="#" class="btn btn-default"><b>Harris Teeter</b></a>
-          <a href="#" class="btn btn-default pull-right"><sup>$</sup>17.51</a><br />
-          <span class="expense-summary-categories">
-            <code class="text-nowrap">Household: <sup>$</sup>5.11</code>
-            <code class="text-nowrap">Food: <sup>$</sup>12.40</code>
-          </span>          
-        </p>
-        <p>
-          <b class="btn-height">Acct: </b>
-          <a href="#" class="btn btn-default pull-right">71: credit card</a>
-        </p>
-        <p>
-          <b class="btn-height">Date: </b>
-          <a href="#" class="btn btn-default pull-right">Today, 3/17</a>
-        </p>
-        <p>
-          <label for="comment">Comment:</label>
-          <input type="text" class="pull-right" name="comment" />
-        </p>
-      </form>
-      
-      <div id="button-row-spacer"></div>
-      <div id="button-row">
-        <a id="button-next" class="btn" href="#" role="button">
-          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><br />
-          done
-        </a>
-        <div class="clearfix"></div>
-      </div>
+      <bb-expense-summary></bb-expense-summary>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-expense-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-expense-summary', {
+        'who': 'Harris Teeter',
+        'account': '71: credit card',
+        'categories': [{
+          'name': 'Household',
+          'amount': 5.11
+        }, {
+          'name': 'Food',
+          'amount': 12.40
+        }]
+      })
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'done', 'icon': 'ok-sign', 'url': 'budget.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-category.html', 'pullLeft': true }
+        ]
+      })
+    </script>
   </body>
 </html>

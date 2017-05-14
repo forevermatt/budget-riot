@@ -10,15 +10,22 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-vertical" novalidate>
-        <p><b>Account:</b></p>
-        <ul class="list-unstyled">
-          <li><a href="#" class="btn btn-default">23: checking</a></li>
-          <li><a href="#" class="btn btn-default">71: credit card</a></li>
-          <li><a href="#" class="btn btn-default">85: other credit card</a></li>
-          <li><a href="#" class="btn btn-default">cash</a></li>
-        </ul>
-      </form>
+      <bb-account-selector></bb-account-selector>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script type="riot/tag" src="tag/bb-account-selector.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-summary.html', 'pullLeft': true }
+        ]
+      })
+      riot.mount('bb-account-selector', {
+        'nextUrl': 'expense-summary.html'
+      })
+    </script>
   </body>
 </html>

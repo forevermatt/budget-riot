@@ -10,60 +10,27 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <h2 id="page-title">Budget</h2>
-      <table id="category-list" class="table table-condensed">
-        <tbody>
-          <tr>
-            <td class="category-name width-10">Auto</td>
-            <td class="width-80">
-              <div class="category-graph">
-                <div class="category-graph-line success" style="width: 74.5%;"></div>
-              </div>
-            </td>
-            <td class="category-amount width-10">
-              <span class="category-available"><sup>$</sup>298</span>
-              <span class="category-budgeted">/ 400</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="category-name width-10">Food</td>
-            <td class="width-80">
-              <div class="category-graph">
-                <div class="category-graph-line warning" style="width: 26.7%;"></div>
-              </div>
-            </td>
-            <td class="category-amount width-10">
-              <span class="category-available"><sup>$</sup>80</span>
-              <span class="category-budgeted">/ 300</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="category-name width-10">Household</td>
-            <td class="width-80">
-              <div class="category-graph danger">
-                <div class="category-graph-line danger" style="width: 0%;"></div>
-              </div>
-            </td>
-            <td class="category-amount width-10">
-              <span class="category-available danger">-<sup>$</sup>5</span>
-              <span class="category-budgeted">/ 200</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div id="button-row-spacer"></div>
-      <div id="button-row">
-        <a id="button-expense" class="btn pull-right" href="#" role="button">
-          <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span><br />
-          expense
-        </a>
-        <a id="button-income" class="btn" href="#" role="button">
-          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span><br />
-          income
-        </a>
-        <div class="clearfix"></div>
-      </div>
+      <bb-category-list></bb-category-list>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-category-list.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-category-list', {
+        'categories': [
+          { 'name': 'Auto', 'remaining': 298, 'total': 400 },
+          { 'name': 'Food', 'remaining': 70, 'total': 300 },
+          { 'name': 'Household', 'remaining': -5, 'total': 200 }
+        ]
+      })
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'expense', 'icon': 'minus-sign', 'pullRight': true, 'url': 'expense-who.html' },
+          { 'name': 'income', 'icon': 'plus-sign', 'url': 'income-who.html' }
+        ]
+      })
+    </script>
   </body>
 </html>

@@ -10,18 +10,30 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-vertical text-center">
-        <label for="payee">Paid to:</label>
-        <input type="text" class="" id="payee">
-        <hr class="small" />
-        <ul class="list-inline">
-          <li><a href="#" class="btn btn-default">Citgo</a></li>
-          <li><a href="#" class="btn btn-default">Food Lion</a></li>
-          <li><a href="#" class="btn btn-default">Walmart</a></li>
-          <li><a href="#" class="btn btn-default">Bi-Lo</a></li>
-          <li><a href="#" class="btn btn-default">Harris Teeter</a></li>
-        </ul>
-      </form>
+      <bb-who-selector></bb-who-selector>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script type="riot/tag" src="tag/bb-who-selector.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'budget.html', 'pullLeft': true }
+        ]
+      })
+      riot.mount('bb-who-selector', {
+        'title': 'Paid to:',
+        'field': 'payee',
+        'items': [
+          { 'url': 'expense-amount.html', 'name': 'Citgo' },
+          { 'url': 'expense-amount.html', 'name': 'Food Lion' },
+          { 'url': 'expense-amount.html', 'name': 'Walmart' },
+          { 'url': 'expense-amount.html', 'name': 'Bi-Lo' },
+          { 'url': 'expense-amount.html', 'name': 'Harris Teeter' }
+        ]
+      })
+    </script>
   </body>
 </html>

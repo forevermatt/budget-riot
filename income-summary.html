@@ -10,34 +10,25 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-top" novalidate>
-        <p>
-          <a href="#" class="btn btn-default"><b>My Employer, Inc.</b></a>
-          <a href="#" class="btn btn-default pull-right"><sup>$</sup>500</a><br />
-        </p>
-        <p>
-          <b class="btn-height">Acct: </b>
-          <a href="#" class="btn btn-default pull-right">23: checking</a>
-        </p>
-        <p>
-          <b class="btn-height">Category: </b>
-          <a href="#" class="btn btn-default pull-right">(general income)</a>
-        </p>
-        </p>
-        <p>
-          <b class="btn-height">Date: </b>
-          <a href="#" class="btn btn-default pull-right">Today, 3/17</a>
-        </p>
-      </form>
-      
-      <div id="button-row-spacer"></div>
-      <div id="button-row">
-        <a id="button-next" class="btn" href="#" role="button">
-          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><br />
-          done
-        </a>
-        <div class="clearfix"></div>
-      </div>
+      <bb-income-summary></bb-income-summary>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-income-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-income-summary', {
+        'who': 'Harris Teeter',
+        'account': '71: credit card',
+        'amount': 500
+      })
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'done', 'icon': 'ok-sign', 'url': 'budget.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'income-summary.html', 'pullLeft': true }
+        ]
+      })
+    </script>
   </body>
 </html>

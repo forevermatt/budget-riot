@@ -10,67 +10,23 @@
   </head>
   <body id="site">
     <div class="container" id="page">
-      <form class="pad-vertical" novalidate>
-        <div class="row">
-          <div class="col-xs-5"><p>It was all...</p></div>
-          <div class="col-xs-2"><p><i>or</i></p></div>
-          <div class="col-xs-5 text-center"><p>Split it up:</p></div>
-        </div>
-        <div class="row margin-bottom">
-          <div class="col-xs-7 category-name">
-            <a href="#" class="btn btn-default" 
-               aria-label="Set category as Auto">Auto</a>
-          </div>
-          <div class="col-xs-5 category-amount">
-            <div class="input-group">
-              <span class="input-group-addon">$</span>
-              <input type="tel" autofocus="autofocus" class="form-control"
-                     id="amount" placeholder="0.00"
-                     aria-label="Amount for Auto category">
-            </div>
-          </div>
-        </div>
-        
-        <div class="row margin-bottom">
-          <div class="col-xs-7 category-name">
-            <a href="#" class="btn btn-default" 
-               aria-label="Set category as Auto">Food</a>
-          </div>
-          <div class="col-xs-5 category-amount">
-            <div class="input-group">
-              <span class="input-group-addon">$</span>
-              <input type="tel" autofocus="autofocus" class="form-control"
-                     id="amount" placeholder="0.00"
-                     aria-label="Amount for Food category">
-            </div>
-          </div>
-        </div>
-        
-        <div class="row margin-bottom">
-          <div class="col-xs-7 category-name">
-            <a href="#" class="btn btn-default" 
-               aria-label="Set category as Auto">Household</a>
-          </div>
-          <div class="col-xs-5 category-amount">
-            <div class="input-group">
-              <span class="input-group-addon">$</span>
-              <input type="tel" autofocus="autofocus" class="form-control"
-                     id="amount" placeholder="0.00"
-                     aria-label="Amount for Household category">
-            </div>
-          </div>
-        </div>
-        
-      </form>
-      
-      <div id="button-row-spacer"></div>
-      <div id="button-row">
-          <a id="button-next" class="btn" href="#" role="button">
-            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span><br />
-            next
-          </a>
-        <div class="clearfix"></div>
-      </div>
+      <bb-category-selector></bb-category-selector>
+      <bb-button-row></bb-button-row>
     </div>
+    
+    <script type="riot/tag" src="tag/bb-category-selector.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script src="js/riot.compiler.min.js"></script>
+    <script>
+      riot.mount('bb-category-selector', {
+        'nextUrl': 'expense-summary.html' 
+      })
+      riot.mount('bb-button-row', {
+        'buttons': [
+          { 'name': 'next', 'icon': 'circle-arrow-right', 'url': 'expense-summary.html' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-amount.html', 'pullLeft': true }
+        ]
+      })
+    </script>
   </body>
 </html>
