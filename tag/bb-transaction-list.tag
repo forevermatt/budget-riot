@@ -1,12 +1,4 @@
 <bb-transaction-list>
-  <h2 id="page-title">
-    <button type="button" class="btn pull-right" aria-label="Search">
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-    </button>
-    Category: Food
-    <a href="#" class="btn btn-default space-horizontal">change</a>
-  </h2>
-  <hr class="small" />
   <div each="{ opts.transactions }" onclick="{ toggle }" class="row pad-vertical-small details-toggler { 'details-show': show }">
     <div class="col-xs-2 text-center">{ date }</div>
     <div class="col-xs-7">{ who }</div>
