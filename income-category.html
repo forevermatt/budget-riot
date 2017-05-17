@@ -19,6 +19,13 @@
     <script src="js/riot.compiler.min.js"></script>
     <script>
       riot.mount('bb-category-selector', {
+        'categories': [{
+          'name': 'Auto'
+        }, {
+          'name': 'Food'
+        }, {
+          'name': 'Household'
+        }],
         'nextUrl': 'income-summary.html'
       })
       riot.mount('bb-button-row', {
