@@ -1,7 +1,9 @@
 <bb-app>
-  <!-- Route to appropriate "page" based on URL. -->
+  <div class="container" id="page" ref="page"></div>
 
-  <!-- Start on the budget overview page for now... may change that later. -->
-  <bb-category-list categories="{ opts.budgetApp.budget.categories }"></bb-category-list>
-  <bb-button-row buttons="{ opts.budgetApp.page.buttons }"></bb-button-row>
+  <script>
+  this.on('mount', function() {
+    var budgetApp = new bb.BudgetApp(this.refs.page);
+  });
+  </script>
 </bb-app>
