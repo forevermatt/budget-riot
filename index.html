@@ -10,15 +10,15 @@
   </head>
   <body id="site">
 
-    <div class="container" id="page">
-      <bb-app></bb-app>
-    </div>
+    <bb-app></bb-app>
 
     <script type="riot/tag" src="tag/bb-app.tag"></script>
+    <script type="riot/tag" src="tag/bb-budget.tag"></script>
     <script type="riot/tag" src="tag/bb-category-list.tag"></script>
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
 
     <script src="js/riot.compiler.min.js"></script>
+    <script src="js/route.min.js"></script>
     <script src="js/button.js"></script>
     <script src="js/page.js"></script>
     <script src="js/category.js"></script>
@@ -27,10 +27,8 @@
 
     <script>
       riot.compile(function() {
-        var budgetApp = new bb.BudgetApp();
-        riot.mount('bb-app', {
-          'budgetApp': budgetApp,
-        })
+        riot.mount('*')
+        route.start(true)
       })
     </script>
   </body>
