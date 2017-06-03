@@ -15,6 +15,10 @@ bb.BudgetApp = function(pageDom) {
       'opts': {
         'accounts': this.budget.accounts
       }
+    },
+    'expense/amount': {
+      'tagName': 'bb-expense-amount',
+      'opts': {}
     }
   };
   route(this.route.bind(this));
