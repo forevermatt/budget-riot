@@ -1,10 +1,6 @@
 var bb = bb || {};
 
 bb.Page = function(pageDom) {
-  this.buttons = [
-    new bb.Button('expense', 'minus-sign', 'expense-who.html'),
-    new bb.Button('income', 'plus-sign', 'income-who.html')
-  ];
   this.pageDom = pageDom;
 };
 

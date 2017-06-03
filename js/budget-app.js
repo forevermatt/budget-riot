@@ -7,26 +7,16 @@ bb.BudgetApp = function(pageDom) {
     'budget': {
       'tagName': 'bb-budget',
       'opts': {
-        'categories': this.budget.categories,
-        'buttons': this.page.buttons
+        'categories': this.budget.categories
       }
     },
     'expense/account': {
       'tagName': 'bb-expense-account',
       'opts': {
-        'accounts': this.budget.accounts,
-        'nextUrl': 'expense-summary.html',
-        'buttons': [
-          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-summary.html', 'pullLeft': true }
-        ]
+        'accounts': this.budget.accounts
       }
     }
   };
-
-  
-  console.log(this.budget.accounts); // TEMP
-
-
   route(this.route.bind(this));
 };
 
