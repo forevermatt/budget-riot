@@ -13,9 +13,20 @@ bb.BudgetApp = function(pageDom) {
     },
     'expense/account': {
       'tagName': 'bb-expense-account',
-      'opts': {}
+      'opts': {
+        'accounts': this.budget.accounts,
+        'nextUrl': 'expense-summary.html',
+        'buttons': [
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'expense-summary.html', 'pullLeft': true }
+        ]
+      }
     }
   };
+
+  
+  console.log(this.budget.accounts); // TEMP
+
+
   route(this.route.bind(this));
 };
 
