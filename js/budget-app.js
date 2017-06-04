@@ -15,27 +15,36 @@ bb.BudgetApp = function(pageDom) {
   this.expense = {};
   this.page = new bb.Page(pageDom);
   this.transactions = [{
-    'date': '3/5',
-    'who': "Dunkin' Donuts",
-    'amount': 2.67,
-    'category': 'Food'
-  }, {
-    'date': '3/4',
-    'who': 'Walmart',
-    'amount': 5.70,
-    'categories': [{
-      'name': 'Food',
-      'amount': 2.99
+      'date': '3/5',
+      'who': "Dunkin' Donuts",
+      'amount': 2.67,
+      'category': 'Food',
+      'account': '23: checking'
     }, {
-      'name': 'Household',
-      'amount': 2.71
+      'date': '3/4',
+      'who': 'Walmart',
+      'amount': 5.70,
+      'categories': [{
+        'name': 'Food',
+        'amount': 2.99
+      }, {
+        'name': 'Household',
+        'amount': 2.71
+      }],
+      'account': '23: checking'
+    }, {
+      'date': '3/4',
+      'who': "Lowe's",
+      'amount': 15.54,
+      'category': 'Household',
+      'account': '71: credit card'
+    }, {
+      'date': '3/4',
+      'who': 'Chick-fil-A',
+      'amount': 2.30,
+      'category': 'Food',
+      'account': '23: checking'
     }]
-  }, {
-    'date': '3/4',
-    'who': 'Chick-fil-A',
-    'amount': 2.30,
-    'category': 'Food'
-  }];
   this.routes = {
     'budget': {
       'tagName': 'bb-budget',
