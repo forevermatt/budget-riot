@@ -79,6 +79,13 @@ bb.BudgetApp = function(pageDom) {
         'account': this.currentAccount,
         'transactions': this.transactions
       }
+    },
+    'income/account': {
+      'tagName': 'bb-page-income-account',
+      'opts': {
+        'accounts': this.accounts,
+        'next': '#income/summary'
+      }
     }
   };
   route(this.route.bind(this));
