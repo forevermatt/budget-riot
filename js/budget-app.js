@@ -97,6 +97,6 @@ bb.BudgetApp.prototype.route = function(...pathSegments) {
   if (routeData != undefined) {
     this.page.showTag(routeData.tagName, routeData.opts);
   } else {
-    route('budget');
+    this.page.showTag('bb-page-not-found', { 'route': path });
   }
 };
