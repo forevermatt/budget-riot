@@ -5,17 +5,17 @@
       <div class="col-xs-2"><p><i>or</i></p></div>
       <div class="col-xs-5 text-center"><p>Split it up:</p></div>
     </div>
-    
+
     <virtual if="{ !opts.categories }">
       <div class="alert alert-danger" role="alert">
-        <b>Oops!</b> We couldn't find any categories. Would you like to 
+        <b>Oops!</b> We couldn't find any categories. Would you like to
         <a href="#">set up your categories</a> now?
       </div>
     </virtual>
-    
+
     <div each="{ opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
-        <a href="{ parent.opts.nextUrl }" class="btn btn-default" 
+        <a href="{ parent.opts.next }" class="btn btn-default"
            aria-label="Set category as { name }">{ name }</a>
       </div>
       <div class="col-xs-5 category-amount">
@@ -27,6 +27,6 @@
         </div>
       </div>
     </div>
-    
+
   </form>
 </bb-category-selector>

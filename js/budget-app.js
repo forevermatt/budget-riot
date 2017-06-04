@@ -20,6 +20,12 @@ bb.BudgetApp = function(pageDom) {
       'tagName': 'bb-expense-amount',
       'opts': {}
     },
+    'expense/category': {
+      'tagName': 'bb-expense-category',
+      'opts': {
+        'categories': this.budget.categories
+      }
+    },
     'expense/who': {
       'tagName': 'bb-expense-who',
       'opts': {
