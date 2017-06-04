@@ -1,6 +1,15 @@
 var bb = bb || {};
 
 bb.BudgetApp = function(pageDom) {
+  this.accounts = [{
+    'name': '23: checking'
+  }, {
+    'name': '71: credit card'
+  }, {
+    'name': '85: other credit card'
+  }, {
+    'name': 'cash'
+  }];
   this.budget = new bb.Budget();
   this.expense = {};
   this.page = new bb.Page(pageDom);
@@ -14,7 +23,7 @@ bb.BudgetApp = function(pageDom) {
     'expense/account': {
       'tagName': 'bb-expense-account',
       'opts': {
-        'accounts': this.budget.accounts
+        'accounts': this.accounts
       }
     },
     'expense/amount': {
