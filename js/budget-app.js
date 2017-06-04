@@ -19,6 +19,12 @@ bb.BudgetApp = function(pageDom) {
     'expense/amount': {
       'tagName': 'bb-expense-amount',
       'opts': {}
+    },
+    'expense/who': {
+      'tagName': 'bb-expense-who',
+      'opts': {
+        'payees': this.budget.payees
+      }
     }
   };
   route(this.route.bind(this));
