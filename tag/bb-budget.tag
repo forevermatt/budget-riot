@@ -5,7 +5,7 @@
   <script>
   this.buttons = [
     new bb.Button('income', 'plus-sign', 'income-who.html'),
-    new bb.Button('expense', 'minus-sign', '#/expense/who')
+    new bb.Button('expense', 'minus-sign', '#expense/who')
   ];
   </script>
 </bb-budget>
