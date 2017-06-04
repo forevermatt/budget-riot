@@ -89,6 +89,12 @@ bb.BudgetApp = function(pageDom) {
         'transactions': this.transactions
       }
     },
+    'history/all': {
+      'tagName': 'bb-page-history-all',
+      'opts': {
+        'transactions': this.transactions
+      }
+    },
     'income/account': {
       'tagName': 'bb-page-income-account',
       'opts': {
