@@ -47,7 +47,7 @@ bb.BudgetApp = function(pageDom) {
     }]
   this.routes = {
     'budget': {
-      'tagName': 'bb-budget',
+      'tagName': 'bb-page-budget',
       'opts': {
         'categories': this.budget.categories
       }

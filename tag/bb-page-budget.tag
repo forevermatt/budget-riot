@@ -1,4 +1,4 @@
-<bb-budget>
+<bb-page-budget>
   <bb-category-list categories="{ opts.categories }"></bb-category-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -8,4 +8,4 @@
     new bb.Button('expense', 'minus-sign', '#expense/who')
   ];
   </script>
-</bb-budget>
+</bb-page-budget>
