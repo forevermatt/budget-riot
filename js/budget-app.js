@@ -2,6 +2,7 @@ var bb = bb || {};
 
 bb.BudgetApp = function(pageDom) {
   this.budget = new bb.Budget();
+  this.expense = {};
   this.page = new bb.Page(pageDom);
   this.routes = {
     'budget': {
@@ -24,6 +25,14 @@ bb.BudgetApp = function(pageDom) {
       'tagName': 'bb-expense-category',
       'opts': {
         'categories': this.budget.categories
+      }
+    },
+    'expense/summary': {
+      'tagName': 'bb-page-expense-summary',
+      'opts': {
+        'account': this.expense.account,
+        'categories': this.expense.categories,
+        'payee': this.expense.payee
       }
     },
     'expense/who': {
