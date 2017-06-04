@@ -1,4 +1,4 @@
-<bb-expense-account>
+<bb-page-expense-account>
   <bb-account-selector accounts="{ opts.accounts }"></bb-account-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -7,4 +7,4 @@
     new bb.Button('back', 'circle-arrow-left', '#expense/summary', true)
   ];
   </script>
-</bb-expense-account>
+</bb-page-expense-account>

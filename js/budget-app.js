@@ -53,7 +53,7 @@ bb.BudgetApp = function(pageDom) {
       }
     },
     'expense/account': {
-      'tagName': 'bb-expense-account',
+      'tagName': 'bb-page-expense-account',
       'opts': {
         'accounts': this.accounts
       }
