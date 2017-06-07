@@ -108,6 +108,11 @@ bb.BudgetApp = function(pageDom) {
 
 bb.BudgetApp.prototype.route = function(...pathSegments) {
   var path = pathSegments.join('/');
+  if (path === '') {
+    route('budget');
+    return;
+  }
+
   var routeData = this.routes[path];
   if (routeData != undefined) {
     this.page.showTag(routeData.tagName, routeData.opts);
