@@ -101,6 +101,12 @@ bb.BudgetApp = function(pageDom) {
         'accounts': this.accounts,
         'next': '#income/summary'
       }
+    },
+    'income/who': {
+      'tagName': 'bb-page-income-who',
+      'opts': {
+        'items': this.budget.incomeSources
+      }
     }
   };
   route(this.route.bind(this));

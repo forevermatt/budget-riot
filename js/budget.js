@@ -6,6 +6,11 @@ bb.Budget = function() {
     new bb.Category('Food', 70, 300),
     new bb.Category('Household', -5, 200)
   ];
+  this.incomeSources = [
+    { 'url': '#income/amount', 'name': 'My Employer, Inc.' },
+    { 'url': '#income/amount', 'name': 'Other Employer' },
+    { 'url': '#income/amount', 'name': 'Joe Schmoe' }
+  ];
   this.payees = [
     { 'url': '#expense/amount', 'name': 'Citgo' },
     { 'url': '#expense/amount', 'name': 'Food Lion' },
