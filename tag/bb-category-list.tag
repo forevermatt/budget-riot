@@ -1,11 +1,11 @@
 <bb-category-list>
   <h2 id="page-title">Budget</h2>
-  
+
   <table id="category-list" class="table table-condensed">
     <tbody>
       <tr each="{ opts.categories }">
         <td class="category-name width-10">
-          <a href="history-category.html" class="btn btn-default">{ name }</a></td>
+          <a href="#history/category" class="btn btn-default">{ name }</a></td>
         <td class="width-80">
           <div class="category-graph { dangerUnlessPositive(remaining) }">
             <div class="category-graph-line { status(remaining, total) }" style="width: { width(remaining, total) }%;"></div>
@@ -18,7 +18,7 @@
       </tr>
     </tbody>
   </table>
-  
+
   <script>
     dangerUnlessPositive(remaining) {
       return (remaining > 0 ? '' : 'danger');

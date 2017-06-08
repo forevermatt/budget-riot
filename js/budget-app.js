@@ -12,6 +12,7 @@ bb.BudgetApp = function(pageDom) {
   }];
   this.budget = new bb.Budget();
   this.currentAccount = this.accounts[0];
+  this.currentCategory = this.budget.categories[1];
   this.expense = {};
   this.income = {};
   this.page = new bb.Page(pageDom);
@@ -93,6 +94,13 @@ bb.BudgetApp = function(pageDom) {
     'history/all': {
       'tagName': 'bb-page-history-all',
       'opts': {
+        'transactions': this.transactions
+      }
+    },
+    'history/category': {
+      'tagName': 'bb-page-history-category',
+      'opts': {
+        'category': this.currentCategory,
         'transactions': this.transactions
       }
     },
