@@ -102,6 +102,11 @@ bb.BudgetApp = function(pageDom) {
         'next': '#income/summary'
       }
     },
+    'income/amount': {
+      'tagName': 'bb-page-income-amount',
+      'opts': {
+      }
+    },
     'income/who': {
       'tagName': 'bb-page-income-who',
       'opts': {
