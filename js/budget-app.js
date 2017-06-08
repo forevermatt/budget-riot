@@ -13,6 +13,7 @@ bb.BudgetApp = function(pageDom) {
   this.budget = new bb.Budget();
   this.currentAccount = this.accounts[0];
   this.expense = {};
+  this.income = {};
   this.page = new bb.Page(pageDom);
   this.transactions = [{
       'date': '3/5',
@@ -105,6 +106,12 @@ bb.BudgetApp = function(pageDom) {
     'income/amount': {
       'tagName': 'bb-page-income-amount',
       'opts': {
+      }
+    },
+    'income/summary': {
+      'tagName': 'bb-page-income-summary',
+      'opts': {
+        'income': this.income
       }
     },
     'income/who': {
