@@ -122,6 +122,12 @@ bb.BudgetApp = function(pageDom) {
       'opts': {
       }
     },
+    'income/category': {
+      'tagName': 'bb-page-income-category',
+      'opts': {
+        'categories': this.budget.categories
+      }
+    },
     'income/summary': {
       'tagName': 'bb-page-income-summary',
       'opts': {
