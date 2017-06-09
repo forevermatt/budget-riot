@@ -13,7 +13,7 @@
       <bb-category-selector></bb-category-selector>
       <bb-button-row></bb-button-row>
     </div>
-    
+
     <script type="riot/tag" src="tag/bb-category-selector.tag"></script>
     <script type="riot/tag" src="tag/bb-button-row.tag"></script>
     <script src="js/riot.compiler.min.js"></script>
@@ -26,12 +26,12 @@
         }, {
           'name': 'Household'
         }],
-        'nextUrl': 'income-summary.html'
+        'nextUrl': '#income/summary'
       })
       riot.mount('bb-button-row', {
         'buttons': [
-          { 'name': 'next', 'icon': 'circle-arrow-right', 'url': 'income-summary.html' },
-          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': 'income-amount.html', 'pullLeft': true }
+          { 'name': 'next', 'icon': 'circle-arrow-right', 'url': '#income/summary' },
+          { 'name': 'back', 'icon': 'circle-arrow-left', 'url': '#income/amount', 'pullLeft': true }
         ]
       })
     </script>
