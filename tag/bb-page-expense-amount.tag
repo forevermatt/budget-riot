@@ -1,4 +1,4 @@
-<bb-expense-amount>
+<bb-page-expense-amount>
   <bb-amount-selector></bb-amount-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -8,4 +8,4 @@
       new bb.Button('back', 'circle-arrow-left', '#expense/who', true)
     ];
   </script>
-</bb-expense-amount>
+</bb-page-expense-amount>

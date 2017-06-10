@@ -61,7 +61,7 @@ bb.BudgetApp = function(pageDom) {
       }
     },
     'expense/amount': {
-      'tagName': 'bb-expense-amount',
+      'tagName': 'bb-page-expense-amount',
       'opts': {}
     },
     'expense/category': {
