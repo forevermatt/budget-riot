@@ -65,7 +65,7 @@ bb.BudgetApp = function(pageDom) {
       'opts': {}
     },
     'expense/category': {
-      'tagName': 'bb-expense-category',
+      'tagName': 'bb-page-expense-category',
       'opts': {
         'categories': this.budget.categories
       }

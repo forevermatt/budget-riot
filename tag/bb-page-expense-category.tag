@@ -1,4 +1,4 @@
-<bb-expense-category>
+<bb-page-expense-category>
   <bb-category-selector categories="{ opts.categories }" next="#expense/summary"></bb-category-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -8,4 +8,4 @@
       new bb.Button('back', 'circle-arrow-left', '#expense/amount', true)
     ];
   </script>
-</bb-expense-category>
+</bb-page-expense-category>
