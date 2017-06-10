@@ -12,6 +12,10 @@
   </form>
 
   <script>
+  this.one('mount', function() {
+    this.refs.payee.focus();
+  });
+
   formSubmitted(formEvent) {
     var payeeName = this.refs.payee.value;
     this.recordPayee(formEvent, payeeName);
