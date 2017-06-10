@@ -12,10 +12,10 @@ bb.Budget = function() {
     { 'url': '#income/amount', 'name': 'Joe Schmoe' }
   ];
   this.payees = [
-    { 'url': '#expense/amount', 'name': 'Citgo' },
-    { 'url': '#expense/amount', 'name': 'Food Lion' },
-    { 'url': '#expense/amount', 'name': 'Walmart' },
-    { 'url': '#expense/amount', 'name': 'Bi-Lo' },
-    { 'url': '#expense/amount', 'name': 'Harris Teeter' }
+    { 'name': 'Citgo' },
+    { 'name': 'Food Lion' },
+    { 'name': 'Walmart' },
+    { 'name': 'Bi-Lo' },
+    { 'name': 'Harris Teeter' }
   ];
 };

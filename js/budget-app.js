@@ -81,7 +81,8 @@ bb.BudgetApp = function(pageDom) {
     'expense/who': {
       'tagName': 'bb-page-expense-who',
       'opts': {
-        'payees': this.budget.payees
+        'payees': this.budget.payees,
+        'transaction': this.expense
       }
     },
     'history/account': {
