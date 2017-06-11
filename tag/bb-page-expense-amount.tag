@@ -1,5 +1,5 @@
 <bb-page-expense-amount>
-  <bb-amount-selector></bb-amount-selector>
+  <bb-amount-selector transaction="{ opts.transaction }"></bb-amount-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
