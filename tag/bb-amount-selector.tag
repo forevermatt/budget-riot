@@ -4,7 +4,7 @@
       <span class="input-group-addon">$</span>
       <input type="tel" autofocus="autofocus" class="form-control"
              id="amount" onkeydown="{ keyDown }" ref="amount"
-             value="{ opts.transaction.amount || '0.00' }" aria-label="Amount">
+             value="{ opts.transaction.amount }" aria-label="Amount">
     </div>
   </form>
 
@@ -57,7 +57,7 @@
 
   recordAmount(theEvent, amountText) {
     theEvent.preventUpdate = true;
-    opts.transaction.amount = (Number(amountText) / 100).toFixed(2);
+    opts.transaction.amount = Number(amountText).toFixed(2);
     this.trigger('next');
   };
 
