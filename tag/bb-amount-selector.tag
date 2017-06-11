@@ -16,8 +16,8 @@
   this.numeralsEntered = [];
 
   formSubmitted(formEvent) {
-    var amountText = this.refs.amount.value;
-    this.recordAmount(formEvent, amountText);
+    formEvent.preventUpdate = true;
+    this.trigger('next');
   }
 
   getNumericCharFrom(code) {
@@ -34,7 +34,8 @@
   }
 
   isPrintable(code) {
-    return (code >= 32 && code < 127) ||
+    return (code >= 32 && code < 112) ||
+           (code >= 123 && code < 127) ||
            (code >= 186);
   }
 
@@ -53,12 +54,11 @@
     }
 
     this.showNumerals(this.numeralsEntered);
+    this.recordAmount(this.refs.amount.value);
   }
 
-  recordAmount(theEvent, amountText) {
-    theEvent.preventUpdate = true;
+  recordAmount(amountText) {
     opts.transaction.amount = Number(amountText).toFixed(2);
-    this.trigger('next');
   };
 
   showNumerals(numerals) {
