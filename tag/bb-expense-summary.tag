@@ -27,7 +27,7 @@
   getTotal(categories) {
     var total = 0;
     for (var i = 0; i < categories.length; i++) {
-      total += categories[i].amount;
+      total += Number(categories[i].amount);
     }
     return total;
   }

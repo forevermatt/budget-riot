@@ -76,9 +76,7 @@ bb.BudgetApp = function(pageDom) {
     'expense/summary': {
       'tagName': 'bb-page-expense-summary',
       'opts': {
-        'account': this.expense.account,
-        'categories': this.expense.categories,
-        'payee': this.expense.payee
+        'transaction': this.expense
       }
     },
     'expense/who': {
