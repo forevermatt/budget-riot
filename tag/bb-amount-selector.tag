@@ -10,6 +10,7 @@
 
   <script>
   this.on('mount', function() {
+    this.showNumerals(this.numeralsEntered);
     this.refs.amount.focus();
   });
 
