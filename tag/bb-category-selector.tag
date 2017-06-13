@@ -16,15 +16,17 @@
     <div each="{ opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
         <a href="javascript:void(0)"
-           class="{ console.log(parent) } btn btn-default { 'btn-primary': name === parent.opts.transaction.category }"
+           class="btn btn-default { 'btn-primary': name === parent.opts.transaction.category }"
            onclick="{ categoryClick }"
-           aria-label="Set category as { name }">{ name }</a>
+           tabindex="1"
+           aria-label="It was all { name }">{ name }</a>
       </div>
       <div class="col-xs-5 category-amount">
         <div class="input-group">
           <span class="input-group-addon">$</span>
           <input type="tel" autofocus="autofocus" class="form-control"
                  id="amount" placeholder="0.00"
+                 tabindex="2"
                  aria-label="Amount for { name } category">
         </div>
       </div>
