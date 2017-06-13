@@ -10,6 +10,7 @@
 
   <script>
   this.on('mount', function() {
+    this.numeralsEntered = this.getNumeralsFromAmount(opts.transaction.amount);
     this.showNumerals(this.numeralsEntered);
     this.refs.amount.focus();
   });
@@ -19,6 +20,16 @@
   formSubmitted(formEvent) {
     formEvent.preventUpdate = true;
     this.trigger('next');
+  }
+
+  getNumeralsFromAmount(value) {
+    if ( ! value) {
+      return [];
+    }
+
+    return String(value).split('').filter(function(char) {
+      return ('0123456789'.indexOf(char) >= 0);
+    })
   }
 
   getNumericCharFrom(code) {
