@@ -15,7 +15,9 @@
 
     <div each="{ opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
-        <a href="{ parent.opts.next }" class="btn btn-default"
+        <a href="javascript:void(0)"
+           class="{ console.log(parent) } btn btn-default { 'btn-primary': name === parent.opts.transaction.category }"
+           onclick="{ categoryClick }"
            aria-label="Set category as { name }">{ name }</a>
       </div>
       <div class="col-xs-5 category-amount">
@@ -29,4 +31,11 @@
     </div>
 
   </form>
+
+  <script>
+  categoryClick(clickEvent) {
+    opts.transaction.category = clickEvent.target.text;
+    this.trigger('next');
+  }
+  </script>
 </bb-category-selector>
