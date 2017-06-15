@@ -17,36 +17,41 @@ bb.BudgetApp = function(pageDom) {
   this.income = {};
   this.page = new bb.Page(pageDom);
   this.transactions = [{
-      'date': '3/5',
-      'who': "Dunkin' Donuts",
-      'amount': 2.67,
-      'category': 'Food',
-      'account': '23: checking'
+    'accountId': 1,
+    'categories': [{
+      'name': 'Food',
+      'amount': 2.67
+    }],
+    'whenTimestamp': 1488720180,
+    'who': "Dunkin' Donuts"
+  }, {
+    'accountId': 1,
+    'categories': [{
+      'name': 'Food',
+      'amount': 2.99
     }, {
-      'date': '3/4',
-      'who': 'Walmart',
-      'amount': 5.70,
-      'categories': [{
-        'name': 'Food',
-        'amount': 2.99
-      }, {
-        'name': 'Household',
-        'amount': 2.71
-      }],
-      'account': '23: checking'
-    }, {
-      'date': '3/4',
-      'who': "Lowe's",
-      'amount': 15.54,
-      'category': 'Household',
-      'account': '71: credit card'
-    }, {
-      'date': '3/4',
-      'who': 'Chick-fil-A',
-      'amount': 2.30,
-      'category': 'Food',
-      'account': '23: checking'
-    }]
+      'name': 'Household',
+      'amount': 2.71
+    }],
+    'whenTimestamp': 1488639660,
+    'who': 'Walmart'
+  }, {
+    'accountId': 3,
+    'categories': [{
+      'name': 'Household',
+      'amount': 15.54
+    }],
+    'whenTimestamp': 1488639692,
+    'who': "Lowe's"
+  }, {
+    'accountId': 1,
+    'category': [{
+      'name': 'Food',
+      'amount': 2.30
+    }],
+    'whenTimestamp': 1488639592,
+    'who': 'Chick-fil-A',
+  }];
   this.routes = {
     'budget': {
       'tagName': 'bb-page-budget',
