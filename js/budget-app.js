@@ -1,17 +1,25 @@
 var bb = bb || {};
 
 bb.BudgetApp = function(pageDom) {
-  this.accounts = [{
-    'name': '23: checking'
-  }, {
-    'name': '71: credit card'
-  }, {
-    'name': '85: other credit card'
-  }, {
-    'name': 'cash'
-  }];
+  this.accounts = {
+    1: {
+      'id': 1,
+      'name': '23: checking'
+    },
+    2: {
+      'id': 2,
+      'name': 'cash'
+    },
+    3: {
+      'id': 3,
+      'name': '71: credit card'
+    },
+    4: {
+      'id': 4,
+      'name': '85: other credit card'
+    }
+  };
   this.budget = new bb.Budget();
-  this.currentAccount = this.accounts[0];
   this.currentCategory = this.budget.categories[1];
   this.expense = {};
   this.income = {};
@@ -81,6 +89,7 @@ bb.BudgetApp = function(pageDom) {
     'expense/summary': {
       'tagName': 'bb-page-expense-summary',
       'opts': {
+        'accounts': this.accounts,
         'transaction': this.expense
       }
     },
@@ -94,7 +103,7 @@ bb.BudgetApp = function(pageDom) {
     'history/account': {
       'tagName': 'bb-page-history-account',
       'opts': {
-        'account': this.currentAccount,
+        'account': this.accounts[1],
         'transactions': this.transactions
       }
     },
