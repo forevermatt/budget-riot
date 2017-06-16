@@ -16,7 +16,7 @@
   ];
   getTransactionsForAccount() {
     return opts.transactions.filter(function(transaction) {
-      return (opts.account.name === transaction.account);
+      return (opts.account.id === transaction.accountId);
     });
   }
   </script>
