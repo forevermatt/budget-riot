@@ -154,7 +154,8 @@ bb.BudgetApp = function(pageDom) {
     'income/who': {
       'tagName': 'bb-page-income-who',
       'opts': {
-        'items': this.budget.incomeSources
+        'incomeSources': this.budget.incomeSources,
+        'transaction': this.income
       }
     }
   };
