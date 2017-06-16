@@ -10,6 +10,7 @@
   this.buttons = [
     new bb.Button('back', 'circle-arrow-left', '#budget', true)
   ];
+
   this.one('mount', function() {
     this.refs.selector.on('next', function() {
       route('expense/amount');
