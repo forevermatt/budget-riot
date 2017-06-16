@@ -16,7 +16,7 @@
     <div each="{ opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
         <a href="javascript:void(0)"
-           class="btn btn-default { 'btn-primary': name === parent.opts.transaction.category }"
+           class="btn btn-default { 'btn-primary': hasCategoryNamed(name) }"
            onclick="{ categoryClick }"
            tabindex="1"
            aria-label="It was all { name }">{ name }</a>
@@ -36,8 +36,17 @@
 
   <script>
   categoryClick(clickEvent) {
-    opts.transaction.category = clickEvent.target.text;
+    opts.transaction.categories = [{
+      'name': clickEvent.target.text,
+      'amount': opts.transaction.amountTotal
+    }];
     this.trigger('next');
+  }
+
+  hasCategoryNamed(name) {
+    return opts.transaction.categories.filter(function(category) {
+      return category.name === name;
+    }).length > 0;
   }
   </script>
 </bb-category-selector>
