@@ -21,8 +21,8 @@ bb.BudgetApp = function(pageDom) {
   };
   this.budget = new bb.Budget();
   this.currentCategory = this.budget.categories[1];
-  this.expense = {};
-  this.income = {};
+  this.expense = new bb.Transaction();
+  this.income = new bb.Transaction();
   this.page = new bb.Page(pageDom);
   this.transactions = [{
     'accountId': 1,

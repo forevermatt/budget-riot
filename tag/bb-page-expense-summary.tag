@@ -1,8 +1,7 @@
 <bb-page-expense-summary>
-  <bb-expense-summary accountName="{ opts.accountName }"
-                      categories="{ opts.transaction.categories }"
+  <bb-expense-summary accounts="{ opts.accounts }"
                       ref="summary"
-                      who="{ opts.transaction.who }"></bb-expense-summary>
+                      transaction="{ opts.transaction }"></bb-expense-summary>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
