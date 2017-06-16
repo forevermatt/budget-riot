@@ -5,6 +5,11 @@
   <bb-button-row buttons="{ this.buttons }" ref="buttons"></bb-button-row>
 
   <script>
+  this.buttons = [
+    new bb.Button('done', 'ok-sign'),
+    new bb.Button('back', 'circle-arrow-left', '#expense/category', true)
+  ];
+
   this.on('mount', function() {
     this.refs.buttons.on('done', function() {
       var transactionData = JSON.parse(JSON.stringify(opts.transaction));
@@ -13,9 +18,5 @@
       route('budget');
     });
   });
-  this.buttons = [
-    new bb.Button('done', 'ok-sign'),
-    new bb.Button('back', 'circle-arrow-left', '#expense/category', true)
-  ];
   </script>
 </bb-page-expense-summary>

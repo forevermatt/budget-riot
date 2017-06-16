@@ -9,6 +9,7 @@ bb.Transaction = function(config) {
   this.accountId = config.accountId;
   this.amountTotal = config.amountTotal;
   this.categories = config.categories || [];
+  this.comment = config.comment;
   this.whenTimestamp = config.whenTimestamp;
   this.who = config.who;
 };

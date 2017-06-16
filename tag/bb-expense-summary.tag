@@ -23,7 +23,8 @@
     </p>
     <p>
       <label for="comment">Comment:</label>
-      <input type="text" class="pull-right" name="comment" id="comment" />
+      <input type="text" class="pull-right" name="comment"
+             value="{ opts.transaction.comment }" />
     </p>
   </form>
 
