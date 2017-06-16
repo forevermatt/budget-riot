@@ -90,7 +90,8 @@ bb.BudgetApp = function(pageDom) {
       'tagName': 'bb-page-expense-summary',
       'opts': {
         'accounts': this.accounts,
-        'transaction': this.expense
+        'transaction': this.expense,
+        'transactions': this.transactions,
       }
     },
     'expense/who': {

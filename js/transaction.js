@@ -17,6 +17,15 @@ bb.Transaction.format = function(amount) {
   return (Number(amount) / 100).toFixed(2);
 };
 
+bb.Transaction.reset = function(transaction) {
+  for (var field in transaction) {
+    if (transaction.hasOwnProperty(field)) {
+      transaction[field] = undefined;
+    }
+  }
+  transaction.categories = [];
+};
+
 bb.Transaction.prototype.isValid = function() {
   return this.accountId &&
          this.amountTotal &&
