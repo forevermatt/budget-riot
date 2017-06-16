@@ -2,15 +2,17 @@
   <form class="pad-vertical text-center" novalidate onsubmit="{ formSubmitted }">
     <div class="input-group input-group-lg">
       <span class="input-group-addon">$</span>
-      <input type="tel" autofocus="autofocus" class="form-control"
-             id="amount" onkeydown="{ keyDown }" ref="amount"
-             value="{ opts.transaction.amount }" aria-label="Amount">
+      <input aria-label="Amount"
+             class="amount form-control"
+             onkeydown="{ keyDown }"
+             ref="amount"
+             type="tel" />
     </div>
   </form>
 
   <script>
   this.on('mount', function() {
-    this.numeralsEntered = this.getNumeralsFromAmount(opts.transaction.amount);
+    this.numeralsEntered = this.getNumeralsFromAmount(opts.transaction.amountTotal);
     this.showNumerals(this.numeralsEntered);
     this.refs.amount.focus();
   });
@@ -66,11 +68,11 @@
     }
 
     this.showNumerals(this.numeralsEntered);
-    this.recordAmount(this.refs.amount.value);
+    this.recordAmount(Number(this.numeralsEntered.join('')));
   }
 
-  recordAmount(amountText) {
-    opts.transaction.amount = Number(amountText).toFixed(2);
+  recordAmount(amount) {
+    opts.transaction.amountTotal = amount;
   };
 
   showNumerals(numerals) {
