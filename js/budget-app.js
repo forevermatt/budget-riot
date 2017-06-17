@@ -28,36 +28,36 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
-      'amount': 2.67
+      'amount': 267
     }],
-    'whenTimestamp': 1488720180,
+    'whenTimestamp': 1488720180000,
     'who': "Dunkin' Donuts"
   }, {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
-      'amount': 2.99
+      'amount': 299
     }, {
       'name': 'Household',
-      'amount': 2.71
+      'amount': 271
     }],
-    'whenTimestamp': 1488639660,
+    'whenTimestamp': 1488639660000,
     'who': 'Walmart'
   }, {
     'accountId': 3,
     'categories': [{
       'name': 'Household',
-      'amount': 15.54
+      'amount': 1554
     }],
-    'whenTimestamp': 1488639692,
+    'whenTimestamp': 1488639692000,
     'who': "Lowe's"
   }, {
     'accountId': 1,
-    'category': [{
+    'categories': [{
       'name': 'Food',
-      'amount': 2.30
+      'amount': 230
     }],
-    'whenTimestamp': 1488639592,
+    'whenTimestamp': 1488639592000,
     'who': 'Chick-fil-A',
   }];
   this.routes = {
