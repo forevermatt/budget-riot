@@ -28,6 +28,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 267
     }],
     'whenTimestamp': 1488720180000,
@@ -36,9 +37,11 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 299
     }, {
       'name': 'Household',
+      'id': 3,
       'amount': 271
     }],
     'whenTimestamp': 1488639660000,
@@ -47,6 +50,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 3,
     'categories': [{
       'name': 'Household',
+      'id': 3,
       'amount': 1554
     }],
     'whenTimestamp': 1488639692000,
@@ -55,6 +59,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 230
     }],
     'whenTimestamp': 1488639592000,

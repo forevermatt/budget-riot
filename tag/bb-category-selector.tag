@@ -37,7 +37,8 @@
   <script>
   categoryClick(clickEvent) {
     opts.transaction.categories = [{
-      'name': clickEvent.target.text,
+      'id': clickEvent.item.id,
+      'name': clickEvent.item.name,
       'amount': opts.transaction.amountTotal
     }];
     this.trigger('next');
