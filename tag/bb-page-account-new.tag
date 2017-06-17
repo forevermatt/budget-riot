@@ -25,7 +25,6 @@
   });
 
   formSubmitted(formEvent) {
-    console.log('form submitted', formEvent); // TEMP
     formEvent.preventUpdate = true;
     this.saveNewAccount();
   }
