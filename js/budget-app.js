@@ -95,6 +95,12 @@ bb.BudgetApp = function(pageDom) {
         'transactions': this.transactions,
       }
     },
+    'expense/when': {
+      'tagName': 'bb-page-expense-when',
+      'opts': {
+        'transaction': this.expense
+      }
+    },
     'expense/who': {
       'tagName': 'bb-page-expense-who',
       'opts': {
