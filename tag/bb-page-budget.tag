@@ -5,7 +5,8 @@
   <script>
   this.buttons = [
     new bb.Button('income', 'plus-sign', '#income/who'),
-    new bb.Button('expense', 'minus-sign', '#expense/who')
+    new bb.Button('expense', 'minus-sign', '#expense/who'),
+    new bb.Button('accounts', 'info-sign', '#accounts', true)
   ];
   </script>
 </bb-page-budget>

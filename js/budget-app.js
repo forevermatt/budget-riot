@@ -61,6 +61,12 @@ bb.BudgetApp = function(pageDom) {
     'who': 'Chick-fil-A',
   }];
   this.routes = {
+    'accounts': {
+      'tagName': 'bb-page-accounts',
+      'opts': {
+        'accounts': this.accounts
+      }
+    },
     'budget': {
       'tagName': 'bb-page-budget',
       'opts': {
