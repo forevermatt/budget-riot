@@ -184,15 +184,20 @@ bb.BudgetApp = function(pageDom) {
   route(this.route.bind(this));
 };
 
-bb.BudgetApp.prototype.route = function(...pathSegments) {
-  var path = pathSegments.join('/');
-  if (path === '') {
+bb.BudgetApp.prototype.route = function(page, subPage, id) {
+  if ( ! page) {
     route('budget');
     return;
   }
 
+  var path = (subPage ? page + '/' + subPage : page);
+
   var routeData = this.routes[path];
   if (routeData != undefined) {
+    if (id) {
+      routeData.opts.id = Number(id);
+    }
+    console.log(page, subPage, id, routeData);
     this.page.showTag(routeData.tagName, routeData.opts);
   } else {
     this.page.showTag('bb-page-not-found', { 'route': path });
