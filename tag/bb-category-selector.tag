@@ -9,7 +9,7 @@
     <virtual if="{ !opts.categories }">
       <div class="alert alert-danger" role="alert">
         <b>Oops!</b> We couldn't find any categories. Would you like to
-        <a href="#">set up your categories</a> now?
+        <a href="#category/new">add a category</a> now?
       </div>
     </virtual>
 
