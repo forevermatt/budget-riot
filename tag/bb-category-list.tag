@@ -16,6 +16,12 @@
       </tr>
     </tbody>
   </table>
+  <p if="{ opts.new }">
+    <a href="#category/new">
+      <span class="glyphicon glyphicon-asterisk"></span>
+      Add a new category
+    </a>
+  </p>
 
   <script>
     dangerUnlessPositive(remaining) {

@@ -79,6 +79,12 @@ bb.BudgetApp = function(pageDom) {
         'categories': this.budget.categories
       }
     },
+    'category/new': {
+      'tagName': 'bb-page-category-new',
+      'opts': {
+        'categories': this.budget.categories
+      }
+    },
     'expense/account': {
       'tagName': 'bb-page-expense-account',
       'opts': {
