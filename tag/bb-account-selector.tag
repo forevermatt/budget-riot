@@ -2,7 +2,10 @@
   <form class="pad-vertical" novalidate>
     <p><b>Account:</b></p>
     <ul class="list-unstyled">
-      <li each="{ opts.accounts }"><a href="{ parent.opts.nextUrl }" class="btn btn-default">{ name }</a></li>
+      <li each="{ account, accountId in opts.accounts }">
+        <a href="javascript:void(0)"
+           class="btn btn-default { 'btn-primary': isSelected(accountId) }"
+           onclick="{ click }">{ account.name }</a></li>
     </ul>
     <virtual if="{ !opts.accounts }">
       <div class="alert alert-danger" role="alert">
@@ -11,4 +14,14 @@
       </div>
     </virtual>
   </form>
+
+  <script>
+  click(clickTarget) {
+    this.trigger('select', clickTarget.item.accountId);
+  }
+
+  isSelected(accountId) {
+    return opts.transaction && opts.transaction.accountId == accountId;
+  }
+  </script>
 </bb-account-selector>

@@ -131,7 +131,7 @@ bb.BudgetApp = function(pageDom) {
       'tagName': 'bb-page-income-account',
       'opts': {
         'accounts': this.accounts,
-        'next': '#income/summary'
+        'transaction': this.income
       }
     },
     'income/amount': {

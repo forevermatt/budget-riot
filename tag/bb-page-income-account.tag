@@ -1,10 +1,19 @@
 <bb-page-income-account>
-  <bb-account-selector accounts="{ opts.accounts }"></bb-account-selector>
-  <bb-button-row buttons="{ this.buttons }" next="{ opts.next }"></bb-button-row>
+  <bb-account-selector accounts="{ opts.accounts }"
+                       ref="selector"
+                       transaction="{ opts.transaction }"></bb-account-selector>
+  <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
   this.buttons = [
     new bb.Button('back', 'circle-arrow-left', '#income/summary', true)
   ];
+
+  this.one('mount', function() {
+    this.refs.selector.on('select', function(accountId) {
+      opts.transaction.accountId = accountId;
+      route('income/summary');
+    });
+  });
   </script>
 </bb-page-income-account>
