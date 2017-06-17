@@ -20,7 +20,7 @@
     </p>
     <p>
       <b class="btn-height">Date: </b>
-      <a href="#" class="btn btn-default pull-right">{ this.friendlyDate }</a>
+      <a href="#income/when" class="btn btn-default pull-right">{ this.friendlyDate }</a>
     </p>
     <p>
       <label for="comment">Comment:</label>

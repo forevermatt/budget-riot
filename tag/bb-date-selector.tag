@@ -4,8 +4,6 @@
       <input aria-label="Amount"
              class="form-control"
              ref="date"
-             onchange="{ onChange }"
-             oninput="{ onInput }"
              type="date" />
     </div>
   </form>
@@ -22,15 +20,12 @@
 
   formSubmitted(formEvent) {
     formEvent.preventUpdate = true;
-    this.trigger('select', this.refs.date.value);
-  }
-
-  onChange(changeEvent) {
-    console.log(changeEvent.target.value);
-  }
-
-  onInput(inputEvent) {
-    console.log(inputEvent.target.value);
+    var millisecondsTimestamp = new Date(this.refs.date.value).getTime();
+    if ( ! isNaN(millisecondsTimestamp)) {
+      this.trigger('select', millisecondsTimestamp);
+    } else {
+      this.refs.date.value = bb.Date.format(opts.transaction.whenTimestamp);
+    }
   }
   </script>
 </bb-date-selector>

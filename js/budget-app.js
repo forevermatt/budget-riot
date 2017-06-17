@@ -161,6 +161,12 @@ bb.BudgetApp = function(pageDom) {
         'transactions': this.transactions,
       }
     },
+    'income/when': {
+      'tagName': 'bb-page-income-when',
+      'opts': {
+        'transaction': this.income
+      }
+    },
     'income/who': {
       'tagName': 'bb-page-income-who',
       'opts': {
