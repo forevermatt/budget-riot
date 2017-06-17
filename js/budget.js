@@ -1,11 +1,11 @@
 var bb = bb || {};
 
 bb.Budget = function() {
-  this.categories = [
-    new bb.Category('Auto', 298,  400),
-    new bb.Category('Food', 70, 300),
-    new bb.Category('Household', -5, 200)
-  ];
+  this.categories = {
+    1: new bb.Category(1, 'Auto', 298,  400),
+    2: new bb.Category(2, 'Food', 70, 300),
+    3: new bb.Category(3, 'Household', -5, 200)
+  };
   this.incomeSources = [
     { 'url': '#income/amount', 'name': 'My Employer, Inc.' },
     { 'url': '#income/amount', 'name': 'Other Employer' },
