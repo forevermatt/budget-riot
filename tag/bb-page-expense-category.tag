@@ -11,8 +11,8 @@
     })
   })
   this.buttons = [
-    new bb.Button('next', 'circle-arrow-right', '#expense/summary'),
-    new bb.Button('back', 'circle-arrow-left', '#expense/amount', true)
+    new bb.Button('next', 'chevron-right', '#expense/summary'),
+    new bb.Button('home', 'home', '#budget', true)
   ];
   </script>
 </bb-page-expense-category>

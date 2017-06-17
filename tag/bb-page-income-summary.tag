@@ -6,8 +6,7 @@
 
   <script>
   this.buttons = [
-    new bb.Button('done', 'ok-sign'),
-    new bb.Button('back', 'circle-arrow-left', '#income/amount', true)
+    new bb.Button('done', 'ok')
   ];
 
   this.on('mount', function() {

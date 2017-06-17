@@ -5,8 +5,8 @@
 
   <script>
   this.buttons = [
-    new bb.Button('next', 'circle-arrow-right', '#expense/category'),
-    new bb.Button('back', 'circle-arrow-left', '#expense/who', true)
+    new bb.Button('next', 'chevron-right', '#expense/category'),
+    new bb.Button('home', 'home', '#budget', true)
   ];
 
   this.one('mount', function() {

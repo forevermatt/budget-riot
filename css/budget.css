@@ -20,9 +20,6 @@ body {
   right: 0;
   text-align: right;
 }
-#button-row .glyphicon {
-  font-size: 5rem;
-}
 #button-row-spacer {
   height: 100px;
 }

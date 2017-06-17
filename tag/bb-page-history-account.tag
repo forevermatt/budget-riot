@@ -12,7 +12,7 @@
 
   <script>
   this.buttons = [
-    new bb.Button('back', 'circle-arrow-left', '#accounts', true)
+    new bb.Button('back', 'chevron-left', '#accounts', true)
   ];
   opts.id = opts.id || getAnAccountId();
   this.account = opts.accounts[opts.id];

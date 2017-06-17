@@ -6,7 +6,7 @@
 
   <script>
   this.buttons = [
-    new bb.Button('back', 'circle-arrow-left', '#expense/summary', true)
+    new bb.Button('home', 'home', '#budget', true)
   ];
 
   this.one('mount', function() {
