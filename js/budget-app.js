@@ -117,7 +117,7 @@ bb.BudgetApp = function(pageDom) {
     'history/account': {
       'tagName': 'bb-page-history-account',
       'opts': {
-        'account': this.accounts[1],
+        'accounts': this.accounts,
         'transactions': this.transactions
       }
     },

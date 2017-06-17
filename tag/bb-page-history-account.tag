@@ -1,10 +1,10 @@
 <bb-page-history-account>
   <h2 id="page-title">
-    <button type="button" class="btn pull-right" aria-label="Search">
+    <a href="#history/search" class="pull-right" title="Search" aria-label="Search">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-    </button>
-    Account History
-    <a href="#" class="btn btn-default space-horizontal">{ opts.account.name }</a>
+    </a>
+    <b>{ this.account.name }</b>
+    <div class="clearfix"></div>
   </h2>
   <hr class="small" />
   <bb-transaction-list transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
@@ -12,11 +12,23 @@
 
   <script>
   this.buttons = [
-    new bb.Button('back', 'circle-arrow-left', '#budget', true)
+    new bb.Button('back', 'circle-arrow-left', '#accounts', true)
   ];
+  opts.id = opts.id || getAnAccountId();
+  this.account = opts.accounts[opts.id];
+
+  getAnAccountId() {
+    for (var accountId in opts.accounts) {
+      if (opts.accounts.hasOwnProperty(accountId)) {
+        return accountId;
+      }
+    }
+    return 1;
+  }
+
   getTransactionsForAccount() {
     return opts.transactions.filter(function(transaction) {
-      return (opts.account.id === transaction.accountId);
+      return (opts.id === transaction.accountId);
     });
   }
   </script>
