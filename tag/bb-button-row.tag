@@ -13,10 +13,12 @@
   </div>
 
   <style>
+  :scope a:focus,
   :scope a:hover {
     color: #111;
   }
 
+  :scope a:focus .button-circle,
   :scope a:hover .button-circle {
     background-color: #111;
   }
