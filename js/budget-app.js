@@ -20,7 +20,6 @@ bb.BudgetApp = function(pageDom) {
     }
   };
   this.budget = new bb.Budget();
-  this.currentCategory = this.budget.categories[1];
   this.expense = new bb.Transaction();
   this.income = new bb.Transaction();
   this.page = new bb.Page(pageDom);
@@ -147,7 +146,7 @@ bb.BudgetApp = function(pageDom) {
     'history/category': {
       'tagName': 'bb-page-history-category',
       'opts': {
-        'category': this.currentCategory,
+        'categories': this.budget.categories,
         'transactions': this.transactions
       }
     },
