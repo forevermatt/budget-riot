@@ -67,6 +67,12 @@ bb.BudgetApp = function(pageDom) {
         'accounts': this.accounts
       }
     },
+    'account/new': {
+      'tagName': 'bb-page-account-new',
+      'opts': {
+        'accounts': this.accounts
+      }
+    },
     'budget': {
       'tagName': 'bb-page-budget',
       'opts': {
