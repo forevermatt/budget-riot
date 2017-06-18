@@ -9,25 +9,24 @@
     <virtual if="{ !opts.categories }">
       <div class="alert alert-danger" role="alert">
         <b>Oops!</b> We couldn't find any categories. Would you like to
-        <a href="#">set up your categories</a> now?
+        <a href="#category/new">add a category</a> now?
       </div>
     </virtual>
 
-    <div each="{ opts.categories }" class="row margin-bottom">
+    <div each="{ category, categoryId in opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
         <a href="javascript:void(0)"
-           class="btn btn-default { 'btn-primary': hasCategoryNamed(name) }"
+           class="btn btn-default { 'btn-primary': hasCategoryNamed(category.name) }"
            onclick="{ categoryClick }"
            tabindex="1"
-           aria-label="It was all { name }">{ name }</a>
+           aria-label="It was all { category.name }">{ category.name }</a>
       </div>
       <div class="col-xs-5 category-amount">
         <div class="input-group">
           <span class="input-group-addon">$</span>
           <input type="tel" autofocus="autofocus" class="form-control"
-                 id="amount" placeholder="0.00"
-                 tabindex="2"
-                 aria-label="Amount for { name } category">
+                 placeholder="0.00" tabindex="2"
+                 aria-label="Amount for { category.name } category">
         </div>
       </div>
     </div>
@@ -36,8 +35,10 @@
 
   <script>
   categoryClick(clickEvent) {
+    var category = clickEvent.item.category;
     opts.transaction.categories = [{
-      'name': clickEvent.target.text,
+      'id': category.id,
+      'name': category.name,
       'amount': opts.transaction.amountTotal
     }];
     this.trigger('next');

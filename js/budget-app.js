@@ -20,7 +20,6 @@ bb.BudgetApp = function(pageDom) {
     }
   };
   this.budget = new bb.Budget();
-  this.currentCategory = this.budget.categories[1];
   this.expense = new bb.Transaction();
   this.income = new bb.Transaction();
   this.page = new bb.Page(pageDom);
@@ -28,6 +27,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 267
     }],
     'whenTimestamp': 1488720180000,
@@ -36,9 +36,11 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 299
     }, {
       'name': 'Household',
+      'id': 3,
       'amount': 271
     }],
     'whenTimestamp': 1488639660000,
@@ -47,6 +49,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 3,
     'categories': [{
       'name': 'Household',
+      'id': 3,
       'amount': 1554
     }],
     'whenTimestamp': 1488639692000,
@@ -55,6 +58,7 @@ bb.BudgetApp = function(pageDom) {
     'accountId': 1,
     'categories': [{
       'name': 'Food',
+      'id': 2,
       'amount': 230
     }],
     'whenTimestamp': 1488639592000,
@@ -142,7 +146,7 @@ bb.BudgetApp = function(pageDom) {
     'history/category': {
       'tagName': 'bb-page-history-category',
       'opts': {
-        'category': this.currentCategory,
+        'categories': this.budget.categories,
         'transactions': this.transactions
       }
     },
@@ -168,7 +172,8 @@ bb.BudgetApp = function(pageDom) {
     'income/category': {
       'tagName': 'bb-page-income-category',
       'opts': {
-        'categories': this.budget.categories
+        'categories': this.budget.categories,
+        'transaction': this.income
       }
     },
     'income/summary': {
@@ -209,7 +214,6 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     if (id) {
       routeData.opts.id = Number(id);
     }
-    console.log(page, subPage, id, routeData);
     this.page.showTag(routeData.tagName, routeData.opts);
   } else {
     this.page.showTag('bb-page-not-found', { 'route': path });

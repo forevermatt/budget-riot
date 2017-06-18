@@ -1,7 +1,8 @@
 var bb = bb || {};
 
-bb.Category = function(name, remaining, total) {
+bb.Category = function(id, name, remaining, total) {
+  this.id = id;
   this.name = name;
-  this.remaining = remaining;
-  this.total = total;
+  this.remaining = remaining || 0;
+  this.total = total || 0;
 };

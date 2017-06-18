@@ -1,17 +1,20 @@
 <bb-category-list>
   <table id="category-list" class="table table-condensed">
     <tbody>
-      <tr each="{ opts.categories }">
+      <tr each="{ category, categoryId in opts.categories }">
         <td class="category-name width-10">
-          <a href="#history/category" class="btn btn-default">{ name }</a></td>
+          <a href="#history/category/{ categoryId }" class="btn btn-default">{ category.name }</a></td>
         <td class="width-80">
-          <div class="category-graph { dangerIfNegative(remaining) }">
-            <div class="category-graph-line { status(remaining, total) }" style="width: { width(remaining, total) }%;"></div>
+          <div class="category-graph { dangerIfNegative(category.remaining) }">
+            <div class="category-graph-line { status(category.remaining, category.total) }"
+                 style="width: { width(category.remaining, category.total) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
-          <span class="category-available { dangerIfNegative(remaining) }"><sup>$</sup>{ remaining }</span>
-          <span class="category-budgeted">/ { total }</span>
+          <span class="category-available { dangerIfNegative(category.remaining) }">
+            <sup>$</sup>{ category.remaining }
+          </span>
+          <span class="category-budgeted">/ { category.total }</span>
         </td>
       </tr>
     </tbody>

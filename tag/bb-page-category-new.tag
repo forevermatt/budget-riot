@@ -14,6 +14,7 @@
   <script>
   this.buttons = [
     new bb.Button('done', 'ok'),
+    new bb.Button('back', 'chevron-left', '#budget', true)
   ];
 
   this.one('mount', function() {
@@ -28,12 +29,22 @@
     this.saveNewCategory();
   }
 
+  generateNewCategoryId() {
+    var categoryId;
+    do {
+      categoryId = (new Date()).getMilliseconds();
+    } while (opts.categories[categoryId]);
+    return categoryId;
+  }
+
   isCategoryNameInUse(name) {
     var lcNewName = String(name).toLowerCase();
-    for (var i = 0; i < opts.categories.length; i++) {
-      var lcExistingCategoryName = opts.categories[i].name.toLowerCase();
-      if (lcExistingCategoryName === lcNewName) {
-        return true;
+    for (var categoryId in opts.categories) {
+      if (opts.categories.hasOwnProperty(categoryId)) {
+        var lcExistingCategoryName = opts.categories[categoryId].name.toLowerCase();
+        if (lcExistingCategoryName === lcNewName) {
+          return true;
+        }
       }
     }
     return false;
@@ -43,7 +54,11 @@
     var name = String(this.refs.name.value).trim();
     if (name) {
       if ( ! this.isCategoryNameInUse(name)) {
-        opts.categories.push(new bb.Category(name, 0, 0));
+        var newCategoryId = this.generatenewCategoryId();
+        opts.categories[newCategoryId] = new bb.Category(
+          newCategoryId,
+          name
+        );
       }
       route('budget');
     } else {
