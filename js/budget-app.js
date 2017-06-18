@@ -172,7 +172,8 @@ bb.BudgetApp = function(pageDom) {
     'income/category': {
       'tagName': 'bb-page-income-category',
       'opts': {
-        'categories': this.budget.categories
+        'categories': this.budget.categories,
+        'transaction': this.income
       }
     },
     'income/summary': {
