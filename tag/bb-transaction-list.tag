@@ -13,7 +13,7 @@
       <code show="{ categories }" class="category">
         <b>TOTAL: <sup>$</sup>{ getTotal(categories) }</b>
       </code>
-      <code if="{ account }" class="account">{ account }</code>
+      <code if="{ accountId }" class="account">{ getAccountNameById(accountId) }</code>
     </div>
   </div>
   <p if="{ opts.transactions.length === 0 }">
@@ -21,6 +21,13 @@
   </p>
 
   <script>
+  getAccountNameById(accountId) {
+    if (opts.accounts[accountId]) {
+      return opts.accounts[accountId].name;
+    }
+    return null;
+  }
+
   getTotal(categories) {
     var total = 0;
     if (categories) {

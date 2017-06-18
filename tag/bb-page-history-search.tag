@@ -7,7 +7,8 @@
     <input type="text" name="search" ref="search" onkeyup="{ refreshSearchResults }" />
   </h2>
   <hr class="small" />
-  <bb-transaction-list transactions="{ this.searchResults }"></bb-transaction-list>
+  <bb-transaction-list accounts="{ opts.accounts }"
+                       transactions="{ this.searchResults }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>

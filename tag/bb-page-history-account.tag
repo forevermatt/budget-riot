@@ -7,7 +7,8 @@
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
-  <bb-transaction-list transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
+  <bb-transaction-list accounts="{ opts.accounts }"
+                       transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>

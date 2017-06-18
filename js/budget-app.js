@@ -140,12 +140,14 @@ bb.BudgetApp = function(pageDom) {
     'history/all': {
       'tagName': 'bb-page-history-all',
       'opts': {
+        'accounts': this.accounts,
         'transactions': this.transactions
       }
     },
     'history/category': {
       'tagName': 'bb-page-history-category',
       'opts': {
+        'accounts': this.accounts,
         'categories': this.budget.categories,
         'transactions': this.transactions
       }
@@ -153,6 +155,7 @@ bb.BudgetApp = function(pageDom) {
     'history/search': {
       'tagName': 'bb-page-history-search',
       'opts': {
+        'accounts': this.accounts,
         'transactions': this.transactions
       }
     },
