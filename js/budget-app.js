@@ -213,7 +213,6 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     if (id) {
       routeData.opts.id = Number(id);
     }
-    console.log(page, subPage, id, routeData);
     this.page.showTag(routeData.tagName, routeData.opts);
   } else {
     this.page.showTag('bb-page-not-found', { 'route': path });
