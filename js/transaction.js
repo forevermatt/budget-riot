@@ -8,7 +8,7 @@ bb.Transaction = function(config) {
    *       currency (such as cents, if the currency is USD).  */
   this.accountId = config.accountId;
   this.amountTotal = config.amountTotal;
-  this.categories = config.categories || [];
+  this.categories = config.categories || {};
   this.comment = config.comment;
   this.whenTimestamp = config.whenTimestamp;
   this.who = config.who;
@@ -24,7 +24,7 @@ bb.Transaction.reset = function(transaction) {
       transaction[field] = undefined;
     }
   }
-  transaction.categories = [];
+  transaction.categories = {};
 };
 
 bb.Transaction.prototype.isValid = function() {
@@ -38,8 +38,10 @@ bb.Transaction.prototype.isValid = function() {
 
 bb.Transaction.prototype.sumCategories = function() {
   var tempTotal = 0;
-  for (var i = 0; i < this.categories.length; i++) {
-    tempTotal += this.categories[i].amount;
+  for (var categoryId in this.categories) {
+    if (this.categories.hasOwnProperty(categoryId)) {
+      tempTotal += this.categories[categoryId].amount || 0;
+    }
   }
   return tempTotal;
 };
