@@ -6,8 +6,8 @@
         <sup>$</sup> { getTotal(opts.transaction.categories) }
       </a><br />
       <span class="expense-summary-categories">
-        <virtual each="{ opts.transaction.categories }">
-          <code class="text-nowrap">{ name }: <sup>$</sup>{ bb.Transaction.format(amount) }</code>
+        <virtual each="{ category, categoryId in opts.transaction.categories }">
+          <code class="text-nowrap">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amount) }</code>
         </virtual>
       </span>
     </p>
@@ -44,8 +44,10 @@
 
   getTotal(categories) {
     var total = 0;
-    for (var i = 0; i < categories.length; i++) {
-      total += Number(categories[i].amount);
+    for (var categoryId in categories) {
+      if (categories.hasOwnProperty(categoryId)) {
+        total += Number(categories[categoryId].amount);
+      }
     }
     return bb.Transaction.format(total);
   }
