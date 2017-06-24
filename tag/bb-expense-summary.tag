@@ -1,5 +1,5 @@
 <bb-expense-summary>
-  <form class="pad-top" novalidate>
+  <form class="pad-top" novalidate onsubmit="{ formSubmitted }">
     <p>
       <a href="#expense/who" class="btn btn-default"><b>{ opts.transaction.who }</b></a>
       <a href="#expense/amount" class="btn btn-default pull-right">
@@ -36,6 +36,12 @@
 
   if ( ! opts.transaction.accountId) {
     opts.transaction.accountId = 1;
+  }
+
+  formSubmitted(formEvent) {
+    formEvent.preventUpdate = true;
+    formEvent.preventDefault = true;
+    this.trigger('done');
   }
 
   getAccountNameFor(accountId) {
