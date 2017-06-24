@@ -1,5 +1,5 @@
 <bb-income-summary>
-  <form class="pad-top" novalidate>
+  <form class="pad-top" novalidate onsubmit="{ formSubmitted }">
     <p>
       <a href="#income/who" class="btn btn-default"><b>{ opts.transaction.who }</b></a>
       <a href="#income/amount" class="btn btn-default pull-right">
@@ -30,11 +30,23 @@
   </form>
 
   <script>
+  if ( ! opts.transaction.whenTimestamp) {
+    opts.transaction.whenTimestamp = Date.now();
+  }
+  this.friendlyDate = bb.Date.format(opts.transaction.whenTimestamp);
+
   if ( ! opts.transaction.accountId) {
     opts.transaction.accountId = 1;
   }
 
-  if ( ! opts.transaction.categories) {
+  var hasAtLeastOneCategory = false;
+  for (var categoryId in opts.transaction.categories) {
+    if (opts.transaction.categories.hasOwnProperty(categoryId)) {
+      hasAtLeastOneCategory = true;
+    }
+  }
+
+  if ( ! hasAtLeastOneCategory) {
     opts.transaction.categories = {
       0: {
         'name': '(general income)',
@@ -43,17 +55,23 @@
     };
   }
 
-  if ( ! opts.transaction.whenTimestamp) {
-    opts.transaction.whenTimestamp = Date.now();
+  formSubmitted(formEvent) {
+    formEvent.preventUpdate = true;
+    formEvent.preventDefault = true;
+    this.trigger('done');
   }
-  this.friendlyDate = bb.Date.format(opts.transaction.whenTimestamp);
 
   getAccountNameFor(accountId) {
     return opts.accounts[accountId].name;
   }
 
-  getNameOfFirst(list) {
-    return ((list.length > 0) ? list[0].name : null);
+  getNameOfFirst(categories) {
+		for (var categoryId in categories) {
+		  if (categories.hasOwnProperty(categoryId)) {
+		    return categories[categoryId].name;
+		  }
+		}
+    return null;
   }
 
   getTotal(categories) {
