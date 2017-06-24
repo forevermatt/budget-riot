@@ -7,7 +7,7 @@
       <sup>$</sup>{ getTotal(categories) }
     </div>
     <div class="col-xs-offset-2 col-xs-10 details-hidden">
-      <virtual each="{ categoryId, category in categories }">
+      <virtual each="{ category, categoryId in categories }">
         <code class="category">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amount) }</code>
       </virtual>
       <code show="{ categories }" class="category">
