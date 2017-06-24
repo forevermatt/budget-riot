@@ -34,11 +34,13 @@
     opts.transaction.accountId = 1;
   }
 
-  if (opts.transaction.categories.length < 1) {
-    opts.transaction.categories.push({
-      'name': '(general income)',
-      'amount': opts.transaction.amountTotal
-    });
+  if ( ! opts.transaction.categories) {
+    opts.transaction.categories = {
+      0: {
+        'name': '(general income)',
+        'amount': opts.transaction.amountTotal
+      }
+    };
   }
 
   if ( ! opts.transaction.whenTimestamp) {
@@ -56,8 +58,10 @@
 
   getTotal(categories) {
     var total = 0;
-    for (var i = 0; i < categories.length; i++) {
-      total += Number(categories[i].amount);
+    for (var categoryId in categories) {
+      if (categories.hasOwnProperty(categoryId)) {
+        total += Number(categories[categoryId].amount);
+      }
     }
     return bb.Transaction.format(total);
   }
