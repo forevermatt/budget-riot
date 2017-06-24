@@ -7,8 +7,8 @@
       <sup>$</sup>{ getTotal(categories) }
     </div>
     <div class="col-xs-offset-2 col-xs-10 details-hidden">
-      <virtual each="{ categories }">
-        <code class="category">{ name }: <sup>$</sup>{ bb.Transaction.format(amount) }</code>
+      <virtual each="{ category, categoryId in categories }">
+        <code class="category">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amount) }</code>
       </virtual>
       <code show="{ categories }" class="category">
         <b>TOTAL: <sup>$</sup>{ getTotal(categories) }</b>
@@ -30,9 +30,9 @@
 
   getTotal(categories) {
     var total = 0;
-    if (categories) {
-      for (var i = 0; i < categories.length; i++) {
-        total += categories[i].amount;
+    for (var categoryId in categories) {
+      if (categories.hasOwnProperty(categoryId)) {
+        total += categories[categoryId].amount;
       }
     }
     return bb.Transaction.format(total);

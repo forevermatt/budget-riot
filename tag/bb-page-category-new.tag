@@ -32,7 +32,7 @@
   generateNewCategoryId() {
     var categoryId;
     do {
-      categoryId = (new Date()).getMilliseconds();
+      categoryId = Date.now();
     } while (opts.categories[categoryId]);
     return categoryId;
   }

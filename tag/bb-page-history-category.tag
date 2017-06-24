@@ -30,17 +30,8 @@
   getTransactionsForCategory() {
     var tag = this;
     return opts.transactions.filter(function(transaction) {
-      return tag.transactionHasCategoryId(transaction, opts.id);
+      return transaction.categories[opts.id];
     });
-  }
-
-  transactionHasCategoryId(transaction, categoryId) {
-    for (var i = 0; i < transaction.categories.length; i++) {
-      if (transaction.categories[i].id === categoryId) {
-        return true;
-      }
-    }
-    return false;
   }
   </script>
 </bb-page-history-category>
