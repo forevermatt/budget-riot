@@ -16,7 +16,7 @@
     <div each="{ category, categoryId in opts.categories }" class="row margin-bottom">
       <div class="col-xs-7 category-name">
         <a href="javascript:void(0)"
-           class="btn btn-default { 'btn-primary': hasCategoryNamed(category.name) }"
+           class="btn btn-default { 'btn-primary': parent.opts.transaction.categories[categoryId] }"
            onclick="{ categoryClick }"
            tabindex="1"
            aria-label="It was all { category.name }">{ category.name }</a>
@@ -30,24 +30,18 @@
         </div>
       </div>
     </div>
-
   </form>
 
   <script>
   categoryClick(clickEvent) {
     var category = clickEvent.item.category;
-    opts.transaction.categories = [{
-      'id': category.id,
+    var categoryId = clickEvent.item.categoryId;
+    opts.transaction.categories = {};
+    opts.transaction.categories[categoryId] = {
       'name': category.name,
       'amount': opts.transaction.amountTotal
-    }];
+    };
     this.trigger('next');
-  }
-
-  hasCategoryNamed(name) {
-    return opts.transaction.categories.filter(function(category) {
-      return category.name === name;
-    }).length > 0;
   }
   </script>
 </bb-category-selector>
