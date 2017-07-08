@@ -221,7 +221,12 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     if (id) {
       routeData.opts.id = Number(id);
     }
-    this.page.showTag(routeData.tagName, routeData.opts);
+    try {
+      this.page.showTag(routeData.tagName, routeData.opts);
+    } catch (e) {
+      console.log(e);
+      this.page.showTag('bb-page-error', { 'error': e });
+    }
   } else {
     this.page.showTag('bb-page-not-found', { 'route': path });
   }
