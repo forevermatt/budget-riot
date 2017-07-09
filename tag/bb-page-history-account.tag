@@ -8,29 +8,49 @@
   </h2>
   <hr class="small" />
   <bb-transaction-list accounts="{ opts.accounts }"
-                       transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
+                       transactions="{ this.transactions }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
+  this.on('mount', function() {
+    this.loadMonth();
+    this.loadMonth();
+  });
+
   this.buttons = [
     new bb.Button('back', 'chevron-left', '#accounts', true)
   ];
-  opts.id = opts.id || getAnAccountId();
-  this.account = opts.accounts[opts.id];
+  this.account = opts.accountService.getById(opts.id);
+  this.monthsShown = 0;
+  this.now = new Date();
+  this.transactions = [];
 
-  getAnAccountId() {
-    for (var accountId in opts.accounts) {
-      if (opts.accounts.hasOwnProperty(accountId)) {
-        return accountId;
-      }
-    }
-    return 1;
-  }
-
-  getTransactionsForAccount() {
-    return opts.transactions.filter(function(transaction) {
+  getTransactionsForAccountFrom(transactions) {
+    return transactions.filter(function(transaction) {
       return (opts.id === transaction.accountId);
     });
-  }
+  };
+
+  getYearMonthStringForMonthsAgo(numMonthsAgo) {
+    var currentYear = this.now.getFullYear();
+    var currentMonth = this.now.getMonth(); // 0 to 11
+    var desiredDate = new Date(currentYear, currentMonth - numMonthsAgo);
+    return desiredDate.getFullYear() + '-' + (desiredDate.getMonth() + 1);
+  };
+
+  loadMonth() {
+    this.loadTransactionsFromMonthsAgo(this.monthsShown);
+    this.monthsShown++;
+  };
+
+  loadTransactionsFromMonthsAgo(numMonthsAgo) {
+    var yearMonthId = this.getYearMonthStringForMonthsAgo(numMonthsAgo);
+    console.log(yearMonthId);
+    var transactionsForMonth = opts.transactionService.getById(yearMonthId);
+    if (transactionsForMonth == null) {
+      transactionsForMonth = [];
+    }
+    this.transactions.concat(this.getTransactionsForAccountFrom(transactionsForMonth))
+  };
   </script>
 </bb-page-history-account>
