@@ -162,6 +162,9 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
 
   var routeData = this.routes[path];
   if (routeData != undefined) {
+    if (routeData.opts == undefined) {
+      routeData.opts = {};
+    }
     if (id) {
       routeData.opts.id = Number(id);
     }
