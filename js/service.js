@@ -10,6 +10,15 @@ bb.Service.prototype.add = function(entry) {
   this.dataStore.addEntryTo(this.bucketName, entry);
 };
 
+bb.Service.prototype.addToList = function(id, entry) {
+  var list = this.getById(id);
+  if (list == null) {
+    list = [];
+  }
+  list.push(entry);
+  this.dataStore.updateEntry(this.bucketName, id, list);
+};
+
 bb.Service.prototype.getAll = function() {
   return this.dataStore.getBucket(this.bucketName);
 };
