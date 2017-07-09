@@ -31,20 +31,13 @@
     });
   };
 
-  getYearMonthStringForMonthsAgo(numMonthsAgo) {
-    var currentYear = this.now.getFullYear();
-    var currentMonth = this.now.getMonth(); // 0 to 11
-    var desiredDate = new Date(currentYear, currentMonth - numMonthsAgo);
-    return desiredDate.getFullYear() + '-' + (desiredDate.getMonth() + 1);
-  };
-
   loadMonth() {
     this.loadTransactionsFromMonthsAgo(this.monthsShown);
     this.monthsShown++;
   };
 
   loadTransactionsFromMonthsAgo(numMonthsAgo) {
-    var yearMonthId = this.getYearMonthStringForMonthsAgo(numMonthsAgo);
+    var yearMonthId = bb.Date.getYearMonthStringForMonthsBefore(numMonthsAgo, this.now);
     var transactionsForMonth = opts.transactionService.getById(yearMonthId);
     if (transactionsForMonth == null) {
       transactionsForMonth = [];
