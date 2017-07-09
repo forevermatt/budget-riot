@@ -38,6 +38,6 @@ bb.Service.prototype.rename = function(id, newName) {
     alert('You already have one named "' + newName + '".');
   } else {
     entry.name = newName;
-    this.dataStore.updateEntry(this.bucketName, entry);
+    this.dataStore.updateEntry(this.bucketName, id, entry);
   }
 };
