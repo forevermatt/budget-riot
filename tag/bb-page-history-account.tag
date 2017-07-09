@@ -3,7 +3,7 @@
     <a href="#history/search" class="pull-right" title="Search" aria-label="Search">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     </a>
-    <b>{ this.account.name }</b>
+    <b class="editable" onclick="{ renameAccount }" title="(Click to edit)">{ this.account.name }</b>
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
@@ -51,6 +51,17 @@
       transactionsForMonth = [];
     }
     this.transactions.concat(this.getTransactionsForAccountFrom(transactionsForMonth))
+  };
+
+  renameAccount() {
+    var newName = prompt('Edit account name:', this.account.name);
+    if (newName != null) {
+      if (opts.accountService.isNameInUse(newName)) {
+        alert('There is already an account named "' + newName + '".');
+      } else {
+        this.account.name = newName;
+      }
+    }
   };
   </script>
 </bb-page-history-account>

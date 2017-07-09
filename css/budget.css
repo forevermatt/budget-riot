@@ -115,6 +115,10 @@ code.category {
   cursor: pointer;
 }
 
+.editable {
+  cursor: pointer;
+}
+
 .expense-summary-categories {
   display: inline-block;
   margin: 0 14px;
