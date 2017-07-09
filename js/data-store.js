@@ -45,3 +45,8 @@ bb.DataStore.prototype.hasEntryId = function(bucket, id) {
 bb.DataStore.prototype.saveData = function() {
   window.localStorage.setItem('budgetAppData', JSON.stringify(this.data));
 };
+
+bb.DataStore.prototype.updateEntry = function(bucket, entry) {
+  this.data[bucket][entry.id] = entry;
+  this.saveData();
+};

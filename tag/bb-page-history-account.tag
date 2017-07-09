@@ -56,11 +56,7 @@
   renameAccount() {
     var newName = prompt('Edit account name:', this.account.name);
     if (newName != null) {
-      if (opts.accountService.isNameInUse(newName)) {
-        alert('There is already an account named "' + newName + '".');
-      } else {
-        this.account.name = newName;
-      }
+      opts.accountService.rename(this.account.id, newName);
     }
   };
   </script>

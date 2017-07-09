@@ -33,3 +33,13 @@ bb.Service.prototype.isNameInUse = function(name) {
   }
   return false;
 };
+
+bb.Service.prototype.rename = function(id, newName) {
+  var entry = this.getById(id);
+  if (this.isNameInUse(newName)) {
+    alert('You already have one named "' + newName + '".');
+  } else {
+    entry.name = newName;
+    this.dataStore.updateEntry(this.bucketName, entry);
+  }
+};
