@@ -35,7 +35,11 @@
   this.friendlyDate = bb.Date.format(opts.transaction.whenTimestamp);
 
   if ( ! opts.transaction.accountId) {
-    opts.transaction.accountId = 1;
+    for (var accountId in opts.accounts) {
+      if (opts.accounts.hasOwnProperty(accountId)) {
+        opts.transaction.accountId = Number(accountId);
+      }
+    }
   }
 
   formSubmitted(formEvent) {
