@@ -3,7 +3,7 @@
     <button type="button" class="btn pull-right" title="Search" aria-label="Search">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     </button>
-    Category: { this.category.name }
+    { this.category.name }: <sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
