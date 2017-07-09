@@ -45,7 +45,6 @@
 
   loadTransactionsFromMonthsAgo(numMonthsAgo) {
     var yearMonthId = this.getYearMonthStringForMonthsAgo(numMonthsAgo);
-    console.log(yearMonthId);
     var transactionsForMonth = opts.transactionService.getById(yearMonthId);
     if (transactionsForMonth == null) {
       transactionsForMonth = [];
