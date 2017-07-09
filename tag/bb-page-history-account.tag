@@ -7,16 +7,11 @@
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
-  <bb-transaction-list accounts="{ opts.accounts }"
-                       transactions="{ this.transactions }"></bb-transaction-list>
+  <bb-transaction-list accounts="{ opts.accountService.getAll() }"
+                       transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
-  this.on('mount', function() {
-    this.loadMonth();
-    this.loadMonth();
-  });
-
   this.buttons = [
     new bb.Button('back', 'chevron-left', '#accounts', true)
   ];
@@ -24,6 +19,11 @@
   this.monthsShown = 0;
   this.now = new Date();
   this.transactions = [];
+
+  getTransactionsForAccount() {
+    this.loadMonths(6);
+    return this.transactions;
+  };
 
   getTransactionsForAccountFrom(transactions) {
     return transactions.filter(function(transaction) {
@@ -36,13 +36,22 @@
     this.monthsShown++;
   };
 
+  loadMonths(numToLoad) {
+    for (var i = 0; i < numToLoad; i++) {
+      this.loadMonth();
+    }
+  };
+
   loadTransactionsFromMonthsAgo(numMonthsAgo) {
     var yearMonthId = bb.Date.getYearMonthStringForMonthsBefore(numMonthsAgo, this.now);
     var transactionsForMonth = opts.transactionService.getById(yearMonthId);
     if (transactionsForMonth == null) {
       transactionsForMonth = [];
     }
-    this.transactions.concat(this.getTransactionsForAccountFrom(transactionsForMonth))
+    var transactionsForAccount = this.getTransactionsForAccountFrom(transactionsForMonth);
+    for (var i = 0; i < transactionsForAccount.length; i++) {
+      this.transactions.push(transactionsForAccount[i]);
+    }
   };
 
   renameAccount() {
