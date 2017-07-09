@@ -29,36 +29,11 @@
     this.saveNewCategory();
   }
 
-  generateNewCategoryId() {
-    var categoryId;
-    do {
-      categoryId = Date.now();
-    } while (opts.categories[categoryId]);
-    return categoryId;
-  }
-
-  isCategoryNameInUse(name) {
-    var lcNewName = String(name).toLowerCase();
-    for (var categoryId in opts.categories) {
-      if (opts.categories.hasOwnProperty(categoryId)) {
-        var lcExistingCategoryName = opts.categories[categoryId].name.toLowerCase();
-        if (lcExistingCategoryName === lcNewName) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   saveNewCategory() {
     var name = String(this.refs.name.value).trim();
     if (name) {
-      if ( ! this.isCategoryNameInUse(name)) {
-        var newCategoryId = this.generatenewCategoryId();
-        opts.categories[newCategoryId] = new bb.Category(
-          newCategoryId,
-          name
-        );
+      if ( ! opts.categoryService.isNameInUse(name)) {
+        opts.categoryService.add(name);
       }
       route('budget');
     } else {
