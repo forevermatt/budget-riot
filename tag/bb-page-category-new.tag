@@ -33,7 +33,9 @@
     var name = String(this.refs.name.value).trim();
     if (name) {
       if ( ! opts.categoryService.isNameInUse(name)) {
-        opts.categoryService.add(name);
+        opts.categoryService.add({
+          'name': name
+        });
       }
       route('budget');
     } else {

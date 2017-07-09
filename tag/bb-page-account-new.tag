@@ -33,7 +33,9 @@
     var name = String(this.refs.name.value).trim();
     if (name) {
       if ( ! opts.accountService.isNameInUse(name)) {
-        opts.accountService.add(name);
+        opts.accountService.add({
+          'name': name
+        });
       }
       route('accounts');
     } else {

@@ -6,10 +6,8 @@ bb.Service = function(bucketName, dataStore) {
   this.dataStore.ensureBucketExists(bucketName);
 };
 
-bb.Service.prototype.add = function(name) {
-  this.dataStore.addEntryTo(this.bucketName, {
-    'name': name
-  });
+bb.Service.prototype.add = function(entry) {
+  this.dataStore.addEntryTo(this.bucketName, entry);
 };
 
 bb.Service.prototype.getAll = function() {
