@@ -1,5 +1,5 @@
 <bb-page-expense-summary>
-  <bb-expense-summary accounts="{ opts.accounts }"
+  <bb-expense-summary accounts="{ opts.accountService.getAll() }"
                       ref="summary"
                       transaction="{ opts.transaction }"></bb-expense-summary>
   <bb-button-row buttons="{ this.buttons }" ref="buttons"></bb-button-row>
