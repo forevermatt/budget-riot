@@ -29,36 +29,11 @@
     this.saveNewAccount();
   }
 
-  generateNewAccountId() {
-    var accountId;
-    do {
-      accountId = (new Date()).getMilliseconds();
-    } while (opts.accounts[accountId]);
-    return accountId;
-  }
-
-  isAccountNameInUse(name) {
-    var lcNewName = String(name).toLowerCase();
-    for (var accountId in opts.accounts) {
-      if (opts.accounts.hasOwnProperty(accountId)) {
-        var lcExistingAccountName = opts.accounts[accountId].name.toLowerCase();
-        if (lcExistingAccountName === lcNewName) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   saveNewAccount() {
     var name = String(this.refs.name.value).trim();
     if (name) {
-      if ( ! this.isAccountNameInUse(name)) {
-        var newAccountId = this.generateNewAccountId();
-        opts.accounts[newAccountId] = {
-          'id': newAccountId,
-          'name': name
-        };
+      if ( ! opts.accountService.isNameInUse(name)) {
+        opts.accountService.add(name);
       }
       route('accounts');
     } else {
