@@ -7,17 +7,17 @@ bb.Service = function(bucketName, dataStore) {
 };
 
 bb.Service.prototype.add = function(name) {
-  this.dataStore.addEntryTo(this.bucketName, new bb.Category({
+  this.dataStore.addEntryTo(this.bucketName, {
     'name': name
-  }));
+  });
 };
 
 bb.Service.prototype.getAll = function() {
   return this.dataStore.getBucket(this.bucketName);
 };
 
-bb.Service.prototype.getById = function(categoryId) {
-  return this.dataStore.getEntryFrom(this.bucketName, categoryId);
+bb.Service.prototype.getById = function(id) {
+  return this.dataStore.getEntryFrom(this.bucketName, id);
 };
 
 bb.Service.prototype.isNameInUse = function(name) {
