@@ -16,7 +16,8 @@
 
   recordTransaction() {
     var transactionData = JSON.parse(JSON.stringify(opts.transaction));
-    opts.transactions.push(transactionData);
+    var yearMonthId = bb.Date.getCurrentYearMonthString();
+    opts.transactionService.addToList(yearMonthId, transactionData);
     bb.Transaction.reset(opts.transaction);
     route('budget');
   }
