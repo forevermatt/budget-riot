@@ -12,9 +12,9 @@
         </td>
         <td class="category-amount width-10">
           <span class="category-available { dangerIfNegative(category.remaining) }">
-            <sup>$</sup>{ category.remaining }
+            <sup>$</sup>{ bb.Transaction.format(category.remaining || 0) }
           </span>
-          <span class="category-budgeted">/ { category.total }</span>
+          <span class="category-budgeted">/ { bb.Transaction.formatWhole(category.total || 0) }</span>
         </td>
       </tr>
     </tbody>

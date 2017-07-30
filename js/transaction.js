@@ -18,6 +18,10 @@ bb.Transaction.format = function(amount) {
   return (Number(amount) / 100).toFixed(2);
 };
 
+bb.Transaction.formatWhole = function(amount) {
+  return (Number(amount) / 100).toFixed(0);
+};
+
 bb.Transaction.reset = function(transaction) {
   for (var field in transaction) {
     if (transaction.hasOwnProperty(field)) {
