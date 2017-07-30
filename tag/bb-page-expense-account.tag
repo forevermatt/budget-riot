@@ -1,5 +1,5 @@
 <bb-page-expense-account>
-  <bb-account-selector accounts="{ opts.accounts }"
+  <bb-account-selector accounts="{ opts.accountService.getAll() }"
                        ref="selector"
                        transaction="{ opts.transaction }"></bb-account-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
