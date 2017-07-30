@@ -28,11 +28,16 @@
 
   <script>
     dangerIfNegative(remaining) {
-      return (remaining >= 0 ? '' : 'danger');
+      if ((remaining != undefined) && (remaining < 0)) {
+        return 'danger';
+      }
+      return '';
     }
 
     status(remaining, total) {
-      if (remaining < 0) {
+      if (remaining == undefined) {
+        return '';
+      } else if (remaining < 0) {
         return 'danger';
       } else if (remaining < (total / 4)) {
         return 'warning';
