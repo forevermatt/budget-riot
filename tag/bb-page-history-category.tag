@@ -7,7 +7,7 @@
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
-  <bb-transaction-list accounts="{ opts.accounts }"
+  <bb-transaction-list accounts="{ opts.accountService.getAll() }"
                        transactions="{ getTransactionsForCategory() }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -15,21 +15,17 @@
   this.buttons = [
     new bb.Button('home', 'home', '#budget', true)
   ];
-  opts.id = opts.id || getACategoryId();
-  this.category = opts.categories[opts.id];
+  this.category = opts.categoryService.getById(opts.id);
 
-  getACategoryId() {
-    for (var categoryId in opts.categories) {
-      if (opts.categories.hasOwnProperty(categoryId)) {
-        return categoryId;
-      }
-    }
-    return 1;
-  }
+  /** @todo Refactor this to use logic used in bb-page-history-account. */
 
   getTransactionsForCategory() {
-    var tag = this;
-    return opts.transactions.filter(function(transaction) {
+    var yearMonthId = bb.Date.getCurrentYearMonthString();
+    var transactions = opts.transactionService.getById(yearMonthId);
+    if (transactions == null) {
+      return [];
+    }
+    return transactions.filter(function(transaction) {
       return transaction.categories[opts.id];
     });
   }
