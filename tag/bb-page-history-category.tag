@@ -3,7 +3,10 @@
     <button type="button" class="btn pull-right" title="Search" aria-label="Search">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     </button>
-    { this.category.name }: <sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
+    <b class="editable" onclick="{ renameCategory }"
+       title="(Click to rename)">{ this.category.name }:</b>
+    <span class="editable" onclick="{ changeBudgetedAmount }"
+          title="(Click to edit amount)"><sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
@@ -17,6 +20,19 @@
   ];
   this.category = opts.categoryService.getById(opts.id);
 
+  changeBudgetedAmount() {
+    var newAmount = prompt('Edit category amount:', this.category.budgetedAmount);
+    if (newAmount != null) {
+      var newAmountFloat = parseFloat(newAmount);
+      if (isNaN(newAmountFloat)) {
+        alert('That does not seem to be a number. Please try again.');
+        return;
+      }
+      this.category.budgetedAmount = Number(newAmountFloat * 100);
+      opts.categoryService.update(this.category);
+    }
+  }
+
   /** @todo Refactor this to use logic used in bb-page-history-account. */
 
   getTransactionsForCategory() {
@@ -28,6 +44,13 @@
     return transactions.filter(function(transaction) {
       return transaction.categories[opts.id];
     });
+  }
+
+  renameCategory() {
+    var newName = prompt('Edit category name:', this.category.name);
+    if (newName != null) {
+      opts.categoryService.rename(this.category.id, newName);
+    }
   }
   </script>
 </bb-page-history-category>
