@@ -50,3 +50,13 @@ bb.Service.prototype.rename = function(id, newName) {
     this.dataStore.updateEntry(this.bucketName, id, entry);
   }
 };
+
+bb.Service.prototype.update = function(revisedEntry) {
+  if (revisedEntry.id == null) {
+    console.error('No id found on revised entry.', revisedEntry);
+    alert("There was a problem trying to save that change... I'm sorry.");
+  } else {
+    var entry = this.getById(revisedEntry.id);
+    this.dataStore.updateEntry(this.bucketName, revisedEntry.id, revisedEntry);
+  }
+};
