@@ -21,7 +21,7 @@
   this.category = opts.categoryService.getById(opts.id);
 
   changeBudgetedAmount() {
-    var newAmount = prompt('Edit category amount:', this.category.budgetedAmount);
+    var newAmount = prompt('Edit category amount:', this.category.budgetedAmount / 100);
     if (newAmount != null) {
       var newAmountFloat = parseFloat(newAmount);
       if (isNaN(newAmountFloat)) {
