@@ -15,7 +15,17 @@ bb.Transaction = function(config) {
 };
 
 bb.Transaction.format = function(amount) {
+  if (amount == undefined) {
+    amount = 0;
+  }
   return (Number(amount) / 100).toFixed(2);
+};
+
+bb.Transaction.formatWhole = function(amount) {
+  if (amount == undefined) {
+    amount = 0;
+  }
+  return (Number(amount) / 100).toFixed(0);
 };
 
 bb.Transaction.reset = function(transaction) {

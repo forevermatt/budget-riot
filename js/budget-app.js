@@ -1,102 +1,46 @@
 var bb = bb || {};
 
 bb.BudgetApp = function(pageDom) {
-  this.accounts = {
-    1: {
-      'id': 1,
-      'name': '23: checking'
-    },
-    2: {
-      'id': 2,
-      'name': 'cash'
-    },
-    3: {
-      'id': 3,
-      'name': '71: credit card'
-    },
-    4: {
-      'id': 4,
-      'name': '85: other credit card'
-    }
-  };
   this.budget = new bb.Budget();
+  this.dataStore = new bb.DataStore();
+
+  this.accountService = new bb.Service('accounts', this.dataStore);
+  this.categoryService = new bb.Service('categories', this.dataStore);
+  this.transactionService = new bb.Service('transactions', this.dataStore);
+
   this.expense = new bb.Transaction();
   this.income = new bb.Transaction();
+
   this.page = new bb.Page(pageDom);
-  this.transactions = [{
-    'accountId': 1,
-    'categories': {
-      2: {
-        'name': 'Food',
-        'amount': 267
-      }
-    },
-    'whenTimestamp': 1488720180000,
-    'who': "Dunkin' Donuts"
-  }, {
-    'accountId': 1,
-    'categories': {
-      2: {
-        'name': 'Food',
-        'amount': 299
-      },
-      3: {
-        'name': 'Household',
-        'amount': 271
-      }
-    },
-    'whenTimestamp': 1488639660000,
-    'who': 'Walmart'
-  }, {
-    'accountId': 3,
-    'categories': {
-      3: {
-        'name': 'Household',
-        'amount': 1554
-      }
-    },
-    'whenTimestamp': 1488639692000,
-    'who': "Lowe's"
-  }, {
-    'accountId': 1,
-    'categories': {
-      2: {
-        'name': 'Food',
-        'amount': 230
-      }
-    },
-    'whenTimestamp': 1488639592000,
-    'who': 'Chick-fil-A',
-  }];
   this.routes = {
     'accounts': {
       'tagName': 'bb-page-accounts',
       'opts': {
-        'accounts': this.accounts
+        'accountService': this.accountService
       }
     },
     'account/new': {
       'tagName': 'bb-page-account-new',
       'opts': {
-        'accounts': this.accounts
+        'accountService': this.accountService
       }
     },
     'budget': {
       'tagName': 'bb-page-budget',
       'opts': {
-        'categories': this.budget.categories
+        'categoryService': this.categoryService
       }
     },
     'category/new': {
       'tagName': 'bb-page-category-new',
       'opts': {
-        'categories': this.budget.categories
+        'categoryService': this.categoryService
       }
     },
     'expense/account': {
       'tagName': 'bb-page-expense-account',
       'opts': {
-        'accounts': this.accounts,
+        'accountService': this.accountService,
         'transaction': this.expense
       }
     },
@@ -109,16 +53,16 @@ bb.BudgetApp = function(pageDom) {
     'expense/category': {
       'tagName': 'bb-page-expense-category',
       'opts': {
-        'categories': this.budget.categories,
+        'categoryService': this.categoryService,
         'transaction': this.expense
       }
     },
     'expense/summary': {
       'tagName': 'bb-page-expense-summary',
       'opts': {
-        'accounts': this.accounts,
+        'accountService': this.accountService,
         'transaction': this.expense,
-        'transactions': this.transactions,
+        'transactionService': this.transactionService,
       }
     },
     'expense/when': {
@@ -137,36 +81,36 @@ bb.BudgetApp = function(pageDom) {
     'history/account': {
       'tagName': 'bb-page-history-account',
       'opts': {
-        'accounts': this.accounts,
-        'transactions': this.transactions
+        'accountService': this.accountService,
+        'transactionService': this.transactionService
       }
     },
     'history/all': {
       'tagName': 'bb-page-history-all',
       'opts': {
-        'accounts': this.accounts,
-        'transactions': this.transactions
+        'accountService': this.accountService,
+        'transactionService': this.transactionService
       }
     },
     'history/category': {
       'tagName': 'bb-page-history-category',
       'opts': {
-        'accounts': this.accounts,
-        'categories': this.budget.categories,
-        'transactions': this.transactions
+        'accountService': this.accountService,
+        'categoryService': this.categoryService,
+        'transactionService': this.transactionService
       }
     },
     'history/search': {
       'tagName': 'bb-page-history-search',
       'opts': {
-        'accounts': this.accounts,
-        'transactions': this.transactions
+        'accountService': this.accountService,
+        'transactionService': this.transactionService
       }
     },
     'income/account': {
       'tagName': 'bb-page-income-account',
       'opts': {
-        'accounts': this.accounts,
+        'accountService': this.accountService,
         'transaction': this.income
       }
     },
@@ -179,16 +123,16 @@ bb.BudgetApp = function(pageDom) {
     'income/category': {
       'tagName': 'bb-page-income-category',
       'opts': {
-        'categories': this.budget.categories,
+        'categoryService': this.categoryService,
         'transaction': this.income
       }
     },
     'income/summary': {
       'tagName': 'bb-page-income-summary',
       'opts': {
-        'accounts': this.accounts,
+        'accountService': this.accountService,
         'transaction': this.income,
-        'transactions': this.transactions,
+        'transactionService': this.transactionService,
       }
     },
     'income/when': {
@@ -200,7 +144,7 @@ bb.BudgetApp = function(pageDom) {
     'income/who': {
       'tagName': 'bb-page-income-who',
       'opts': {
-        'incomeSources': this.budget.incomeSources,
+        'transactionService': this.transactionService,
         'transaction': this.income
       }
     }
@@ -218,10 +162,18 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
 
   var routeData = this.routes[path];
   if (routeData != undefined) {
+    if (routeData.opts == undefined) {
+      routeData.opts = {};
+    }
     if (id) {
       routeData.opts.id = Number(id);
     }
-    this.page.showTag(routeData.tagName, routeData.opts);
+    try {
+      this.page.showTag(routeData.tagName, routeData.opts);
+    } catch (e) {
+      console.log(e);
+      this.page.showTag('bb-page-error', { 'error': e });
+    }
   } else {
     this.page.showTag('bb-page-not-found', { 'route': path });
   }
