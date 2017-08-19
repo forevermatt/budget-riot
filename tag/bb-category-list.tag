@@ -6,15 +6,15 @@
           <a href="#history/category/{ categoryId }" class="btn btn-default">{ category.name }</a></td>
         <td class="width-80">
           <div class="category-graph { dangerIfNegative(category.remaining) }">
-            <div class="category-graph-line { status(category.remaining, category.total) }"
-                 style="width: { width(category.remaining, category.total) }%;"></div>
+            <div class="category-graph-line { status(category.remaining, category.budgetedAmount) }"
+                 style="width: { width(category.remaining, category.budgetedAmount) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
           <span class="category-available { dangerIfNegative(category.remaining) }">
             <sup>$</sup>{ bb.Transaction.format(category.remaining) }
           </span>
-          <span class="category-budgeted">/ { bb.Transaction.formatWhole(category.total) }</span>
+          <span class="category-budgeted">/ { bb.Transaction.formatWhole(category.budgetedAmount) }</span>
         </td>
       </tr>
     </tbody>
