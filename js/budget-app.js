@@ -4,9 +4,9 @@ bb.BudgetApp = function(pageDom) {
   this.budget = new bb.Budget();
   this.dataStore = new bb.DataStore();
 
-  this.accountService = new bb.Service('accounts', this.dataStore);
-  this.categoryService = new bb.Service('categories', this.dataStore);
-  this.transactionService = new bb.Service('transactions', this.dataStore);
+  this.accountService = new bb.DataService('accounts', this.dataStore);
+  this.categoryService = new bb.DataService('categories', this.dataStore);
+  this.transactionService = new bb.DataService('transactions', this.dataStore);
 
   this.expense = new bb.Transaction();
   this.income = new bb.Transaction();
