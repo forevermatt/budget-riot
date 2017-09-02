@@ -16,6 +16,12 @@ A simple way to budget your money and reconcile your statements.
 - `BudgetApp`: This budgeting application, probably running in a user's browser.
 - `Category`: Part of a user's Budget, indicating how much they are willing to
   spend on a particular type of expense each month.
+- `DataService`: Something to handle a particular collection of data. For
+  example, there may be an `accountService` (for handling data about accounts),
+  a `categoryService` (for handling data about categories), etc.
+- `DataStore`: A way to persist the application's data (such as `localStorage`).
+- `DataManager`: The gate-keeper for managing the application logic's
+  interaction with the data structures.
 - `Page`: A section of the BudgetApp, such as the category-list page or the
   expense-amount page.
 
