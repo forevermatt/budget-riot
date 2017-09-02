@@ -2,11 +2,7 @@ var bb = bb || {};
 
 bb.BudgetApp = function(pageDom) {
   this.budget = new bb.Budget();
-  this.dataStore = new bb.DataStore();
-
-  this.accountService = new bb.DataService('accounts', this.dataStore);
-  this.categoryService = new bb.DataService('categories', this.dataStore);
-  this.transactionService = new bb.DataService('transactions', this.dataStore);
+  this.dataManager = new bb.DataManager(new bb.DataStore());
 
   this.expense = new bb.Transaction();
   this.income = new bb.Transaction();
@@ -14,33 +10,20 @@ bb.BudgetApp = function(pageDom) {
   this.page = new bb.Page(pageDom);
   this.routes = {
     'accounts': {
-      'tagName': 'bb-page-accounts',
-      'opts': {
-        'accountService': this.accountService
-      }
+      'tagName': 'bb-page-accounts'
     },
     'account/new': {
-      'tagName': 'bb-page-account-new',
-      'opts': {
-        'accountService': this.accountService
-      }
+      'tagName': 'bb-page-account-new'
     },
-    'budget': {
-      'tagName': 'bb-page-budget',
-      'opts': {
-        'categoryService': this.categoryService
-      }
+    'budget/view': {
+      'tagName': 'bb-page-budget'
     },
     'category/new': {
-      'tagName': 'bb-page-category-new',
-      'opts': {
-        'categoryService': this.categoryService
-      }
+      'tagName': 'bb-page-category-new'
     },
     'expense/account': {
       'tagName': 'bb-page-expense-account',
       'opts': {
-        'accountService': this.accountService,
         'transaction': this.expense
       }
     },
@@ -53,16 +36,13 @@ bb.BudgetApp = function(pageDom) {
     'expense/category': {
       'tagName': 'bb-page-expense-category',
       'opts': {
-        'categoryService': this.categoryService,
         'transaction': this.expense
       }
     },
     'expense/summary': {
       'tagName': 'bb-page-expense-summary',
       'opts': {
-        'accountService': this.accountService,
-        'transaction': this.expense,
-        'transactionService': this.transactionService,
+        'transaction': this.expense
       }
     },
     'expense/when': {
@@ -74,43 +54,24 @@ bb.BudgetApp = function(pageDom) {
     'expense/who': {
       'tagName': 'bb-page-expense-who',
       'opts': {
-        'payees': this.budget.payees,
         'transaction': this.expense
       }
     },
     'history/account': {
-      'tagName': 'bb-page-history-account',
-      'opts': {
-        'accountService': this.accountService,
-        'transactionService': this.transactionService
-      }
+      'tagName': 'bb-page-history-account'
     },
     'history/all': {
-      'tagName': 'bb-page-history-all',
-      'opts': {
-        'accountService': this.accountService,
-        'transactionService': this.transactionService
-      }
+      'tagName': 'bb-page-history-all'
     },
     'history/category': {
-      'tagName': 'bb-page-history-category',
-      'opts': {
-        'accountService': this.accountService,
-        'categoryService': this.categoryService,
-        'transactionService': this.transactionService
-      }
+      'tagName': 'bb-page-history-category'
     },
     'history/search': {
-      'tagName': 'bb-page-history-search',
-      'opts': {
-        'accountService': this.accountService,
-        'transactionService': this.transactionService
-      }
+      'tagName': 'bb-page-history-search'
     },
     'income/account': {
       'tagName': 'bb-page-income-account',
       'opts': {
-        'accountService': this.accountService,
         'transaction': this.income
       }
     },
@@ -123,16 +84,13 @@ bb.BudgetApp = function(pageDom) {
     'income/category': {
       'tagName': 'bb-page-income-category',
       'opts': {
-        'categoryService': this.categoryService,
         'transaction': this.income
       }
     },
     'income/summary': {
       'tagName': 'bb-page-income-summary',
       'opts': {
-        'accountService': this.accountService,
-        'transaction': this.income,
-        'transactionService': this.transactionService,
+        'transaction': this.income
       }
     },
     'income/when': {
@@ -144,7 +102,6 @@ bb.BudgetApp = function(pageDom) {
     'income/who': {
       'tagName': 'bb-page-income-who',
       'opts': {
-        'transactionService': this.transactionService,
         'transaction': this.income
       }
     }
@@ -158,17 +115,21 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     return;
   }
 
+  if ((page === 'budget') && ! subPage) {
+    subPage = 'view';
+  }
+
   var path = (subPage ? page + '/' + subPage : page);
 
   var routeData = this.routes[path];
   if (routeData != undefined) {
-    if (routeData.opts == undefined) {
-      routeData.opts = {};
-    }
-    if (id) {
-      routeData.opts.id = Number(id);
-    }
+    routeData.opts = routeData.opts || {};
+    routeData.opts.id = id;
+    routeData.opts.dm = this.dataManager;
     try {
+
+      console.log(routeData); // TEMP
+
       this.page.showTag(routeData.tagName, routeData.opts);
     } catch (e) {
       console.log(e);
