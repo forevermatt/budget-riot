@@ -1,8 +1,6 @@
 <bb-page-budget>
   <h2 id="page-title">Budget</h2>
-  <bb-category-list account_service="{ opts.accountService }"
-                    categories="{ opts.categoryService.getAll() }"
-                    new="{ true }"></bb-category-list>
+  <bb-budget dm="{ opts.dm }" id="{ opts.id }"></bb-budget>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>

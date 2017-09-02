@@ -27,6 +27,10 @@ bb.DataService.prototype.getById = function(id) {
   return this.dataStore.getEntryFrom(this.bucketName, id);
 };
 
+bb.DataService.prototype.getListById = function(id) {
+  return this.getById(id) || [];
+};
+
 bb.DataService.prototype.isNameInUse = function(name) {
   var collection = this.dataStore.getBucket(this.bucketName);
   var lcNewName = String(name).trim().toLowerCase();

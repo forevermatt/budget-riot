@@ -1,20 +1,24 @@
-<bb-category-list>
+<bb-budget>
   <table id="category-list" class="table table-condensed">
     <tbody>
-      <tr each="{ category, categoryId in opts.dm.getCategories() }">
+      <tr each="{ categoryId, amount in this.budget }">
         <td class="category-name width-10">
-          <a href="#history/category/{ categoryId }" class="btn btn-default">{ category.name }</a></td>
+          <a href="#history/category/{ categoryId }"
+             class="btn btn-default">{ parent.opts.dm.getCategoryName(categoryId) }</a>
+        </td>
         <td class="width-80">
-          <div class="category-graph { dangerIfNegative(opts.dm.getCategoryRemaining(categoryId)) }">
+          <div class="category-graph { dangerIfNegative(category.remaining) }">
             <div class="category-graph-line { status(category.remaining, category.budgetedAmount) }"
                  style="width: { width(category.remaining, category.budgetedAmount) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
-          <span class="category-available { dangerIfNegative(category.remaining) }">
-            <sup>$</sup>{ bb.Transaction.format(category.remaining) }
+          <bb-ratio remaining="{ parent.opts.dm.getRemainingFor(parent.yearMonthId, categoryId) }"
+                    budgeted="{ amount }"></bb-ratio>
+          <span class="category-available { dangerIfNegative(opts.remaining) }">
+            <sup>$</sup>{ bb.Transaction.format(opts.remaining) }
           </span>
-          <span class="category-budgeted">/ { bb.Transaction.formatWhole(category.budgetedAmount) }</span>
+          <span class="category-budgeted">/ { bb.Transaction.formatWhole(opts.budgeted) }</span>
         </td>
       </tr>
     </tbody>
@@ -27,6 +31,9 @@
   </p>
 
   <script>
+    this.yearMonthId = opts.id;
+    this.budget = opts.dm.getBudgetForMonth(this.yearMonthId);
+
     dangerIfNegative(remaining) {
       if ((remaining != undefined) && (remaining < 0)) {
         return 'danger';
@@ -54,4 +61,4 @@
       return (remaining / total) * 100;
     }
   </script>
-</bb-category-list>
+</bb-budget>
