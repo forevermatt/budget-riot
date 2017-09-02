@@ -51,16 +51,15 @@ version to the next.
           },
           "budget": {
             "*YYYY-MM*": {
-              "categoryId": *category id*,
-              "amount": *allotted amount for this month, in cents*
+              "*category id*": *allotted amount for this month, in cents*,
+              *...*
             },
             *...*
           },
           "categories": {
             "*category id*": {
               "name": "*category name*",
-              "id": *category id*,
-              "budgetedAmount": *monthly amount available, in cents*
+              "id": *category id*
             },
             *...*
           },
