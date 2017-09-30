@@ -32,8 +32,8 @@
   saveNewAccount() {
     var name = String(this.refs.name.value).trim();
     if (name) {
-      if ( ! opts.accountService.isNameInUse(name)) {
-        opts.accountService.add({
+      if ( ! opts.dm.isAccountNameInUse(name)) {
+        opts.dm.addAccount({
           'name': name
         });
       }
