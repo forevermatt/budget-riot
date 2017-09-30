@@ -30,7 +30,7 @@ bb.DataManager.prototype.getAccounts = function() {
 
 bb.DataManager.prototype.getBudgetForMonth = function(yearMonthId) {
   yearMonthId = yearMonthId || bb.Date.getCurrentYearMonthString();
-  return this.budgetService.getListById(yearMonthId);
+  return this.budgetService.getById(yearMonthId) || {};
 };
 
 bb.DataManager.prototype.getCategories = function() {
