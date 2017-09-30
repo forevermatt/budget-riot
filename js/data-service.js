@@ -33,11 +33,11 @@ bb.DataService.prototype.getListById = function(id) {
 
 bb.DataService.prototype.isNameInUse = function(name) {
   var collection = this.dataStore.getBucket(this.bucketName);
-  var lcNewName = String(name).trim().toLowerCase();
+  var newName = String(name).trim();
   for (var id in collection) {
     if (collection.hasOwnProperty(id)) {
-      var lcExistingName = collection[id].name.toLowerCase();
-      if (lcExistingName === lcNewName) {
+      var existingName = collection[id].name;
+      if (existingName === newName) {
         return true;
       }
     }
