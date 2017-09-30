@@ -7,6 +7,10 @@ bb.DataManager = function(dataStore) {
   this.transactionService = new bb.DataService('transactions', dataStore);
 };
 
+bb.DataManager.prototype.getAccounts = function() {
+  return this.accountService.getAll();
+};
+
 bb.DataManager.prototype.getBudgetForMonth = function(yearMonthId) {
   yearMonthId = yearMonthId || bb.Date.getCurrentYearMonthString();
   return this.budgetService.getListById(yearMonthId);

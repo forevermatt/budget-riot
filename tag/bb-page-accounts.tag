@@ -1,6 +1,6 @@
 <bb-page-accounts>
   <h2 id="page-title">Accounts</h2>
-  <bb-account-list accounts="{ opts.accountService.getAll() }" new="{ true }"></bb-account-list>
+  <bb-account-list dm="{ opts.dm }" new="{ true }"></bb-account-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
