@@ -32,8 +32,8 @@
   saveNewCategory() {
     var name = String(this.refs.name.value).trim();
     if (name) {
-      if ( ! opts.categoryService.isNameInUse(name)) {
-        opts.categoryService.add({
+      if ( ! opts.dm.isCategoryNameInUse(name)) {
+        opts.dm.addCategory({
           'name': name
         });
       }
