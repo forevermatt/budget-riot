@@ -63,6 +63,12 @@ version to the next.
             },
             *...*
           },
+          "payees": {
+            "byName": [
+              "*payee name*",
+              *...*
+            ]
+          },
           "transactions": {
             "*YYYY-MM*": [
               {

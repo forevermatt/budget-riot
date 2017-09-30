@@ -4,6 +4,7 @@ bb.DataManager = function(dataStore) {
   this.accountService = new bb.DataService('accounts', dataStore);
   this.budgetService = new bb.DataService('budget', dataStore);
   this.categoryService = new bb.DataService('categories', dataStore);
+  this.payeeService = new bb.DataService('payees', dataStore);
   this.transactionService = new bb.DataService('transactions', dataStore);
 };
 
@@ -43,6 +44,10 @@ bb.DataManager.prototype.getCategoryById = function(categoryId) {
 bb.DataManager.prototype.getCategoryName = function(categoryId) {
   var category = this.categoryService.getById(categoryId);
   return (category ? category.name : undefined);
+};
+
+bb.DataManager.prototype.listPayeesByName = function() {
+  return this.payeeService.getListById('byName');
 };
 
 bb.DataManager.prototype.getTransactionById = function(id) {
