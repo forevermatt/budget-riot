@@ -4,6 +4,7 @@ bb.DataManager = function(dataStore) {
   this.accountService = new bb.DataService('accounts', dataStore);
   this.budgetService = new bb.DataService('budget', dataStore);
   this.categoryService = new bb.DataService('categories', dataStore);
+  this.incomeSourceService = new bb.DataService('incomeSources', dataStore);
   this.payeeService = new bb.DataService('payees', dataStore);
   this.transactionService = new bb.DataService('transactions', dataStore);
 };
@@ -18,6 +19,10 @@ bb.DataManager.prototype.addCategory = function(category) {
 
 bb.DataManager.prototype.addTransactionToList = function(id, entry) {
   return this.transactionService.addToList(id, entry);
+};
+
+bb.DataManager.prototype.ensureIncomeSourceExists = function(name) {
+  this.incomeSourceService.setPropertyOfEntryTo('byName', name, true);
 };
 
 bb.DataManager.prototype.getAccountById = function(id) {

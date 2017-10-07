@@ -31,6 +31,10 @@ bb.DataService.prototype.getListById = function(id) {
   return this.getById(id) || [];
 };
 
+bb.DataService.prototype.getObjectById = function(id) {
+  return this.getById(id) || {};
+};
+
 bb.DataService.prototype.isNameInUse = function(name) {
   var collection = this.dataStore.getBucket(this.bucketName);
   var newName = String(name).trim();
@@ -53,6 +57,12 @@ bb.DataService.prototype.rename = function(id, newName) {
     entry.name = newName;
     this.dataStore.updateEntry(this.bucketName, id, entry);
   }
+};
+
+bb.DataService.prototype.setPropertyOfEntryTo = function(entryId, key, value) {
+  var entry = this.getObjectById(entryId);
+  entry[key] = value;
+  this.dataStore.updateEntry(this.bucketName, entryId, entry);
 };
 
 bb.DataService.prototype.update = function(revisedEntry) {

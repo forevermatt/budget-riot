@@ -13,6 +13,7 @@
 
   this.one('mount', function() {
     this.refs.selector.on('next', function() {
+      opts.dm.ensureIncomeSourceExists(opts.transaction.who);
       route('income/amount');
     })
   })

@@ -63,6 +63,12 @@ version to the next.
             },
             *...*
           },
+          "incomeSources": {
+            "byName": {
+              "*payee name*": true,
+              *...*
+            }
+          },
           "payees": {
             "byName": [
               "*payee name*",
