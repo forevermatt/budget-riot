@@ -5,9 +5,9 @@
            value="{ opts.transaction.who }">
     <hr class="small" />
     <ul class="list-inline">
-      <li each="{ opts.items }"><a href="javascript:void(0)"
-                                   class="btn btn-default"
-                                   onclick="{ payeeClicked }">{ name }</a></li>
+      <li each="{ item in opts.items }"><a href="javascript:void(0)"
+                                           class="btn btn-default"
+                                           onclick="{ payeeClicked }">{ item }</a></li>
     </ul>
   </form>
 

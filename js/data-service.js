@@ -27,6 +27,10 @@ bb.DataService.prototype.getById = function(id) {
   return this.dataStore.getEntryFrom(this.bucketName, id);
 };
 
+bb.DataService.prototype.getKeysFrom = function(id) {
+  return Object.keys(this.getObjectById(id));
+};
+
 bb.DataService.prototype.getListById = function(id) {
   return this.getById(id) || [];
 };

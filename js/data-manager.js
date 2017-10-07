@@ -51,6 +51,10 @@ bb.DataManager.prototype.getCategoryName = function(categoryId) {
   return (category ? category.name : undefined);
 };
 
+bb.DataManager.prototype.getIncomeSourceNames = function() {
+  return this.incomeSourceService.getKeysFrom('byName');
+};
+
 bb.DataManager.prototype.listPayeesByName = function() {
   return this.payeeService.getListById('byName');
 };
