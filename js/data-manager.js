@@ -25,6 +25,10 @@ bb.DataManager.prototype.ensureIncomeSourceExists = function(name) {
   this.incomeSourceService.setPropertyOfEntryTo('byName', name, true);
 };
 
+bb.DataManager.prototype.ensurePayeeExists = function(name) {
+  this.payeeService.setPropertyOfEntryTo('byName', name, true);
+};
+
 bb.DataManager.prototype.getAccountById = function(id) {
   return this.accountService.getById(id);
 };
@@ -51,12 +55,12 @@ bb.DataManager.prototype.getCategoryName = function(categoryId) {
   return (category ? category.name : undefined);
 };
 
-bb.DataManager.prototype.getIncomeSourceNames = function() {
+bb.DataManager.prototype.listIncomeSourcesByName = function() {
   return this.incomeSourceService.getKeysFrom('byName');
 };
 
 bb.DataManager.prototype.listPayeesByName = function() {
-  return this.payeeService.getListById('byName');
+  return this.payeeService.getKeysFrom('byName');
 };
 
 bb.DataManager.prototype.getTransactionById = function(id) {

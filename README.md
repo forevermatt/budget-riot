@@ -70,10 +70,10 @@ version to the next.
             }
           },
           "payees": {
-            "byName": [
-              "*payee name*",
+            "byName": {
+              "*payee name*": true,
               *...*
-            ]
+            }
           },
           "transactions": {
             "*YYYY-MM*": [

@@ -1,6 +1,6 @@
 <bb-page-income-who>
   <bb-who-selector field="from"
-                   items="{ opts.dm.getIncomeSourceNames() }"
+                   items="{ opts.dm.listIncomeSourcesByName() }"
                    ref="selector"
                    title="from:"
                    transaction="{ opts.transaction }"></bb-who-selector>
