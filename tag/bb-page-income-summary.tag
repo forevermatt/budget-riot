@@ -1,5 +1,5 @@
 <bb-page-income-summary>
-  <bb-income-summary accounts="{ opts.accounts }"
+  <bb-income-summary dm="{ opts.dm }"
                      ref="summary"
                      transaction="{ opts.transaction }"></bb-income-summary>
   <bb-button-row buttons="{ this.buttons }" ref="buttons"></bb-button-row>
