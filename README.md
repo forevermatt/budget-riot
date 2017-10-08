@@ -12,7 +12,8 @@ A simple way to budget your money and reconcile your statements.
 
 ## Coding Glossary
 
-- `Budget`: A user's plan for how they want to spend their money each month.
+- `Budget`: A user's plan for how they want to spend their money in a given
+   month.
 - `BudgetApp`: This budgeting application, probably running in a user's browser.
 - `Category`: Part of a user's Budget, indicating how much they are willing to
   spend on a particular type of expense each month.
