@@ -60,6 +60,11 @@ bb.DataManager.prototype.getCategoryName = function(categoryId) {
   return (category ? category.name : undefined);
 };
 
+bb.DataManager.prototype.getDefaultAccountId = function() {
+  var accountIds = Object.keys(this.getAccounts());
+  return (accountIds.length > 0) ? accountIds[0] : undefined;
+};
+
 bb.DataManager.prototype.getTransactionById = function(id) {
   return this.transactionService.getById(id);
 };
