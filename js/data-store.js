@@ -15,7 +15,7 @@ bb.DataStore.DATA_STRUCTURE_VERSION = '0.1.0';
 bb.DataStore.prototype.addEntryTo = function(bucket, entry) {
   var newId;
   do {
-    newId = Date.now();
+    newId = String(Date.now());
   } while (this.hasEntryId(bucket, newId));
   entry.id = newId;
   this.data[bucket][newId] = entry;
