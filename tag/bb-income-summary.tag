@@ -63,7 +63,7 @@
   }
 
   getAccountNameFor(accountId) {
-    return opts.accounts[accountId].name;
+    return opts.dm.getAccountNameById(accountId);
   }
 
   getNameOfFirst(categories) {
