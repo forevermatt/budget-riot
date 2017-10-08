@@ -11,8 +11,12 @@
 
   this.one('mount', function() {
     this.refs.selector.on('select', function(accountId) {
-      opts.transaction.accountId = accountId;
-      route('expense/summary');
+      if (accountId) {
+        opts.transaction.accountId = String(accountId);
+        route('expense/summary');
+      } else {
+        console.log('No account ID was provided.');
+      }
     });
   });
   </script>
