@@ -21,7 +21,7 @@
   }
 
   isSelected(accountId) {
-    return opts.transaction && opts.transaction.accountId == accountId;
+    return opts.transaction && opts.transaction.accountId === accountId;
   }
   </script>
 </bb-account-selector>
