@@ -55,14 +55,6 @@ bb.DataManager.prototype.getCategoryName = function(categoryId) {
   return (category ? category.name : undefined);
 };
 
-bb.DataManager.prototype.listIncomeSourcesByName = function() {
-  return this.incomeSourceService.getKeysFrom('byName');
-};
-
-bb.DataManager.prototype.listPayeesByName = function() {
-  return this.payeeService.getKeysFrom('byName');
-};
-
 bb.DataManager.prototype.getTransactionById = function(id) {
   return this.transactionService.getById(id);
 };
@@ -73,6 +65,14 @@ bb.DataManager.prototype.isAccountNameInUse = function(name) {
 
 bb.DataManager.prototype.isCategoryNameInUse = function(name) {
   return this.categoryService.isNameInUse(name);
+};
+
+bb.DataManager.prototype.listIncomeSourcesByName = function() {
+  return this.incomeSourceService.getKeysFrom('byName');
+};
+
+bb.DataManager.prototype.listPayeesByName = function() {
+  return this.payeeService.getKeysFrom('byName');
 };
 
 bb.DataManager.prototype.renameAccount = function(id, newName) {
