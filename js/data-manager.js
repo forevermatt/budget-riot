@@ -69,6 +69,10 @@ bb.DataManager.prototype.getTransactionById = function(id) {
   return this.transactionService.getById(id);
 };
 
+bb.DataManager.prototype.getTransactions = function() {
+  return this.transactionService.getAll();
+};
+
 bb.DataManager.prototype.isAccountNameInUse = function(name) {
   return this.accountService.isNameInUse(name);
 };
