@@ -33,6 +33,11 @@ bb.DataManager.prototype.getAccountById = function(id) {
   return this.accountService.getById(id);
 };
 
+bb.DataManager.prototype.getAccountNameById = function(id) {
+  var account = this.getAccountById(id);
+  return (account ? account.name : undefined);
+};
+
 bb.DataManager.prototype.getAccounts = function() {
   return this.accountService.getAll();
 };
