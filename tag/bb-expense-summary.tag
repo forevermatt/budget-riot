@@ -48,7 +48,7 @@
   }
 
   getAccountNameFor(accountId) {
-    return opts.accounts[accountId].name;
+    return opts.dm.getAccountNameById(accountId);
   }
 
   getTotal(categories) {
