@@ -23,6 +23,10 @@ A simple way to budget your money and reconcile your statements.
 - `DataStore`: A way to persist the application's data (such as `localStorage`).
 - `DataManager`: The gate-keeper for managing the application logic's
   interaction with the data structures.
+- `id`: A `string` that uniquely identifiers an item within the context of that
+  type of item. For example, there should only be one Account with a given `id`.
+  Also note that an `id` must be a `string` (or `undefined`); otherwise
+  comparison of `id` values is inconsistent.
 - `Page`: A section of the BudgetApp, such as the category-list page or the
   expense-amount page.
 
