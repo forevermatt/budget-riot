@@ -127,9 +127,6 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     routeData.opts.id = id;
     routeData.opts.dm = this.dataManager;
     try {
-
-      console.log(routeData); // TEMP
-
       this.page.showTag(routeData.tagName, routeData.opts);
     } catch (e) {
       console.log(e);
