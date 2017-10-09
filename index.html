@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Budget</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/budget.css" rel="stylesheet">
+  </head>
+  <body id="site">
+
+    <bb-app></bb-app>
+
+    <script type="riot/tag" src="tag/bb-account-list.tag"></script>
+    <script type="riot/tag" src="tag/bb-account-selector.tag"></script>
+    <script type="riot/tag" src="tag/bb-amount-selector.tag"></script>
+    <script type="riot/tag" src="tag/bb-app.tag"></script>
+    <script type="riot/tag" src="tag/bb-budget.tag"></script>
+    <script type="riot/tag" src="tag/bb-button-row.tag"></script>
+    <script type="riot/tag" src="tag/bb-category-list.tag"></script>
+    <script type="riot/tag" src="tag/bb-category-selector.tag"></script>
+    <script type="riot/tag" src="tag/bb-date-selector.tag"></script>
+    <script type="riot/tag" src="tag/bb-expense-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-income-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-transaction-list.tag"></script>
+    <script type="riot/tag" src="tag/bb-who-selector.tag"></script>
+
+    <script type="riot/tag" src="tag/bb-page-account-new.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-accounts.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-budget.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-category-new.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-error.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-not-found.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-account.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-amount.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-category.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-when.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-expense-who.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-history-account.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-history-all.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-history-category.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-history-search.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-account.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-amount.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-category.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-summary.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-when.tag"></script>
+    <script type="riot/tag" src="tag/bb-page-income-who.tag"></script>
+
+    <script src="js/riot.compiler.min.js"></script>
+    <script src="js/route.min.js"></script>
+
+    <script src="js/button.js"></script>
+    <script src="js/date.js"></script>
+    <script src="js/transaction.js"></script>
+    <script src="js/page.js"></script>
+    <script src="js/category.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/data-service.js"></script>
+    <script src="js/budget.js"></script>
+    <script src="js/budget-app.js"></script>
+
+    <script>
+      riot.compile(function() {
+        riot.mount('*')
+        route.start(true)
+      })
+    </script>
+  </body>
+</html>
