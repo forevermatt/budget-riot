@@ -28,6 +28,38 @@ bb.Transaction.formatWhole = function(amount) {
   return (Number(amount) / 100).toFixed(0);
 };
 
+bb.Transaction.isTransactionMatchFor = function(transaction, query, accountNameContains) {
+  const lowerCaseQuery = query.toLowerCase();
+
+  if (accountNameContains(transaction.accountId, lowerCaseQuery)) {
+    return true;
+  }
+
+  if (bb.Transaction.format(transaction.amountTotal).indexOf(query) >= 0) {
+    return true;
+  }
+
+  for (const category of Object.values(transaction.categories)) {
+    if (category.name.toLowerCase().indexOf(lowerCaseQuery) >= 0) {
+      return true;
+    }
+  }
+
+  if (transaction.whenTimestamp) {
+    if (bb.Date.short(transaction.whenTimestamp).indexOf(query) >= 0) {
+      return true;
+    }
+  }
+
+  if (transaction.who) {
+    if (transaction.who.toLowerCase().indexOf(lowerCaseQuery) >= 0) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 bb.Transaction.reset = function(transaction) {
   for (var field in transaction) {
     if (transaction.hasOwnProperty(field)) {

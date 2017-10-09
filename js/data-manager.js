@@ -9,6 +9,11 @@ bb.DataManager = function(dataStore) {
   this.transactionService = new bb.DataService('transactions', dataStore);
 };
 
+bb.DataManager.prototype.accountNameContains = function(accountId, lowerCaseQuery) {
+  const accountName = this.getAccountNameById(accountId);
+  return accountName && (accountName.toLowerCase().indexOf(lowerCaseQuery) >= 0);
+};
+
 bb.DataManager.prototype.addAccount = function(account) {
   return this.accountService.add(account);
 };
@@ -71,6 +76,31 @@ bb.DataManager.prototype.getTransactionById = function(id) {
 
 bb.DataManager.prototype.getTransactions = function() {
   return this.transactionService.getAll();
+};
+
+bb.DataManager.prototype.getTransactionsMatching = function(query) {
+  if (query === '' || query == undefined) {
+    return [];
+  }
+
+  var matchingTransactions = [];
+  var dm = this;
+
+  for (const yearMonthId of Object.keys(this.getTransactions())) {
+    var monthTransactions = this.getTransactionById(yearMonthId);
+
+    var monthMatches = monthTransactions.filter(function(transaction) {
+      return bb.Transaction.isTransactionMatchFor(
+        transaction,
+        query,
+        dm.accountNameContains.bind(dm)
+      );
+    });
+
+    matchingTransactions = matchingTransactions.concat(monthMatches);
+  }
+
+  return matchingTransactions;
 };
 
 bb.DataManager.prototype.isAccountNameInUse = function(name) {
