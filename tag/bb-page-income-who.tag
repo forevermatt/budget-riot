@@ -1,6 +1,6 @@
 <bb-page-income-who>
   <bb-who-selector field="from"
-                   items="{ opts.incomeSources }"
+                   items="{ opts.dm.listIncomeSourcesByName() }"
                    ref="selector"
                    title="from:"
                    transaction="{ opts.transaction }"></bb-who-selector>
@@ -13,6 +13,7 @@
 
   this.one('mount', function() {
     this.refs.selector.on('next', function() {
+      opts.dm.ensureIncomeSourceExists(opts.transaction.who);
       route('income/amount');
     })
   })

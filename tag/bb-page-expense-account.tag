@@ -1,5 +1,5 @@
 <bb-page-expense-account>
-  <bb-account-selector accounts="{ opts.accountService.getAll() }"
+  <bb-account-selector accounts="{ opts.dm.getAccounts() }"
                        ref="selector"
                        transaction="{ opts.transaction }"></bb-account-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
@@ -11,8 +11,12 @@
 
   this.one('mount', function() {
     this.refs.selector.on('select', function(accountId) {
-      opts.transaction.accountId = accountId;
-      route('expense/summary');
+      if (accountId) {
+        opts.transaction.accountId = String(accountId);
+        route('expense/summary');
+      } else {
+        console.log('No account ID was provided.');
+      }
     });
   });
   </script>

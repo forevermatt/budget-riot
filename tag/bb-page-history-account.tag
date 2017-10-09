@@ -7,7 +7,7 @@
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
-  <bb-transaction-list accounts="{ opts.accountService.getAll() }"
+  <bb-transaction-list accounts="{ opts.dm.getAccounts() }"
                        transactions="{ getTransactionsForAccount() }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -15,7 +15,7 @@
   this.buttons = [
     new bb.Button('back', 'chevron-left', '#accounts', true)
   ];
-  this.account = opts.accountService.getById(opts.id);
+  this.account = opts.dm.getAccountById(opts.id);
   this.monthsShown = 0;
   this.now = new Date();
   this.transactions = [];
@@ -44,7 +44,7 @@
 
   loadTransactionsFromMonthsAgo(numMonthsAgo) {
     var yearMonthId = bb.Date.getYearMonthStringForMonthsBefore(numMonthsAgo, this.now);
-    var transactionsForMonth = opts.transactionService.getById(yearMonthId);
+    var transactionsForMonth = opts.dm.getTransactionById(yearMonthId);
     if (transactionsForMonth == null) {
       transactionsForMonth = [];
     }
@@ -57,7 +57,7 @@
   renameAccount() {
     var newName = prompt('Edit account name:', this.account.name);
     if (newName != null) {
-      opts.accountService.rename(this.account.id, newName);
+      opts.dm.renameAccount(this.account.id, newName);
     }
   };
   </script>

@@ -1,6 +1,6 @@
 <bb-page-expense-who>
   <bb-who-selector field="payee"
-                   items="{ opts.payees }"
+                   items="{ opts.dm.listPayeesByName() }"
                    ref="selector"
                    title="Paid to:"
                    transaction="{ opts.transaction }"></bb-who-selector>
@@ -13,6 +13,7 @@
 
   this.one('mount', function() {
     this.refs.selector.on('next', function() {
+      opts.dm.ensurePayeeExists(opts.transaction.who);
       route('expense/amount');
     })
   })

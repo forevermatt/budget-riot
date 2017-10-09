@@ -10,7 +10,7 @@
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
-  <bb-transaction-list accounts="{ opts.accountService.getAll() }"
+  <bb-transaction-list accounts="{ opts.dm.getAccounts() }"
                        transactions="{ getTransactionsForCategory() }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -18,7 +18,7 @@
   this.buttons = [
     new bb.Button('home', 'home', '#budget', true)
   ];
-  this.category = opts.categoryService.getById(opts.id);
+  this.category = opts.dm.getCategoryById(opts.id);
 
   changeBudgetedAmount() {
     var newAmount = prompt('Edit category amount:', this.category.budgetedAmount / 100);
@@ -29,7 +29,7 @@
         return;
       }
       this.category.budgetedAmount = Number(newAmountFloat * 100);
-      opts.categoryService.update(this.category);
+      opts.dm.updateCategory(this.category);
     }
   }
 
@@ -37,7 +37,7 @@
 
   getTransactionsForCategory() {
     var yearMonthId = bb.Date.getCurrentYearMonthString();
-    var transactions = opts.transactionService.getById(yearMonthId);
+    var transactions = opts.dm.getTransactionById(yearMonthId);
     if (transactions == null) {
       return [];
     }
@@ -49,7 +49,7 @@
   renameCategory() {
     var newName = prompt('Edit category name:', this.category.name);
     if (newName != null) {
-      opts.categoryService.rename(this.category.id, newName);
+      opts.dm.renameCategory(this.category.id, newName);
     }
   }
   </script>

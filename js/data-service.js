@@ -1,16 +1,16 @@
 var bb = bb || {};
 
-bb.Service = function(bucketName, dataStore) {
+bb.DataService = function(bucketName, dataStore) {
   this.dataStore = dataStore;
   this.bucketName = bucketName;
   this.dataStore.ensureBucketExists(bucketName);
 };
 
-bb.Service.prototype.add = function(entry) {
+bb.DataService.prototype.add = function(entry) {
   this.dataStore.addEntryTo(this.bucketName, entry);
 };
 
-bb.Service.prototype.addToList = function(id, entry) {
+bb.DataService.prototype.addToList = function(id, entry) {
   var list = this.getById(id);
   if (list == null) {
     list = [];
@@ -19,21 +19,33 @@ bb.Service.prototype.addToList = function(id, entry) {
   this.dataStore.updateEntry(this.bucketName, id, list);
 };
 
-bb.Service.prototype.getAll = function() {
+bb.DataService.prototype.getAll = function() {
   return this.dataStore.getBucket(this.bucketName);
 };
 
-bb.Service.prototype.getById = function(id) {
+bb.DataService.prototype.getById = function(id) {
   return this.dataStore.getEntryFrom(this.bucketName, id);
 };
 
-bb.Service.prototype.isNameInUse = function(name) {
+bb.DataService.prototype.getKeysFrom = function(id) {
+  return Object.keys(this.getObjectById(id));
+};
+
+bb.DataService.prototype.getListById = function(id) {
+  return this.getById(id) || [];
+};
+
+bb.DataService.prototype.getObjectById = function(id) {
+  return this.getById(id) || {};
+};
+
+bb.DataService.prototype.isNameInUse = function(name) {
   var collection = this.dataStore.getBucket(this.bucketName);
-  var lcNewName = String(name).trim().toLowerCase();
+  var newName = String(name).trim();
   for (var id in collection) {
     if (collection.hasOwnProperty(id)) {
-      var lcExistingName = collection[id].name.toLowerCase();
-      if (lcExistingName === lcNewName) {
+      var existingName = collection[id].name;
+      if (existingName === newName) {
         return true;
       }
     }
@@ -41,7 +53,7 @@ bb.Service.prototype.isNameInUse = function(name) {
   return false;
 };
 
-bb.Service.prototype.rename = function(id, newName) {
+bb.DataService.prototype.rename = function(id, newName) {
   var entry = this.getById(id);
   if (this.isNameInUse(newName)) {
     alert('You already have one named "' + newName + '".');
@@ -51,7 +63,13 @@ bb.Service.prototype.rename = function(id, newName) {
   }
 };
 
-bb.Service.prototype.update = function(revisedEntry) {
+bb.DataService.prototype.setPropertyOfEntryTo = function(entryId, key, value) {
+  var entry = this.getObjectById(entryId);
+  entry[key] = value;
+  this.dataStore.updateEntry(this.bucketName, entryId, entry);
+};
+
+bb.DataService.prototype.update = function(revisedEntry) {
   if (revisedEntry.id == null) {
     console.error('No id found on revised entry.', revisedEntry);
     alert("There was a problem trying to save that change... I'm sorry.");

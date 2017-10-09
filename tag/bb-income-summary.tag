@@ -36,7 +36,8 @@
   this.friendlyDate = bb.Date.format(opts.transaction.whenTimestamp);
 
   if ( ! opts.transaction.accountId) {
-    opts.transaction.accountId = 1;
+    console.log('No account specified.');
+    route('income/account', null, true);
   }
 
   var hasAtLeastOneCategory = false;
@@ -62,7 +63,7 @@
   }
 
   getAccountNameFor(accountId) {
-    return opts.accounts[accountId].name;
+    return opts.dm.getAccountNameById(accountId);
   }
 
   getNameOfFirst(categories) {

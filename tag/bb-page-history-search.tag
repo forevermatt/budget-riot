@@ -7,7 +7,7 @@
     <input type="text" name="search" ref="search" onkeyup="{ refreshSearchResults }" />
   </h2>
   <hr class="small" />
-  <bb-transaction-list accounts="{ opts.accounts }"
+  <bb-transaction-list accounts="{ opts.dm.getAccounts() }"
                        transactions="{ this.searchResults }"></bb-transaction-list>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
@@ -16,38 +16,13 @@
     new bb.Button('home', 'home', '#budget', true)
   ];
 
-  this.searchResults = opts.transactions;
+  this.searchResults = [];
 
   refreshSearchResults() {
     let query = this.refs.search.value;
+    this.searchResults = opts.dm.getTransactionsMatching(query);
 
-    if (query === '' || query == undefined) {
-      this.searchResults = opts.transactions;
-    } else {
-      this.searchResults = opts.transactions.filter(function(transaction) {
-        if (transaction.account && transaction.account.indexOf(query) >= 0) {
-          return true;
-        }
-
-        if (String(transaction.amount).indexOf(query) === 0) {
-          return true;
-        }
-
-        if (transaction.category && transaction.category.indexOf(query) >= 0) {
-          return true;
-        }
-
-        if (transaction.date && transaction.date.indexOf(query) === 0) {
-          return true;
-        }
-
-        if (transaction.who && transaction.who.indexOf(query) >= 0) {
-          return true;
-        }
-
-        return false;
-      });
-    }
+    console.log(this.searchResults);
   }
   </script>
 </bb-page-history-search>

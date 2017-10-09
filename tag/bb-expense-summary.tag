@@ -7,7 +7,7 @@
       </a><br />
       <span class="expense-summary-categories">
         <virtual each="{ category, categoryId in opts.transaction.categories }">
-          <code class="text-nowrap">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amount) }</code>
+          <code class="text-nowrap">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amountTotal) }</code>
         </virtual>
       </span>
     </p>
@@ -35,10 +35,9 @@
   this.friendlyDate = bb.Date.format(opts.transaction.whenTimestamp);
 
   if ( ! opts.transaction.accountId) {
-    for (var accountId in opts.accounts) {
-      if (opts.accounts.hasOwnProperty(accountId)) {
-        opts.transaction.accountId = Number(accountId);
-      }
+    opts.transaction.accountId = opts.dm.getDefaultAccountId();
+    if ( ! opts.transaction.accountId) {
+      route('expense/account', null, true);
     }
   }
 
@@ -49,7 +48,7 @@
   }
 
   getAccountNameFor(accountId) {
-    return opts.accounts[accountId].name;
+    return opts.dm.getAccountNameById(accountId);
   }
 
   getTotal(categories) {

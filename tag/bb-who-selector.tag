@@ -5,9 +5,9 @@
            value="{ opts.transaction.who }">
     <hr class="small" />
     <ul class="list-inline">
-      <li each="{ opts.items }"><a href="javascript:void(0)"
-                                   class="btn btn-default"
-                                   onclick="{ payeeClicked }">{ name }</a></li>
+      <li each="{ item in opts.items }"><a href="javascript:void(0)"
+                                           class="btn btn-default"
+                                           onclick="{ payeeClicked }">{ item }</a></li>
     </ul>
   </form>
 
@@ -21,16 +21,6 @@
     this.recordPayee(formEvent, payeeName);
   }
 
-  getMatchingPayee(payeeName) {
-    var matchingPayees = opts.items.filter(function(payee) {
-      return (payee.name === payeeName);
-    });
-    if (matchingPayees.length > 0) {
-      return matchingPayees[0];
-    }
-    return null;
-  }
-
   payeeClicked(clickEvent) {
     var payeeName = clickEvent.target.text;
     this.recordPayee(clickEvent, payeeName);
@@ -38,15 +28,7 @@
 
   recordPayee(theEvent, payeeName) {
     theEvent.preventUpdate = true;
-    var matchingPayee = this.getMatchingPayee(payeeName);
-    if (matchingPayee) {
-      opts.transaction.who = matchingPayee.name;
-    } else {
-      opts.items.push({
-        'name': payeeName
-      });
-      opts.transaction.who = payeeName;
-    }
+    opts.transaction.who = payeeName;
     this.trigger('next');
   }
   </script>

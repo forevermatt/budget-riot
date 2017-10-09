@@ -1,11 +1,11 @@
 <bb-category-list>
   <table id="category-list" class="table table-condensed">
     <tbody>
-      <tr each="{ category, categoryId in opts.categories }">
+      <tr each="{ category, categoryId in opts.dm.getCategories() }">
         <td class="category-name width-10">
           <a href="#history/category/{ categoryId }" class="btn btn-default">{ category.name }</a></td>
         <td class="width-80">
-          <div class="category-graph { dangerIfNegative(category.remaining) }">
+          <div class="category-graph { dangerIfNegative(opts.dm.getCategoryRemaining(categoryId)) }">
             <div class="category-graph-line { status(category.remaining, category.budgetedAmount) }"
                  style="width: { width(category.remaining, category.budgetedAmount) }%;"></div>
           </div>
