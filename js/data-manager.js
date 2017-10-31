@@ -56,6 +56,12 @@ bb.DataManager.prototype.getCategories = function() {
   return this.categoryService.getAll();
 };
 
+bb.DataManager.prototype.getCategoriesInOrder = function() {
+  let categories = this.getCategories();
+  let list = Object.values(categories);
+  return list.sort((a, b) => a.name.localeCompare(b.name));
+};
+
 bb.DataManager.prototype.getCategoryById = function(categoryId) {
   return this.categoryService.getById(categoryId);
 };

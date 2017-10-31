@@ -1,24 +1,24 @@
 <bb-budget>
   <table id="category-list" class="table table-condensed">
     <tbody>
-      <tr each="{ category, categoryId in opts.dm.getCategories() }">
+      <tr each="{ category in opts.dm.getCategoriesInOrder() }">
         <td class="category-name width-10">
-          <a href="#history/category/{ categoryId }"
+          <a href="#history/category/{ category.id }"
              class="btn btn-default">{ category.name }</a>
         </td>
         <td class="width-80">
-          <div class="category-graph { dangerIfNegative(getRemainingFor(categoryId)) }">
-            <div class="category-graph-line { status(getRemainingFor(categoryId), this.budget[categoryId] || 0) }"
-                 style="width: { width(getRemainingFor(categoryId), this.budget[categoryId] || 0) }%;"></div>
+          <div class="category-graph { dangerIfNegative(getRemainingFor(category.id)) }">
+            <div class="category-graph-line { status(getRemainingFor(category.id), this.budget[category.id] || 0) }"
+                 style="width: { width(getRemainingFor(category.id), this.budget[category.id] || 0) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
-          <bb-ratio remaining="{ getRemainingFor(categoryId) }"
+          <bb-ratio remaining="{ getRemainingFor(category.id) }"
                     budgeted="{ amount }"></bb-ratio>
-          <span class="category-available { dangerIfNegative(getRemainingFor(categoryId)) }">
-            <sup>$</sup>{ bb.Transaction.format(getRemainingFor(categoryId)) }
+          <span class="category-available { dangerIfNegative(getRemainingFor(category.id)) }">
+            <sup>$</sup>{ bb.Transaction.format(getRemainingFor(category.id)) }
           </span>
-          <span class="category-budgeted">/ { bb.Transaction.formatWhole(this.budget[categoryId] || 0) }</span>
+          <span class="category-budgeted">/ { bb.Transaction.formatWhole(this.budget[category.id] || 0) }</span>
         </td>
       </tr>
     </tbody>
