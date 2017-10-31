@@ -110,12 +110,12 @@ bb.BudgetApp = function(pageDom) {
 };
 
 bb.BudgetApp.prototype.route = function(page, subPage, id) {
-  if ( ! page) {
+  if (!page) {
     route('budget');
     return;
   }
 
-  if ((page === 'budget') && ! subPage) {
+  if ((page === 'budget') && !subPage) {
     subPage = 'view';
   }
 
