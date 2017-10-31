@@ -79,7 +79,7 @@ bb.DataManager.prototype.getTransactions = function() {
 };
 
 bb.DataManager.prototype.getTransactionsMatching = function(query) {
-  if (query === '' || query == undefined) {
+  if (!query) {
     return [];
   }
 
