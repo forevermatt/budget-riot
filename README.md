@@ -92,7 +92,7 @@ version to the next.
                   },
                   *...*
                 },
-                "whenTimestamp": *date/time of transaction, as unix timestamp*,
+                "whenTimestamp": *date/time of transaction, as JS unix timestamp*,
                 "who": "*name of payee*"
               }
             ]
