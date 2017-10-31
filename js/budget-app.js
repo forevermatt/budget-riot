@@ -129,7 +129,7 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     try {
       this.page.showTag(routeData.tagName, routeData.opts);
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.page.showTag('bb-page-error', { 'error': e });
     }
   } else {
