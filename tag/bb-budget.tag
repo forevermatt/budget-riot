@@ -8,13 +8,13 @@
         </td>
         <td class="width-80">
           <div class="category-graph { dangerIfNegative(getRemainingFor(category.id)) }">
-            <div class="category-graph-line { status(getRemainingFor(category.id), this.budget[category.id] || 0) }"
-                 style="width: { width(getRemainingFor(category.id), this.budget[category.id] || 0) }%;"></div>
+            <div class="category-graph-line { status(getRemainingFor(category.id), category.budgetedAmount || 0) }"
+                 style="width: { width(getRemainingFor(category.id), category.budgetedAmount || 0) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
           <bb-ratio remaining="{ getRemainingFor(category.id) }"
-                    budgeted="{ amount }"></bb-ratio>
+                    budgeted="{ category.budgetedAmount }"></bb-ratio>
           <div class="category-available { dangerIfNegative(getRemainingFor(category.id)) }">
             <sup>$</sup>{ bb.Transaction.format(getRemainingFor(category.id)) }
           </div>
