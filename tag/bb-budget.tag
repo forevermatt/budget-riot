@@ -59,7 +59,7 @@
       if (remaining < 0) {
         return 0;
       } else if (total === 0) {
-        return 0;
+        return (remaining > 0) ? 100 : 0;
       }
       return (remaining / total) * 100;
     }
