@@ -15,10 +15,10 @@
         <td class="category-amount width-10">
           <bb-ratio remaining="{ getRemainingFor(category.id) }"
                     budgeted="{ amount }"></bb-ratio>
-          <span class="category-available { dangerIfNegative(getRemainingFor(category.id)) }">
+          <div class="category-available { dangerIfNegative(getRemainingFor(category.id)) }">
             <sup>$</sup>{ bb.Transaction.format(getRemainingFor(category.id)) }
-          </span>
-          <span class="category-budgeted">/ { bb.Transaction.formatWhole(this.budget[category.id] || 0) }</span>
+          </div>
+          <div class="category-budgeted"><span>/ { bb.Transaction.formatWhole(category.budgetedAmount || 0) }</span></div>
         </td>
       </tr>
     </tbody>
