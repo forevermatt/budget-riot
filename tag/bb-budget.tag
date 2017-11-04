@@ -1,24 +1,22 @@
 <bb-budget>
   <table id="category-list" class="table table-condensed">
     <tbody>
-      <tr each="{ category in opts.dm.getCategoriesInOrder() }">
+      <tr each="{ budgetCategory in this.budgetInOrder }">
         <td class="category-name width-10">
-          <a href="#history/category/{ category.id }"
-             class="btn btn-default">{ category.name }</a>
+          <a href="#history/category/{ budgetCategory.categoryId }"
+             class="btn btn-default">{ budgetCategory.categoryName }</a>
         </td>
         <td class="width-80">
-          <div class="category-graph { dangerIfNegative(getRemainingFor(category.id)) }">
-            <div class="category-graph-line { status(getRemainingFor(category.id), category.budgetedAmount || 0) }"
-                 style="width: { width(getRemainingFor(category.id), category.budgetedAmount || 0) }%;"></div>
+          <div class="category-graph { dangerIfNegative(budgetCategory.remaining) }">
+            <div class="category-graph-line { status(budgetCategory.remaining, budgetCategory.budgetedAmount) }"
+                 style="width: { width(budgetCategory.remaining, budgetCategory.budgetedAmount) }%;"></div>
           </div>
         </td>
         <td class="category-amount width-10">
-          <bb-ratio remaining="{ getRemainingFor(category.id) }"
-                    budgeted="{ category.budgetedAmount }"></bb-ratio>
-          <div class="category-available { dangerIfNegative(getRemainingFor(category.id)) }">
-            <sup>$</sup>{ bb.Transaction.format(getRemainingFor(category.id)) }
+          <div class="category-available { dangerIfNegative(budgetCategory.remaining) }">
+            <sup>$</sup>{ bb.Transaction.format(budgetCategory.remaining) }
           </div>
-          <div class="category-budgeted"><span>/ { bb.Transaction.formatWhole(category.budgetedAmount || 0) }</span></div>
+          <div class="category-budgeted"><span>/ { bb.Transaction.formatWhole(budgetCategory.budgetedAmount) }</span></div>
         </td>
       </tr>
     </tbody>
@@ -29,19 +27,14 @@
   </a>
 
   <script>
-    this.yearMonthId = opts.id;
-    this.budget = opts.dm.getBudgetForMonth(this.yearMonthId);
+    this.yearMonthId = opts.id || bb.Date.getCurrentYearMonthString();
+    this.budgetInOrder = opts.dm.getBudgetForMonthInOrder(this.yearMonthId);
 
     dangerIfNegative(remaining) {
       if ((remaining != undefined) && (remaining < 0)) {
         return 'danger';
       }
       return '';
-    }
-
-    getRemainingFor() {
-      /** @TODO: Get the real value. */
-      return 0;
     }
 
     status(remaining, total) {

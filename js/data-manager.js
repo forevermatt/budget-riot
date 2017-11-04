@@ -48,8 +48,28 @@ bb.DataManager.prototype.getAccounts = function() {
 };
 
 bb.DataManager.prototype.getBudgetForMonth = function(yearMonthId) {
-  yearMonthId = yearMonthId || bb.Date.getCurrentYearMonthString();
-  return this.budgetService.getById(yearMonthId) || {};
+  let budgetForMonth = this.budgetService.getById(yearMonthId);
+  if (!budgetForMonth) {
+    const currentYearMonth = bb.Date.getCurrentYearMonthString();
+    budgetForMonth = this.budgetService.getById(currentYearMonth) || {};
+  }
+  return budgetForMonth;
+};
+
+bb.DataManager.prototype.getBudgetForMonthInOrder = function(yearMonthId) {
+  const budgetForMonth = this.getBudgetForMonth(yearMonthId);
+  let list = [];
+  for (var categoryId in budgetForMonth) {
+    if (budgetForMonth.hasOwnProperty(categoryId)) {
+      list.push({
+        'budgetedAmount': budgetForMonth.budgetedAmount || 0,
+        'remaining': budgetForMonth.remaining || 0,
+        'categoryId': categoryId,
+        'categoryName': this.getCategoryName(categoryId)
+      });
+    }
+  }
+  return list.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
 };
 
 bb.DataManager.prototype.getCategories = function() {
