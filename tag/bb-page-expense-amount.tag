@@ -1,6 +1,6 @@
 <bb-page-expense-amount>
   <bb-amount-selector ref="selector"
-                      transaction="{ opts.transaction }"></bb-amount-selector>
+                      amount="{ opts.transaction.amountTotal }"></bb-amount-selector>
   <bb-button-row buttons="{ this.buttons }"></bb-button-row>
 
   <script>
@@ -10,7 +10,8 @@
   ];
 
   this.one('mount', function() {
-    this.refs.selector.on('next', function() {
+    this.refs.selector.on('next', function(resultingAmount) {
+      opts.transaction.amountTotal = resultingAmount;
       route('expense/category');
     })
   })
