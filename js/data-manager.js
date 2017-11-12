@@ -19,7 +19,16 @@ bb.DataManager.prototype.addAccount = function(account) {
 };
 
 bb.DataManager.prototype.addCategory = function(category) {
-  return this.categoryService.add(category);
+  let newCategory = this.categoryService.add(category);
+  this.addCategoryToBudgetMonth(newCategory.id);
+};
+
+bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
+  let monthYearId = bb.Date.getCurrentYearMonthString();
+  this.budgetService.setPropertyOfEntryTo(monthYearId, categoryId, {
+    'budgetedAmount': 0,
+    'remaining': 0
+  });
 };
 
 bb.DataManager.prototype.addTransactionToList = function(id, entry) {

@@ -7,7 +7,7 @@ bb.DataService = function(bucketName, dataStore) {
 };
 
 bb.DataService.prototype.add = function(entry) {
-  this.dataStore.addEntryTo(this.bucketName, entry);
+  return this.dataStore.addEntryTo(this.bucketName, entry);
 };
 
 bb.DataService.prototype.addToList = function(id, entry) {
