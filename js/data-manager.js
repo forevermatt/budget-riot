@@ -68,7 +68,7 @@ bb.DataManager.prototype.getAmountUsedForCategoryInMonth = function(categoryId, 
   return amountUsed;
 };
 
-bb.DataManager.prototype.getBudgetedCategoryForMonth = function(categoryId, yearMonthId) {
+bb.DataManager.prototype.getBudgetCategoryForMonth = function(categoryId, yearMonthId) {
   let budgetForMonth = this.getBudgetForMonth(yearMonthId);
   return budgetForMonth[categoryId] || {};
 };

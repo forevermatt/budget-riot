@@ -19,7 +19,7 @@
   })
 
   getCategoryAmount() {
-    return opts.dm.getBudgetedCategoryForMonth(this.categoryId);
+    return opts.dm.getBudgetCategoryForMonth(this.categoryId);
   }
   </script>
 </bb-page-category-amount>
