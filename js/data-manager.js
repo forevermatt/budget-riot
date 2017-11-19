@@ -57,6 +57,17 @@ bb.DataManager.prototype.getAccounts = function() {
   return this.accountService.getAll();
 };
 
+bb.DataManager.prototype.getAmountUsedForCategoryInMonth = function(categoryId, yearMonthId) {
+  let amountUsed = 0;
+  let transactionsForMonth = this.getTransactionById(yearMonthId);
+  for (let transaction of transactionsForMonth) {
+    if (transaction.categories[categoryId]) {
+      amountUsed += transaction.categories[categoryId].amount;
+    }
+  }
+  return amountUsed;
+};
+
 bb.DataManager.prototype.getBudgetedCategoryForMonth = function(categoryId, yearMonthId) {
   let budgetForMonth = this.getBudgetForMonth(yearMonthId);
   return budgetForMonth[categoryId] || {};
@@ -117,7 +128,7 @@ bb.DataManager.prototype.getDefaultAccountId = function() {
 };
 
 bb.DataManager.prototype.getTransactionById = function(id) {
-  return this.transactionService.getById(id);
+  return this.transactionService.getListById(id);
 };
 
 bb.DataManager.prototype.getTransactions = function() {
@@ -178,10 +189,11 @@ bb.DataManager.prototype.setBudgetedAmountForCategory = function(categoryId, amo
     throw new Error('No category ID was provided.');
   }
   const yearMonthId = bb.Date.getCurrentYearMonthString();
-  let budgetCategory = this.getBudgetedCategoryForMonth(categoryId, yearMonthId);
+  let budgetedAmount = Number(amount || 0);
+  let amountUsed = this.getAmountUsedForCategoryInMonth(categoryId, yearMonthId);
   this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
-    'budgetedAmount': Number(amount || 0),
-    'remaining': budgetCategory.remaining
+    'budgetedAmount': budgetedAmount,
+    'remaining': budgetedAmount - amountUsed
   });
 };
 
