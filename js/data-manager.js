@@ -21,11 +21,12 @@ bb.DataManager.prototype.addAccount = function(account) {
 bb.DataManager.prototype.addCategory = function(category) {
   let newCategory = this.categoryService.add(category);
   this.addCategoryToBudgetMonth(newCategory.id);
+  return newCategory;
 };
 
 bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
-  let monthYearId = bb.Date.getCurrentYearMonthString();
-  this.budgetService.setPropertyOfEntryTo(monthYearId, categoryId, {
+  let yearMonthId = bb.Date.getCurrentYearMonthString();
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
     'budgetedAmount': 0,
     'remaining': 0
   });
@@ -54,6 +55,11 @@ bb.DataManager.prototype.getAccountNameById = function(id) {
 
 bb.DataManager.prototype.getAccounts = function() {
   return this.accountService.getAll();
+};
+
+bb.DataManager.prototype.getBudgetedCategoryForMonth = function(categoryId, yearMonthId) {
+  let budgetForMonth = this.getBudgetForMonth(yearMonthId);
+  return budgetForMonth[categoryId] || {};
 };
 
 bb.DataManager.prototype.getBudgetForMonth = function(yearMonthId) {
@@ -93,6 +99,10 @@ bb.DataManager.prototype.getCategoriesInOrder = function() {
 
 bb.DataManager.prototype.getCategoryById = function(categoryId) {
   return this.categoryService.getById(categoryId);
+};
+
+bb.DataManager.prototype.getCategoryByName = function(name) {
+  return this.categoryService.getByName(name);
 };
 
 bb.DataManager.prototype.getCategoryName = function(categoryId) {
@@ -160,6 +170,18 @@ bb.DataManager.prototype.renameAccount = function(id, newName) {
 
 bb.DataManager.prototype.renameCategory = function(id, newName) {
   return this.categoryService.rename(id, newName);
+};
+
+bb.DataManager.prototype.setBudgetedAmountForCategory = function(categoryId, amount) {
+  if (categoryId == undefined) {
+    throw new Error('No category ID was provided.');
+  }
+  const yearMonthId = bb.Date.getCurrentYearMonthString();
+  let budgetCategory = this.getBudgetedCategoryForMonth(categoryId, yearMonthId);
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
+    'budgetedAmount': Number(amount || 0),
+    'remaining': budgetCategory.remaining
+  });
 };
 
 bb.DataManager.prototype.updateCategory = function(category) {
