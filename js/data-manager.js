@@ -76,9 +76,10 @@ bb.DataManager.prototype.getBudgetForMonthInOrder = function(yearMonthId) {
   let list = [];
   for (var categoryId in budgetForMonth) {
     if (budgetForMonth.hasOwnProperty(categoryId)) {
+      let budgetCategory = budgetForMonth[categoryId];
       list.push({
-        'budgetedAmount': budgetForMonth.budgetedAmount || 0,
-        'remaining': budgetForMonth.remaining || 0,
+        'budgetedAmount': budgetCategory.budgetedAmount || 0,
+        'remaining': budgetCategory.remaining || 0,
         'categoryId': categoryId,
         'categoryName': this.getCategoryName(categoryId)
       });
