@@ -32,12 +32,13 @@
   saveNewCategory() {
     var name = String(this.refs.name.value).trim();
     if (name) {
-      if ( ! opts.dm.isCategoryNameInUse(name)) {
-        opts.dm.addCategory({
+      let category = opts.dm.getCategoryByName(name);
+      if (category === null) {
+        category = opts.dm.addCategory({
           'name': name
         });
       }
-      route('budget');
+      route('category/amount/' + category.id);
     } else {
       this.refs.name.value = '';
     }

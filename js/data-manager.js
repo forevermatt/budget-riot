@@ -19,11 +19,24 @@ bb.DataManager.prototype.addAccount = function(account) {
 };
 
 bb.DataManager.prototype.addCategory = function(category) {
-  return this.categoryService.add(category);
+  let newCategory = this.categoryService.add(category);
+  this.addCategoryToBudgetMonth(newCategory.id);
+  return newCategory;
 };
 
-bb.DataManager.prototype.addTransactionToList = function(id, entry) {
-  return this.transactionService.addToList(id, entry);
+bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
+  let yearMonthId = bb.Date.getCurrentYearMonthString();
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
+    'budgetedAmount': 0,
+    'remaining': 0
+  });
+};
+
+bb.DataManager.prototype.addTransactionToList = function(yearMonthId, transactionData) {
+  this.transactionService.addToList(yearMonthId, transactionData);
+  for (let categoryId of Object.keys(transactionData.categories)) {
+    this.updateRemainingForBudgetCategory(categoryId, yearMonthId);
+  }
 };
 
 bb.DataManager.prototype.ensureIncomeSourceExists = function(name) {
@@ -47,17 +60,64 @@ bb.DataManager.prototype.getAccounts = function() {
   return this.accountService.getAll();
 };
 
+bb.DataManager.prototype.getAmountUsedForCategoryInMonth = function(categoryId, yearMonthId) {
+  let amountUsed = 0;
+  let transactionsForMonth = this.getTransactionById(yearMonthId);
+  for (let transaction of transactionsForMonth) {
+    if (transaction.categories[categoryId]) {
+      amountUsed += transaction.categories[categoryId].amount;
+    }
+  }
+  return amountUsed;
+};
+
+bb.DataManager.prototype.getBudgetCategoryForMonth = function(categoryId, yearMonthId) {
+  let budgetForMonth = this.getBudgetForMonth(yearMonthId);
+  return budgetForMonth[categoryId] || {};
+};
+
 bb.DataManager.prototype.getBudgetForMonth = function(yearMonthId) {
-  yearMonthId = yearMonthId || bb.Date.getCurrentYearMonthString();
-  return this.budgetService.getById(yearMonthId) || {};
+  let budgetForMonth = this.budgetService.getById(yearMonthId);
+  if (!budgetForMonth) {
+    const currentYearMonth = bb.Date.getCurrentYearMonthString();
+    budgetForMonth = this.budgetService.getById(currentYearMonth) || {};
+  }
+  return budgetForMonth;
+};
+
+bb.DataManager.prototype.getBudgetForMonthInOrder = function(yearMonthId) {
+  const budgetForMonth = this.getBudgetForMonth(yearMonthId);
+  let list = [];
+  for (var categoryId in budgetForMonth) {
+    if (budgetForMonth.hasOwnProperty(categoryId)) {
+      let budgetCategory = budgetForMonth[categoryId];
+      list.push({
+        'budgetedAmount': budgetCategory.budgetedAmount || 0,
+        'remaining': budgetCategory.remaining || 0,
+        'categoryId': categoryId,
+        'categoryName': this.getCategoryName(categoryId)
+      });
+    }
+  }
+  return list.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
 };
 
 bb.DataManager.prototype.getCategories = function() {
   return this.categoryService.getAll();
 };
 
+bb.DataManager.prototype.getCategoriesInOrder = function() {
+  let categories = this.getCategories();
+  let list = Object.values(categories);
+  return list.sort((a, b) => a.name.localeCompare(b.name));
+};
+
 bb.DataManager.prototype.getCategoryById = function(categoryId) {
   return this.categoryService.getById(categoryId);
+};
+
+bb.DataManager.prototype.getCategoryByName = function(name) {
+  return this.categoryService.getByName(name);
 };
 
 bb.DataManager.prototype.getCategoryName = function(categoryId) {
@@ -71,7 +131,7 @@ bb.DataManager.prototype.getDefaultAccountId = function() {
 };
 
 bb.DataManager.prototype.getTransactionById = function(id) {
-  return this.transactionService.getById(id);
+  return this.transactionService.getListById(id);
 };
 
 bb.DataManager.prototype.getTransactions = function() {
@@ -127,6 +187,29 @@ bb.DataManager.prototype.renameCategory = function(id, newName) {
   return this.categoryService.rename(id, newName);
 };
 
+bb.DataManager.prototype.setBudgetedAmountForCategory = function(categoryId, amount) {
+  if (categoryId == undefined) {
+    throw new Error('No category ID was provided.');
+  }
+  const yearMonthId = bb.Date.getCurrentYearMonthString();
+  let budgetedAmount = Number(amount || 0);
+  let amountUsed = this.getAmountUsedForCategoryInMonth(categoryId, yearMonthId);
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
+    'budgetedAmount': budgetedAmount,
+    'remaining': budgetedAmount - amountUsed
+  });
+};
+
 bb.DataManager.prototype.updateCategory = function(category) {
   return this.categoryService.update(category);
+};
+
+bb.DataManager.prototype.updateRemainingForBudgetCategory = function(categoryId, yearMonthId) {
+  let amountUsed = this.getAmountUsedForCategoryInMonth(categoryId, yearMonthId);
+  let budgetCategory = this.getBudgetCategoryForMonth(categoryId, yearMonthId);
+  let budgetedAmount = budgetCategory.budgetedAmount;
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
+    'budgetedAmount': budgetedAmount,
+    'remaining': budgetedAmount - amountUsed
+  });
 };

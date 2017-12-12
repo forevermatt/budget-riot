@@ -18,6 +18,9 @@ bb.BudgetApp = function(pageDom) {
     'budget/view': {
       'tagName': 'bb-page-budget'
     },
+    'category/amount': {
+      'tagName': 'bb-page-category-amount'
+    },
     'category/new': {
       'tagName': 'bb-page-category-new'
     },

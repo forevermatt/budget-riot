@@ -12,16 +12,18 @@
 
   <script>
   this.on('mount', function() {
-    this.numeralsEntered = this.getNumeralsFromAmount(opts.transaction.amountTotal);
+    this.numeralsEntered = this.getNumeralsFromAmount(opts.amount);
     this.showNumerals(this.numeralsEntered);
+    this.recordAmount(Number(this.numeralsEntered.join('')));
     this.refs.amount.focus();
   });
 
   this.numeralsEntered = [];
+  this.resultingAmount = null;
 
   formSubmitted(formEvent) {
     formEvent.preventUpdate = true;
-    this.trigger('next');
+    this.trigger('next', this.resultingAmount);
   }
 
   getNumeralsFromAmount(value) {
@@ -72,7 +74,7 @@
   }
 
   recordAmount(amount) {
-    opts.transaction.amountTotal = amount;
+    this.resultingAmount = amount;
   };
 
   showNumerals(numerals) {
