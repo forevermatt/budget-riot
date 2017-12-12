@@ -56,7 +56,12 @@ version to the next.
           },
           "budget": {
             "*YYYY-MM*": {
-              "*category id*": *allotted amount for this month, in cents*,
+              "*category id*": {
+                "budgetedAmount": *allotted amount for this month, in cents*,
+                "remaining": *amount left after subtacting this month's*
+                             *activity from last month's remaining amount for*
+                             *this category*
+              },
               *...*
             },
             *...*
@@ -92,7 +97,7 @@ version to the next.
                   },
                   *...*
                 },
-                "whenTimestamp": *date/time of transaction, as unix timestamp*,
+                "whenTimestamp": *date/time of transaction, as JS unix timestamp*,
                 "who": "*name of payee*"
               }
             ]

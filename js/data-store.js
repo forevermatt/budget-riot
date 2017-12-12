@@ -20,6 +20,7 @@ bb.DataStore.prototype.addEntryTo = function(bucket, entry) {
   entry.id = newId;
   this.data[bucket][newId] = entry;
   this.saveData();
+  return entry;
 };
 
 bb.DataStore.prototype.ensureBucketExists = function(bucket) {

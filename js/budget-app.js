@@ -18,6 +18,9 @@ bb.BudgetApp = function(pageDom) {
     'budget/view': {
       'tagName': 'bb-page-budget'
     },
+    'category/amount': {
+      'tagName': 'bb-page-category-amount'
+    },
     'category/new': {
       'tagName': 'bb-page-category-new'
     },
@@ -110,12 +113,12 @@ bb.BudgetApp = function(pageDom) {
 };
 
 bb.BudgetApp.prototype.route = function(page, subPage, id) {
-  if ( ! page) {
+  if (!page) {
     route('budget');
     return;
   }
 
-  if ((page === 'budget') && ! subPage) {
+  if ((page === 'budget') && !subPage) {
     subPage = 'view';
   }
 
@@ -129,7 +132,7 @@ bb.BudgetApp.prototype.route = function(page, subPage, id) {
     try {
       this.page.showTag(routeData.tagName, routeData.opts);
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.page.showTag('bb-page-error', { 'error': e });
     }
   } else {

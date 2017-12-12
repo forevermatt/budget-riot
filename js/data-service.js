@@ -7,7 +7,7 @@ bb.DataService = function(bucketName, dataStore) {
 };
 
 bb.DataService.prototype.add = function(entry) {
-  this.dataStore.addEntryTo(this.bucketName, entry);
+  return this.dataStore.addEntryTo(this.bucketName, entry);
 };
 
 bb.DataService.prototype.addToList = function(id, entry) {
@@ -27,6 +27,20 @@ bb.DataService.prototype.getById = function(id) {
   return this.dataStore.getEntryFrom(this.bucketName, id);
 };
 
+bb.DataService.prototype.getByName = function(name) {
+  var collection = this.dataStore.getBucket(this.bucketName);
+  var sanitizedName = String(name).trim();
+  for (var id in collection) {
+    if (collection.hasOwnProperty(id)) {
+      var existingName = collection[id].name;
+      if (existingName === sanitizedName) {
+        return collection[id];
+      }
+    }
+  }
+  return null;
+};
+
 bb.DataService.prototype.getKeysFrom = function(id) {
   return Object.keys(this.getObjectById(id));
 };
@@ -40,17 +54,7 @@ bb.DataService.prototype.getObjectById = function(id) {
 };
 
 bb.DataService.prototype.isNameInUse = function(name) {
-  var collection = this.dataStore.getBucket(this.bucketName);
-  var newName = String(name).trim();
-  for (var id in collection) {
-    if (collection.hasOwnProperty(id)) {
-      var existingName = collection[id].name;
-      if (existingName === newName) {
-        return true;
-      }
-    }
-  }
-  return false;
+  return (this.getByName(name) !== null);
 };
 
 bb.DataService.prototype.rename = function(id, newName) {
