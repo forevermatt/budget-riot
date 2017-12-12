@@ -32,8 +32,11 @@ bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
   });
 };
 
-bb.DataManager.prototype.addTransactionToList = function(id, entry) {
-  return this.transactionService.addToList(id, entry);
+bb.DataManager.prototype.addTransactionToList = function(yearMonthId, transactionData) {
+  this.transactionService.addToList(yearMonthId, transactionData);
+  for (let categoryId of Object.keys(transactionData.categories)) {
+    this.updateRemainingForBudgetCategory(categoryId, yearMonthId);
+  }
 };
 
 bb.DataManager.prototype.ensureIncomeSourceExists = function(name) {
@@ -199,4 +202,14 @@ bb.DataManager.prototype.setBudgetedAmountForCategory = function(categoryId, amo
 
 bb.DataManager.prototype.updateCategory = function(category) {
   return this.categoryService.update(category);
+};
+
+bb.DataManager.prototype.updateRemainingForBudgetCategory = function(categoryId, yearMonthId) {
+  let amountUsed = this.getAmountUsedForCategoryInMonth(categoryId, yearMonthId);
+  let budgetCategory = this.getBudgetCategoryForMonth(categoryId, yearMonthId);
+  let budgetedAmount = budgetCategory.budgetedAmount;
+  this.budgetService.setPropertyOfEntryTo(yearMonthId, categoryId, {
+    'budgetedAmount': budgetedAmount,
+    'remaining': budgetedAmount - amountUsed
+  });
 };
