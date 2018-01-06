@@ -13,15 +13,13 @@
 
   <script>
   this.buttons = [
-    new bb.Button('done', 'ok'),
+    new bb.Button('next', 'chevron-right'),
     new bb.Button('back', 'chevron-left', '#budget', true)
   ];
 
   this.one('mount', function() {
     this.refs.name.focus();
-    this.refs.buttons.on('done', function() {
-      this.saveNewCategory();
-    })
+    this.refs.buttons.on('next', this.saveNewCategory);
   });
 
   formSubmitted(formEvent) {

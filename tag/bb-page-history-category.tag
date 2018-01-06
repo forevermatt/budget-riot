@@ -5,8 +5,9 @@
     </button>
     <b class="editable" onclick="{ renameCategory }"
        title="(Click to rename)">{ this.category.name }:</b>
-    <span class="editable" onclick="{ changeBudgetedAmount }"
-          title="(Click to edit amount)"><sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
+    <a class="btn btn-default" href="#category/amount/{ this.category.id }">
+      <sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
+    </a>
     <div class="clearfix"></div>
   </h2>
   <hr class="small" />
