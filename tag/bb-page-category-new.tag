@@ -19,9 +19,7 @@
 
   this.one('mount', function() {
     this.refs.name.focus();
-    this.refs.buttons.on('done', function() {
-      this.saveNewCategory();
-    })
+    this.refs.buttons.on('done', this.saveNewCategory);
   });
 
   formSubmitted(formEvent) {
