@@ -26,7 +26,8 @@
   })
 
   getCategoryAmount() {
-    return opts.dm.getBudgetCategoryForMonth(this.categoryId);
+    let budgetCategory = opts.dm.getBudgetCategoryForMonth(this.categoryId);
+    return budgetCategory.budgetedAmount || 0;
   }
   </script>
 </bb-page-category-amount>
