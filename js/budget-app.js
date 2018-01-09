@@ -114,7 +114,7 @@ bb.BudgetApp = function(pageDom) {
 
 bb.BudgetApp.prototype.route = function(page, subPage, id) {
   if (!page) {
-    route('budget');
+    route('budget', null, true);
     return;
   }
 
