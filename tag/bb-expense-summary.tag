@@ -7,7 +7,7 @@
       </a><br />
       <span class="expense-summary-categories">
         <virtual each="{ category, categoryId in opts.transaction.categories }">
-          <code class="text-nowrap">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amountTotal) }</code>
+          <code class="text-nowrap">{ category.name }: <sup>$</sup>{ bb.Transaction.format(category.amount) }</code>
         </virtual>
       </span>
     </p>
