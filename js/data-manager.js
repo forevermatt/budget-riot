@@ -35,6 +35,10 @@ bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
 bb.DataManager.prototype.addTransactionToList = function(yearMonthId, transactionData) {
   this.transactionService.addToList(yearMonthId, transactionData);
   for (let categoryId of Object.keys(transactionData.categories)) {
+    if (categoryId < 1) {
+      // Skip the "(general income)" category.
+      continue;
+    }
     this.updateRemainingForBudgetCategory(categoryId, yearMonthId);
   }
 };
