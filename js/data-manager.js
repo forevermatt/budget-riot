@@ -99,7 +99,7 @@ bb.DataManager.prototype.getBudgetForMonthInOrder = function(yearMonthId) {
       });
     }
   }
-  return list.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
+  return list.sort((a, b) => (a.categoryName || '').localeCompare(b.categoryName || ''));
 };
 
 bb.DataManager.prototype.getCategories = function() {
@@ -109,7 +109,7 @@ bb.DataManager.prototype.getCategories = function() {
 bb.DataManager.prototype.getCategoriesInOrder = function() {
   let categories = this.getCategories();
   let list = Object.values(categories);
-  return list.sort((a, b) => a.name.localeCompare(b.name));
+  return list.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 };
 
 bb.DataManager.prototype.getCategoryById = function(categoryId) {
