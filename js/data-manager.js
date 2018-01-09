@@ -35,6 +35,10 @@ bb.DataManager.prototype.addCategoryToBudgetMonth = function(categoryId) {
 bb.DataManager.prototype.addTransactionToList = function(yearMonthId, transactionData) {
   this.transactionService.addToList(yearMonthId, transactionData);
   for (let categoryId of Object.keys(transactionData.categories)) {
+    if (categoryId < 1) {
+      // Skip the "(general income)" category.
+      continue;
+    }
     this.updateRemainingForBudgetCategory(categoryId, yearMonthId);
   }
 };
@@ -99,7 +103,7 @@ bb.DataManager.prototype.getBudgetForMonthInOrder = function(yearMonthId) {
       });
     }
   }
-  return list.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
+  return list.sort((a, b) => (a.categoryName || '').localeCompare(b.categoryName || ''));
 };
 
 bb.DataManager.prototype.getCategories = function() {
@@ -109,7 +113,7 @@ bb.DataManager.prototype.getCategories = function() {
 bb.DataManager.prototype.getCategoriesInOrder = function() {
   let categories = this.getCategories();
   let list = Object.values(categories);
-  return list.sort((a, b) => a.name.localeCompare(b.name));
+  return list.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 };
 
 bb.DataManager.prototype.getCategoryById = function(categoryId) {
