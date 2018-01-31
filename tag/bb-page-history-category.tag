@@ -21,19 +21,6 @@
   ];
   this.category = opts.dm.getCategoryById(opts.id);
 
-  changeBudgetedAmount() {
-    var newAmount = prompt('Edit category amount:', this.category.budgetedAmount / 100);
-    if (newAmount != null) {
-      var newAmountFloat = parseFloat(newAmount);
-      if (isNaN(newAmountFloat)) {
-        alert('That does not seem to be a number. Please try again.');
-        return;
-      }
-      this.category.budgetedAmount = Number(newAmountFloat * 100);
-      opts.dm.updateCategory(this.category);
-    }
-  }
-
   /** @todo Refactor this to use logic used in bb-page-history-account. */
 
   getTransactionsForCategory() {
