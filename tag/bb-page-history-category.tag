@@ -5,8 +5,8 @@
     </button>
     <b class="editable" onclick="{ renameCategory }"
        title="(Click to rename)">{ this.category.name }:</b>
-    <a class="btn btn-default" href="#category/amount/{ this.category.id }">
-      <sup>$</sup> { bb.Transaction.format(this.category.budgetedAmount) }
+    <a class="btn btn-default" href="#category/amount/{ this.categoryId }">
+      <sup>$</sup> { bb.Transaction.format(this.budgetCategory.budgetedAmount) }
     </a>
     <div class="clearfix"></div>
   </h2>
@@ -19,20 +19,9 @@
   this.buttons = [
     new bb.Button('home', 'home', '#budget', true)
   ];
-  this.category = opts.dm.getCategoryById(opts.id);
-
-  changeBudgetedAmount() {
-    var newAmount = prompt('Edit category amount:', this.category.budgetedAmount / 100);
-    if (newAmount != null) {
-      var newAmountFloat = parseFloat(newAmount);
-      if (isNaN(newAmountFloat)) {
-        alert('That does not seem to be a number. Please try again.');
-        return;
-      }
-      this.category.budgetedAmount = Number(newAmountFloat * 100);
-      opts.dm.updateCategory(this.category);
-    }
-  }
+  this.categoryId = opts.id;
+  this.category = opts.dm.getCategoryById(this.categoryId);
+  this.budgetCategory = opts.dm.getBudgetCategory(this.categoryId);
 
   /** @todo Refactor this to use logic used in bb-page-history-account. */
 
@@ -50,7 +39,7 @@
   renameCategory() {
     var newName = prompt('Edit category name:', this.category.name);
     if (newName != null) {
-      opts.dm.renameCategory(this.category.id, newName);
+      opts.dm.renameCategory(this.categoryId, newName);
     }
   }
   </script>

@@ -1,6 +1,13 @@
 # Budget
 A simple way to budget your money and reconcile your statements.
 
+## Try It Out (Beta)
+You can try it out here:  
+<https://forevermatt.github.io/budget/>
+
+**WARNING:**  
+This is a beta version (or earlier), so it very likely still has some bugs.
+
 ## Priorities
 
 1. As easy-to-use as possible.
